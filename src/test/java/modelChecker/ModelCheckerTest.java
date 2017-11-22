@@ -1,16 +1,13 @@
 package modelChecker;
 
-import static org.junit.Assert.*;
+import formula.FormulaParser;
+import formula.stateFormula.StateFormula;
+import model.Model;
+import org.junit.Test;
 
 import java.io.IOException;
 
-import org.junit.Test;
-
-import formula.FormulaParser;
-import formula.stateFormula.StateFormula;
-import modelChecker.ModelChecker;
-import modelChecker.SimpleModelChecker;
-import model.Model;
+import static org.junit.Assert.fail;
 
 public class ModelCheckerTest {
 
@@ -23,12 +20,13 @@ public class ModelCheckerTest {
     @Test
     public void buildAndCheckModel() {
         try {
-            Model model = Model.parseModel("src/test/resources/model1.json");
+            Model model = Model.parseModel("../../src/test/resources/model1.json");
 
-            StateFormula fairnessConstraint = new FormulaParser("src/test/resources/constraint1.json").parse();
-            StateFormula query = new FormulaParser("src/test/resources/ctl1.json").parse();
+            StateFormula fairnessConstraint = new FormulaParser("../../src/test/resources/constraint1.json").parse();
+            StateFormula query = new FormulaParser("../../src/test/resources/ctl1.json").parse();
 
             ModelChecker mc = new SimpleModelChecker();
+            System.out.println(fairnessConstraint.toString());
 
             // TO IMPLEMENT
             // assertTrue(mc.check(model, fairnessConstraint, query));

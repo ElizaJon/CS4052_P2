@@ -1,9 +1,9 @@
 package model;
 
+import com.google.gson.Gson;
+
 import java.io.FileReader;
 import java.io.IOException;
-
-import com.google.gson.Gson;
 
 /**
  * A model is consist of states and transitions
@@ -17,7 +17,6 @@ public class Model {
         Model model = gson.fromJson(new FileReader(filePath), Model.class);
         for (Transition t : model.transitions) {
             System.out.println(t);
-            ;
         }
         return model;
     }
