@@ -35,4 +35,13 @@ public class Until extends PathFormula {
         buffer.append(")");
     }
 
+    @Override
+    public void checker(StringBuilder buffer) {
+        buffer.append("(");
+        left.checker(buffer);
+        buffer.append(" " + FormulaParser.UNTIL_TOKEN + " ");
+        right.checker(buffer);
+        buffer.append(")");
+    }
+
 }

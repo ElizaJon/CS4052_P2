@@ -11,6 +11,7 @@ import com.google.gson.JsonParser;
 import formula.pathFormula.*;
 import formula.stateFormula.AtomicProp;
 import formula.stateFormula.*;
+import model.Model;
 
 /**
  * Class used to parse formulas from JSON. Create a instance of this class
@@ -35,10 +36,12 @@ public class FormulaParser {
     public static final char THEREEXISTS_TOKEN = 'E';
     public static final char FORALL_TOKEN = 'A';
     private Reader reader;
+    private Model model;
     Gson gson = new Gson();
     private JsonObject jsonFormula;
 
-    public FormulaParser(String filePath) throws IOException {
+    public FormulaParser(String filePath, Model model) throws IOException {
+        this.model = model;
         JsonParser parser = new JsonParser();
         JsonElement jsonElement = parser.parse(new FileReader(filePath));
         jsonFormula = jsonElement.getAsJsonObject();
@@ -49,6 +52,7 @@ public class FormulaParser {
     private FormulaParser() {
         jsonFormula = null;
         reader = null;
+        model = null;
     }
 
     public StateFormula parse() throws IOException {
@@ -94,13 +98,13 @@ public class FormulaParser {
         case OR_TOKEN: {
             validateNextChars(OR_TOKEN);
             StateFormula subformula2 = recursiveParseStateFormula();
-            stateFormula = new Or(subformula, subformula2);
+            stateFormula = new Or(subformula, subformula2, model);
         }
             break;
         case AND_TOKEN: {
             validateNextChars(AND_TOKEN);
             StateFormula subformula2 = recursiveParseStateFormula();
-            stateFormula = new And(subformula, subformula2);
+            stateFormula = new And(subformula, subformula2, model);
         }
             break;
         default:

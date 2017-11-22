@@ -21,7 +21,11 @@ public class Next extends PathFormula {
     public void writeToBuffer(StringBuilder buffer) {
         buffer.append(FormulaParser.NEXT_TOKEN);
         stateFormula.writeToBuffer(buffer);
-        ;
     }
 
+    @Override
+    public void checker(StringBuilder buffer) {
+        buffer.append(FormulaParser.NEXT_TOKEN);
+        stateFormula.checker(buffer);
+    }
 }

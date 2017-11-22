@@ -21,7 +21,13 @@ public class Always extends PathFormula {
     public void writeToBuffer(StringBuilder buffer) {
         buffer.append(FormulaParser.ALWAYS_TOKEn);
         stateFormula.writeToBuffer(buffer);
-        ;
+
+    }
+
+    @Override
+    public void checker(StringBuilder buffer) {
+        buffer.append(FormulaParser.ALWAYS_TOKEn);
+        stateFormula.checker(buffer);
 
     }
 

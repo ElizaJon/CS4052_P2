@@ -1,13 +1,14 @@
 package modelChecker;
 
 import formula.FormulaParser;
+import formula.pathFormula.Eventually;
 import formula.stateFormula.StateFormula;
 import model.Model;
 import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class ModelCheckerTest {
 
@@ -22,14 +23,13 @@ public class ModelCheckerTest {
         try {
             Model model = Model.parseModel("../../src/test/resources/model1.json");
 
-            StateFormula fairnessConstraint = new FormulaParser("../../src/test/resources/constraint1.json").parse();
-            StateFormula query = new FormulaParser("../../src/test/resources/ctl1.json").parse();
+            StateFormula fairnessConstraint = new FormulaParser("../../src/test/resources/constraint1.json", model).parse();
+            StateFormula query = new FormulaParser("../../src/test/resources/ctl1.json", model).parse();
 
             ModelChecker mc = new SimpleModelChecker();
-            System.out.println(fairnessConstraint.toString());
 
             // TO IMPLEMENT
-            // assertTrue(mc.check(model, fairnessConstraint, query));
+             assertTrue(mc.check(model, fairnessConstraint, query));
         } catch (IOException e) {
             e.printStackTrace();
             fail(e.toString());

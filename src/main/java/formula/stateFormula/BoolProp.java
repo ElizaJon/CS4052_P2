@@ -13,4 +13,10 @@ public class BoolProp extends StateFormula {
         buffer.append(" " + stringValue + " ");
     }
 
+    @Override
+    public void checker(StringBuilder buffer) {
+        String stringValue = (value) ? "True" : "False";
+        buffer.append(" " + stringValue + " ");
+    }
+
 }

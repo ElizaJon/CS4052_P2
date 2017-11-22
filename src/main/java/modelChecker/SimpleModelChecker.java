@@ -8,6 +8,13 @@ public class SimpleModelChecker implements ModelChecker {
     @Override
     public boolean check(Model model, StateFormula constraint, StateFormula query) {
         // TODO Auto-generated method stub
+        System.out.println(constraint.toString());
+
+        System.out.println(query.toString());
+        System.out.println(query.toString());
+
+        System.out.println(model.getStates()[0].getLabel()[0]);
+
         return false;
     }
 

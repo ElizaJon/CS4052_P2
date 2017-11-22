@@ -17,4 +17,12 @@ public class Not extends StateFormula {
         buffer.append(")");
     }
 
+    @Override
+    public void checker(StringBuilder buffer) {
+        buffer.append(FormulaParser.NOT_TOKEN);
+        buffer.append("(");
+        stateFormula.checker(buffer);
+        buffer.append(")");
+    }
+
 }

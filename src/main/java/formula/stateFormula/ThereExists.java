@@ -17,4 +17,12 @@ public class ThereExists extends StateFormula {
         pathFormula.writeToBuffer(buffer);
         buffer.append(")");
     }
+
+    @Override
+    public void checker(StringBuilder buffer) {
+        buffer.append("(");
+        buffer.append(FormulaParser.THEREEXISTS_TOKEN);
+        pathFormula.checker(buffer);
+        buffer.append(")");
+    }
 }

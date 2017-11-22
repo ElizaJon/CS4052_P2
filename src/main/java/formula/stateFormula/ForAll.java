@@ -17,4 +17,12 @@ public class ForAll extends StateFormula {
         pathFormula.writeToBuffer(buffer);
         buffer.append(")");
     }
+
+    @Override
+    public void checker(StringBuilder buffer) {
+        buffer.append("(");
+        buffer.append(FormulaParser.FORALL_TOKEN);
+        pathFormula.checker(buffer);
+        buffer.append(")");
+    }
 }

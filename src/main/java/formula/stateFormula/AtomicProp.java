@@ -12,4 +12,9 @@ public class AtomicProp extends StateFormula {
         buffer.append(" " + label + " ");
     }
 
+    @Override
+    public void checker(StringBuilder buffer) {
+        buffer.append(" " + label + " ");
+    }
+
 }
