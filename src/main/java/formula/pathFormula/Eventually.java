@@ -31,8 +31,8 @@ public class Eventually extends PathFormula {
     }
 
     @Override
-    public void checker(StringBuilder buffer) {
-        buffer.append(FormulaParser.EVENTUALLY_TOKEN);
+    public void checker(ArrayList buffer) {
+        buffer.add(FormulaParser.EVENTUALLY_TOKEN);
         stateFormula.checker(buffer);
     }
 

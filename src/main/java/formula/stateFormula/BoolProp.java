@@ -1,5 +1,7 @@
 package formula.stateFormula;
 
+import java.util.ArrayList;
+
 public class BoolProp extends StateFormula {
     public final boolean value;
 
@@ -14,9 +16,9 @@ public class BoolProp extends StateFormula {
     }
 
     @Override
-    public void checker(StringBuilder buffer) {
+    public void checker(ArrayList buffer) {
         String stringValue = (value) ? "True" : "False";
-        buffer.append(" " + stringValue + " ");
+        buffer.add(" " + stringValue + " ");
     }
 
 }

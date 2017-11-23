@@ -2,6 +2,8 @@ package formula.pathFormula;
 
 import formula.FormulaParser;
 import formula.stateFormula.*;
+
+import java.util.ArrayList;
 import java.util.Set;
 
 public class Next extends PathFormula {
@@ -24,8 +26,8 @@ public class Next extends PathFormula {
     }
 
     @Override
-    public void checker(StringBuilder buffer) {
-        buffer.append(FormulaParser.NEXT_TOKEN);
+    public void checker(ArrayList buffer) {
+        buffer.add(FormulaParser.NEXT_TOKEN);
         stateFormula.checker(buffer);
     }
 }

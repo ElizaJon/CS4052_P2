@@ -2,6 +2,8 @@ package formula.pathFormula;
 
 import formula.*;
 import formula.stateFormula.*;
+
+import java.util.ArrayList;
 import java.util.Set;
 
 public class Until extends PathFormula {
@@ -36,12 +38,12 @@ public class Until extends PathFormula {
     }
 
     @Override
-    public void checker(StringBuilder buffer) {
-        buffer.append("(");
+    public void checker(ArrayList buffer) {
+        buffer.add("(");
         left.checker(buffer);
-        buffer.append(" " + FormulaParser.UNTIL_TOKEN + " ");
+        buffer.add(" " + FormulaParser.UNTIL_TOKEN + " ");
         right.checker(buffer);
-        buffer.append(")");
+        buffer.add(")");
     }
 
 }

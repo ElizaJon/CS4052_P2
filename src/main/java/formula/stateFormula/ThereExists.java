@@ -3,6 +3,8 @@ package formula.stateFormula;
 import formula.FormulaParser;
 import formula.pathFormula.PathFormula;
 
+import java.util.ArrayList;
+
 public class ThereExists extends StateFormula {
     public final PathFormula pathFormula;
 
@@ -19,10 +21,10 @@ public class ThereExists extends StateFormula {
     }
 
     @Override
-    public void checker(StringBuilder buffer) {
-        buffer.append("(");
-        buffer.append(FormulaParser.THEREEXISTS_TOKEN);
+    public void checker(ArrayList buffer) {
+        buffer.add("(");
+        buffer.add(FormulaParser.THEREEXISTS_TOKEN);
         pathFormula.checker(buffer);
-        buffer.append(")");
+        buffer.add(")");
     }
 }

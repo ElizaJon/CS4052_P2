@@ -1,5 +1,7 @@
 package formula.stateFormula;
 
+import java.util.ArrayList;
+
 public class AtomicProp extends StateFormula {
     public final String label;
 
@@ -13,8 +15,8 @@ public class AtomicProp extends StateFormula {
     }
 
     @Override
-    public void checker(StringBuilder buffer) {
-        buffer.append(" " + label + " ");
+    public void checker(ArrayList buffer) {
+        buffer.add(" " + label + " ");
     }
 
 }

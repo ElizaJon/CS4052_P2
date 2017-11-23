@@ -2,6 +2,8 @@ package formula.stateFormula;
 
 import formula.FormulaParser;
 
+import java.util.ArrayList;
+
 public class Not extends StateFormula {
     public final StateFormula stateFormula;
 
@@ -18,11 +20,16 @@ public class Not extends StateFormula {
     }
 
     @Override
-    public void checker(StringBuilder buffer) {
-        buffer.append(FormulaParser.NOT_TOKEN);
-        buffer.append("(");
+    public void checker(ArrayList buffer) {
         stateFormula.checker(buffer);
-        buffer.append(")");
+        if(buffer.get(buffer.size()-1).equals(true)){
+            buffer.remove(buffer.get(buffer.size()-1));
+            buffer.add(false);
+        } else {
+            buffer.remove(buffer.get(buffer.size()-1));
+            buffer.add(true);
+        }
     }
+
 
 }
