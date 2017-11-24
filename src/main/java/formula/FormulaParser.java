@@ -1,17 +1,18 @@
 package formula;
 
-import java.util.*;
-import java.io.*;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
 import formula.pathFormula.*;
-import formula.stateFormula.AtomicProp;
 import formula.stateFormula.*;
 import model.Model;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Class used to parse formulas from JSON. Create a instance of this class
@@ -148,7 +149,7 @@ public class FormulaParser {
         case ALWAYS_TOKEn:
             return new Always(recursiveParseStateFormula(), actionSet1);
         case NEXT_TOKEN:
-            return new Next(recursiveParseStateFormula(), actionSet1);
+            return new Next(recursiveParseStateFormula(), actionSet1, model);
         case EVENTUALLY_TOKEN:
             String actionSet2Identifier = parseOptionalIdentifier(false);
             Set<String> actionSet2 = getActions(actionSet2Identifier);
@@ -170,7 +171,7 @@ public class FormulaParser {
         StateFormula rightFormula = recursiveParseStateFormula();
         Set<String> actionSet1 = getActions(actionSet1Identifier);
         Set<String> actionSet2 = getActions(actionSet2Identifier);
-        return new Until(leftFormula, rightFormula, actionSet1, actionSet2);
+        return new Until(leftFormula, rightFormula, actionSet1, actionSet2, model);
     }
 
     private void validateNextChars(char... chars) throws IOException {

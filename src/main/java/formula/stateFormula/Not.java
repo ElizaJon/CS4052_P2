@@ -1,6 +1,8 @@
 package formula.stateFormula;
 
 import formula.FormulaParser;
+import model.State;
+import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 
@@ -31,5 +33,34 @@ public class Not extends StateFormula {
         }
     }
 
+    @Override
+    public State[] getStates(State[] allStates) {
+        State[] newStates = stateFormula.getStates(allStates);
+        State[] notStates = getNotStates(allStates, newStates);
+        System.out.println("Not method");
+        SimpleModelChecker.printStates(allStates);
+        SimpleModelChecker.printStates(newStates);
+        SimpleModelChecker.printStates(notStates);
+        System.out.println("End of Not method");
+        return notStates;
+    }
+
+    private State[] getNotStates(State[] allStates, State[] newStates){
+        ArrayList<State> notStates = new ArrayList<>();
+        Boolean check;
+        for(int i = 0; i < allStates.length; i++){
+            check = false;
+            for(int j = 0; j < newStates.length; j++){
+                if(allStates[i].equals(newStates[j])){
+                    check = true;
+                    break;
+                }
+            }
+            if(!check){
+                notStates.add(allStates[i]);
+            }
+        }
+        return notStates.toArray(new State[notStates.size()]);
+    }
 
 }

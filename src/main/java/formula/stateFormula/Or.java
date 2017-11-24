@@ -1,8 +1,8 @@
 package formula.stateFormula;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import model.Model;
 import model.State;
+import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 
@@ -24,6 +24,48 @@ public class Or extends StateFormula {
         buffer.append(" || ");
         right.writeToBuffer(buffer);
         buffer.append(")");
+    }
+
+    @Override
+    public State[] getStates(State[] allStates) {
+        State[] leftStates, rightStates, orStates;
+        leftStates = left.getStates(allStates);
+        rightStates = right.getStates(allStates);
+        SimpleModelChecker.printStates(leftStates);
+        SimpleModelChecker.printStates(rightStates);
+        orStates = getOrStates(leftStates, rightStates, allStates);
+
+        System.out.println("Or states");
+        SimpleModelChecker.printStates(leftStates);
+        SimpleModelChecker.printStates(rightStates);
+        SimpleModelChecker.printStates(orStates);
+        System.out.println("End of Or states");
+
+        return orStates;
+    }
+
+    private State[] getOrStates(State[] leftStates, State[] rightStates, State[] allStates){
+        ArrayList<State> orStates = new ArrayList<>();
+        boolean check;
+        for(int i = 0; i < allStates.length; i++){
+            check = false;
+            for(int j = 0; j < leftStates.length; j++){
+                if(allStates[i].equals(leftStates[j])){
+                    orStates.add(allStates[i]);
+                    check = true;
+                    break;
+                }
+            }
+            if(!check){
+                for(int j = 0; j < rightStates.length; j++){
+                    if(allStates[i].equals(rightStates[j])){
+                        orStates.add(allStates[i]);
+                        break;
+                    }
+                }
+            }
+        }
+        return orStates.toArray(new State[orStates.size()]);
     }
 
     @Override

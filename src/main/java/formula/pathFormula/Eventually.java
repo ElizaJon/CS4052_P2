@@ -2,6 +2,8 @@ package formula.pathFormula;
 
 import formula.FormulaParser;
 import formula.stateFormula.*;
+import model.State;
+
 import java.util.*;
 
 public class Eventually extends PathFormula {
@@ -36,4 +38,8 @@ public class Eventually extends PathFormula {
         stateFormula.checker(buffer);
     }
 
+    @Override
+    public State[] getStates(State[] allStates) {
+        return stateFormula.getStates(allStates);
+    }
 }

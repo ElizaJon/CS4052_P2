@@ -1,6 +1,7 @@
 package formula.pathFormula;
 
 import formula.FormulaParser;
+import model.*;
 import formula.stateFormula.*;
 import java.util.*;
 
@@ -28,7 +29,10 @@ public class Always extends PathFormula {
     public void checker(ArrayList buffer) {
         buffer.add(FormulaParser.ALWAYS_TOKEn);
         stateFormula.checker(buffer);
-
     }
 
+    @Override
+    public State[] getStates(State[] allStates) {
+        return stateFormula.getStates(allStates);
+    }
 }

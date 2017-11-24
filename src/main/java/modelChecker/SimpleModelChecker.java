@@ -2,6 +2,7 @@ package modelChecker;
 
 import formula.stateFormula.StateFormula;
 import model.Model;
+import model.State;
 
 import java.util.ArrayList;
 
@@ -13,28 +14,47 @@ public class SimpleModelChecker implements ModelChecker {
         System.out.println(constraint.toString());
         System.out.println(query.toString());
 
-        System.out.println("\nNew stuff\n");
+/*       System.out.println("\nNew stuff\n");
 
         ArrayList result1 = new ArrayList();
         ArrayList result2 = new ArrayList();
         constraint.checker(result1);
-        //query.checker(result2);
+        query.checker(result2);
 
         print(result1);
         print(result2);
+*/
+        System.out.println("\nNewer stuff");
 
-        System.out.println(result1.size());
-        System.out.println(result2.size());
+        State[] allStates = model.getStates();
+        State[] resultStates = constraint.getStates(allStates);
 
+        System.out.println("Resulting states:");
+        printStates(resultStates);
+        System.out.println("Has initial states: " + setOfStatesHasInitialState(resultStates));
 
-        System.out.println(model.getStates()[0].getLabel()[0]);
+        return false;
+    }
 
+    private boolean setOfStatesHasInitialState(State[] resultStates){
+        for(int i = 0; i < resultStates.length; i++){
+            if(resultStates[i].isInit()){
+                return true;
+            }
+        }
         return false;
     }
 
     private void print(ArrayList result){
         for(int i = 0; i < result.size(); i++) {
             System.out.print(result.get(i) + " ");
+        }
+        System.out.println();
+    }
+
+    public static void printStates(State[] result){
+        for(int i = 0; i < result.length; i++) {
+            System.out.print(result[i].getName() + " ");
         }
         System.out.println();
     }

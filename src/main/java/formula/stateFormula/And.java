@@ -1,8 +1,9 @@
 package formula.stateFormula;
-import model.*;
+import model.Model;
+import model.State;
+import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
-import java.util.PrimitiveIterator;
 
 public class And extends StateFormula {
     public final StateFormula left;
@@ -25,9 +26,40 @@ public class And extends StateFormula {
     }
 
     @Override
+    public State[] getStates(State[] allStates) {
+        State[] leftStates, rightStates, andStates;
+        leftStates = left.getStates(allStates);
+        rightStates = right.getStates(allStates);
+        SimpleModelChecker.printStates(leftStates);
+        SimpleModelChecker.printStates(rightStates);
+        andStates = getAndStates(leftStates, rightStates);
+
+        System.out.println("And states");
+        SimpleModelChecker.printStates(leftStates);
+        SimpleModelChecker.printStates(rightStates);
+        SimpleModelChecker.printStates(andStates);
+        System.out.println("End of And states");
+
+        return andStates;
+    }
+
+    @Override
     public void checker(ArrayList buffer) {
         boolean val = checkCondition(buffer);
         buffer.add(val);
+    }
+
+    private State[] getAndStates(State[] leftStates, State[] rightStates){
+        ArrayList<State> andStates = new ArrayList<>();
+        for(int i = 0; i < leftStates.length; i++){
+            for(int j = 0; j < rightStates.length; j++){
+                if(leftStates[i].equals(rightStates[j])){
+                    andStates.add(leftStates[i]);
+                    break;
+                }
+            }
+        }
+        return andStates.toArray(new State[andStates.size()]);
     }
 
     private boolean checkCondition(ArrayList buffer){

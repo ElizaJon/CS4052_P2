@@ -1,8 +1,6 @@
 {
-    "formula": "(!(((p || q) && !(r && q)) && FALSE))",
+    "formula": "EbX  ( AF (c) || E ( p U r) )",
     "a": ["act1", "act2"],
     "b": ["act3", "act4"]
 }
-
-
 

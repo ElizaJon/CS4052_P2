@@ -1,14 +1,14 @@
 package modelChecker;
 
 import formula.FormulaParser;
-import formula.pathFormula.Eventually;
 import formula.stateFormula.StateFormula;
 import model.Model;
 import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class ModelCheckerTest {
 
