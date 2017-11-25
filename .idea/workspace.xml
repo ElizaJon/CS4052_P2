@@ -2,39 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5589d4d0-4063-454a-8262-5a818a21ff96" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Always.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Always.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Eventually.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Eventually.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Next.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Next.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/PathFormula.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/PathFormula.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Until.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Until.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/And.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/And.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/AtomicProp.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/AtomicProp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/BoolProp.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/BoolProp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/ForAll.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/ForAll.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/Not.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/Not.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/Or.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/Or.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/StateFormula.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/StateFormula.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/ThereExists.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/ThereExists.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/modelChecker/SimpleModelChecker.class" afterPath="$PROJECT_DIR$/out/production/main/modelChecker/SimpleModelChecker.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/FormulaParser.java" afterPath="$PROJECT_DIR$/src/main/java/formula/FormulaParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Always.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Always.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Eventually.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Eventually.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/PathFormula.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/PathFormula.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/And.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/And.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/AtomicProp.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/AtomicProp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/BoolProp.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/BoolProp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/ForAll.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/ForAll.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/Not.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/Not.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/Or.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/Or.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/StateFormula.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/StateFormula.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/ThereExists.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/ThereExists.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/modelChecker/SimpleModelChecker.java" afterPath="$PROJECT_DIR$/src/main/java/modelChecker/SimpleModelChecker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java" afterPath="$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/constraint1.json" afterPath="$PROJECT_DIR$/src/test/resources/constraint1.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/constraint2.json" afterPath="$PROJECT_DIR$/src/test/resources/constraint2.json" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,8 +49,8 @@
       <file leaf-file-name="Next.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="40" column="49" lean-forward="false" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
+            <state relative-caret-position="167">
+              <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="128" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,8 +71,8 @@
       <file leaf-file-name="Until.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="81" column="66" lean-forward="true" selection-start-line="81" selection-start-column="66" selection-end-line="81" selection-end-column="66" />
+            <state relative-caret-position="272">
+              <caret line="134" column="41" lean-forward="true" selection-start-line="134" selection-start-column="41" selection-end-line="134" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -843,47 +815,47 @@
       <updated>1511360053734</updated>
       <workItem from="1511360056798" duration="8975000" />
       <workItem from="1511435635566" duration="12012000" />
-      <workItem from="1511518726166" duration="18567000" />
+      <workItem from="1511518726166" duration="27895000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 15h 53m 55s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 08m 16s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 15h 54m 10s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 16m 36s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 15h 54m 44s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 17m 34s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 15h 54m 48s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 18m 04s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 17h 17m 17s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 18m 21s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 17h 20m 39s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 19m 25s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 17h 21m 12s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 22m 47s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 17h 21m 36s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 23m 05s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 17h 22m 41s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 23m 52s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.24 at 17h 23m 09s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.25 at 15h 24m 02s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39554000" />
+    <option name="totallyTimeSpent" value="48882000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="947" extended-state="6" />
+    <frame x="0" y="23" width="1680" height="947" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -895,7 +867,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16491228" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34035087" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1308,16 +1280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="40" column="49" lean-forward="false" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="247">
@@ -1326,10 +1288,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="128" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="81" column="66" lean-forward="true" selection-start-line="81" selection-start-column="66" selection-end-line="81" selection-end-column="66" />
+        <state relative-caret-position="272">
+          <caret line="134" column="41" lean-forward="true" selection-start-line="134" selection-start-column="41" selection-end-line="134" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

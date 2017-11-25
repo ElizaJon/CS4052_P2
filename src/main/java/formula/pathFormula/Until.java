@@ -67,14 +67,84 @@ public class Until extends PathFormula {
 
     private State[] getAllSatisfyingUntil(State[] rightStates, State[] leftStates){
         ArrayList<State> untilStates = new ArrayList<>();
-        Transition[] transitions = model.getTransitions();
         State state;
-        for(int i = 0; i < leftStates.length; i++){
-            for(int j = 0; j < transitions.length; j++){
-                if(leftStates[i].getName().equals(transitions[j].getSource())){
-                    state = recursiveUntilMethod(rightStates, leftStates, transitions[j], leftStates[i]);
-                    if(state != null && notInSet(leftStates[i], untilStates)){
-                        untilStates.add(leftStates[i]);
+        if(leftActions.size() == 0 && rightActions.size() == 0) {
+            Transition[] transitions = model.getTransitions();
+            for (int i = 0; i < leftStates.length; i++) {
+                for (int j = 0; j < transitions.length; j++) {
+                    if (leftStates[i].getName().equals(transitions[j].getSource())) {
+                        state = recursiveUntilMethod(rightStates, leftStates, transitions[j], leftStates[i]);
+                        if (state != null && notInSet(leftStates[i], untilStates)) {
+                            untilStates.add(leftStates[i]);
+                        }
+                    }
+                }
+            }
+        } else {
+            Transition[] leftTransitions = getTransitions(leftActions);
+            Transition[] rightTransitions = getTransitions(rightActions);
+            State[] states;
+            if(leftActions.size() == 0){
+                for(int i = 0; i <= leftTransitions.length; i++){
+                    states = getActionPossibilityStates(getSubTransitions(leftTransitions, i), rightTransitions, rightStates, leftStates);
+                    if (states.length != 0) {
+                        untilStates = getUpdatedUntilStates(states, untilStates);
+                    }
+                }
+            } else if(rightActions.size() == 0){
+                for(int i = 0; i <= rightTransitions.length; i++){
+                    states = getActionPossibilityStates(leftTransitions, getSubTransitions(rightTransitions, i), rightStates, leftStates);
+                    if (states.length != 0) {
+                        untilStates = getUpdatedUntilStates(states, untilStates);
+                    }
+                }
+            } else {
+                for(int j = 1; j <= leftTransitions.length; j++) {
+                    for (int i = 1; i <= rightTransitions.length; i++) {
+                        states = getActionPossibilityStates(getSubTransitions(leftTransitions, j), getSubTransitions(rightTransitions, i), rightStates, leftStates);
+                        if (states.length != 0) {
+                            untilStates = getUpdatedUntilStates(states, untilStates);
+                        }
+                    }
+                }
+            }
+        }
+
+        return untilStates.toArray(new State[untilStates.size()]);
+    }
+
+    private State[] getActionPossibilityStates(Transition[] leftTransitions, Transition[] rightTransitions, State[] rightStates, State[] leftStates){
+        ArrayList<State> untilStates = new ArrayList<>();
+        ArrayList<State> helpStates = new ArrayList<>();
+        ArrayList<State> possibleToGet = new ArrayList<>();
+        State state;
+        for(int i = 0; i < leftTransitions.length; i++){
+            for(int j = 0; j < leftStates.length; j++){
+                if(leftStates[j].getName().equals(leftTransitions[i].getSource())){
+                    state = recursiveUntilMethod(leftStates, leftStates, leftTransitions[i], leftStates[j]);
+                    State actualState = getActualState(leftTransitions[i].getTarget());
+                    if (state != null && notInSet(actualState, possibleToGet)) {
+                        possibleToGet.add(actualState);
+                        helpStates.add(leftStates[j]);
+                    }
+                }
+            }
+        }
+        State[] helpStatesGood = helpStates.toArray(new State[helpStates.size()]);
+        State[] possibleToGetGood = possibleToGet.toArray(new State[possibleToGet.size()]);
+        if(rightTransitions.length == 0){
+            return helpStatesGood;
+        }
+        if(leftTransitions.length == 0){
+            possibleToGetGood = leftStates;
+            helpStatesGood = leftStates;
+        }
+        for(int i = 0; i < rightTransitions.length; i++){
+            for(int j = 0; j < possibleToGetGood.length; j++){
+                if(possibleToGetGood[j].getName().equals(rightTransitions[i].getSource())){
+                    state = recursiveUntilMethod(rightStates, possibleToGetGood, rightTransitions[i], possibleToGetGood[j]);
+                    if (state != null && notInSet(helpStatesGood[j], untilStates)) {
+                        untilStates.add(helpStatesGood[j]);
                     }
                 }
             }
@@ -105,6 +175,33 @@ public class Until extends PathFormula {
         return null;
     }
 
+    private Transition[] getTransitions(Set<String> actions){
+        Transition[] allTransitions = model.getTransitions();
+        if(actions.size() == 0){
+            return allTransitions;
+        }
+        String[] transitionActions;
+        boolean check;
+        ArrayList<Transition> newTransitions = new ArrayList<>();
+        for(int i = 0; i < allTransitions.length; i++){
+            transitionActions = allTransitions[i].getActions();
+            check = false;
+            for(int k = 0; k < transitionActions.length; k++){
+                for(int j = 0; j < actions.size(); j++){
+                    if(actions.contains(transitionActions[k])) {
+                        newTransitions.add(allTransitions[i]);
+                        check = true;
+                        break;
+                    }
+                }
+                if(check){
+                    break;
+                }
+            }
+        }
+        return newTransitions.toArray(new Transition[newTransitions.size()]);
+    }
+
     private State getActualState(String label){
         State[] allStates = model.getStates();
         for(int i = 0; i < allStates.length; i++){
@@ -132,5 +229,30 @@ public class Until extends PathFormula {
             }
         }
         return true;
+    }
+
+    private ArrayList<State> getUpdatedUntilStates(State[] newStates, ArrayList<State> untilStates){
+        int exists;
+        for(int j = 0; j < newStates.length; j++){
+            exists = -1;
+            for(int i = 0; i < untilStates.size(); i++){
+                if(untilStates.get(i).equals(newStates[j])){
+                    exists = j;
+                    break;
+                }
+            }
+            if(exists == -1){
+                untilStates.add(newStates[j]);
+            }
+        }
+        return untilStates;
+    }
+
+    private Transition[] getSubTransitions(Transition[] transitions, int i){
+        Transition[] newTransitions = new Transition[i];
+        for(int j = 0; j < i; j++){
+            newTransitions[j] = transitions[j];
+        }
+        return newTransitions;
     }
 }

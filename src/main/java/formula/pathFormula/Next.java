@@ -103,6 +103,9 @@ public class Next extends PathFormula {
 
     private Transition[] getTransitions(){
         Transition[] allTransitions = model.getTransitions();
+        if(actions.size() == 0){
+            return allTransitions;
+        }
         String[] transitionActions;
         boolean check;
         ArrayList<Transition> newTransitions = new ArrayList<>();
