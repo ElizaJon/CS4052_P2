@@ -34,5 +34,6 @@ public class Always extends PathFormula {
     @Override
     public State[] getStates(State[] allStates) {
         return stateFormula.getStates(allStates);
+
     }
 }

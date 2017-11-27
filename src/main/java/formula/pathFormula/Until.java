@@ -81,8 +81,8 @@ public class Until extends PathFormula {
                 }
             }
         } else {
-            Transition[] leftTransitions = getTransitions(leftActions);
-            Transition[] rightTransitions = getTransitions(rightActions);
+            Transition[] leftTransitions = model.getTransitions(leftActions);
+            Transition[] rightTransitions = model.getTransitions(rightActions);
             State[] states;
             if(leftActions.size() == 0){
                 for(int i = 0; i <= leftTransitions.length; i++){
@@ -173,33 +173,6 @@ public class Until extends PathFormula {
             }
         }
         return null;
-    }
-
-    private Transition[] getTransitions(Set<String> actions){
-        Transition[] allTransitions = model.getTransitions();
-        if(actions.size() == 0){
-            return allTransitions;
-        }
-        String[] transitionActions;
-        boolean check;
-        ArrayList<Transition> newTransitions = new ArrayList<>();
-        for(int i = 0; i < allTransitions.length; i++){
-            transitionActions = allTransitions[i].getActions();
-            check = false;
-            for(int k = 0; k < transitionActions.length; k++){
-                for(int j = 0; j < actions.size(); j++){
-                    if(actions.contains(transitionActions[k])) {
-                        newTransitions.add(allTransitions[i]);
-                        check = true;
-                        break;
-                    }
-                }
-                if(check){
-                    break;
-                }
-            }
-        }
-        return newTransitions.toArray(new Transition[newTransitions.size()]);
     }
 
     private State getActualState(String label){

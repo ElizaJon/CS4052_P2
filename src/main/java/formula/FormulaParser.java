@@ -120,9 +120,9 @@ public class FormulaParser {
         case NOT_TOKEN:
             return new Not(recursiveParseStateFormula());
         case FORALL_TOKEN:
-            return new ForAll(parsePathFormula());
+            return new ForAll(parsePathFormula(), model);
         case THEREEXISTS_TOKEN:
-            return new ThereExists(parsePathFormula());
+            return new ThereExists(parsePathFormula(), model);
         case TRUE_TOKEN_PREFIX:
             validateNextChars("RUE".toCharArray());
             return new BoolProp(true);

@@ -13,20 +13,12 @@ public class SimpleModelChecker implements ModelChecker {
         // TODO Auto-generated method stub
         System.out.println(constraint.toString());
         System.out.println(query.toString());
-
-/*       System.out.println("\nNew stuff\n");
-
-        ArrayList result1 = new ArrayList();
-        ArrayList result2 = new ArrayList();
-        constraint.checker(result1);
-        query.checker(result2);
-
-        print(result1);
-        print(result2);
-*/
+        
         System.out.println("\nNewer stuff");
 
         State[] allStates = model.getStates();
+        allStates = getInitialStates(allStates);
+
         State[] resultStates = constraint.getStates(allStates);
 
         System.out.println("Resulting states:");
@@ -34,6 +26,16 @@ public class SimpleModelChecker implements ModelChecker {
         System.out.println("Has initial states: " + setOfStatesHasInitialState(resultStates));
 
         return false;
+    }
+
+    private State[] getInitialStates(State[] states){
+        ArrayList<State> initialStates = new ArrayList<>();
+        for(int i = 0; i < states.length; i++){
+            if(states[i].isInit()){
+                initialStates.add(states[i]);
+            }
+        }
+        return initialStates.toArray(new State[initialStates.size()]);
     }
 
     private boolean setOfStatesHasInitialState(State[] resultStates){
