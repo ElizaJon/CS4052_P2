@@ -1,7 +1,6 @@
 {
-    "formula": "EcG(q)",
+    "formula": "EbX  ( EG (p) || A ( p aUb r) )",
     "a": ["act1", "act2"],
-    "b": ["act3", "act4"],
-    "c": ["act4"]
+    "b": ["act3", "act4"]
 }
 

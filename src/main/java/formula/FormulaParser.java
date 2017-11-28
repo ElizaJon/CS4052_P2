@@ -6,7 +6,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import formula.pathFormula.*;
 import formula.stateFormula.*;
-import model.Model;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -37,12 +36,10 @@ public class FormulaParser {
     public static final char THEREEXISTS_TOKEN = 'E';
     public static final char FORALL_TOKEN = 'A';
     private Reader reader;
-    private Model model;
     Gson gson = new Gson();
     private JsonObject jsonFormula;
 
-    public FormulaParser(String filePath, Model model) throws IOException {
-        this.model = model;
+    public FormulaParser(String filePath) throws IOException {
         JsonParser parser = new JsonParser();
         JsonElement jsonElement = parser.parse(new FileReader(filePath));
         jsonFormula = jsonElement.getAsJsonObject();
@@ -53,7 +50,6 @@ public class FormulaParser {
     private FormulaParser() {
         jsonFormula = null;
         reader = null;
-        model = null;
     }
 
     public StateFormula parse() throws IOException {
@@ -99,13 +95,13 @@ public class FormulaParser {
         case OR_TOKEN: {
             validateNextChars(OR_TOKEN);
             StateFormula subformula2 = recursiveParseStateFormula();
-            stateFormula = new Or(subformula, subformula2, model);
+            stateFormula = new Or(subformula, subformula2);
         }
             break;
         case AND_TOKEN: {
             validateNextChars(AND_TOKEN);
             StateFormula subformula2 = recursiveParseStateFormula();
-            stateFormula = new And(subformula, subformula2, model);
+            stateFormula = new And(subformula, subformula2);
         }
             break;
         default:
@@ -120,9 +116,9 @@ public class FormulaParser {
         case NOT_TOKEN:
             return new Not(recursiveParseStateFormula());
         case FORALL_TOKEN:
-            return new ForAll(parsePathFormula(), model);
+            return new ForAll(parsePathFormula());
         case THEREEXISTS_TOKEN:
-            return new ThereExists(parsePathFormula(), model);
+            return new ThereExists(parsePathFormula());
         case TRUE_TOKEN_PREFIX:
             validateNextChars("RUE".toCharArray());
             return new BoolProp(true);
@@ -149,7 +145,7 @@ public class FormulaParser {
         case ALWAYS_TOKEn:
             return new Always(recursiveParseStateFormula(), actionSet1);
         case NEXT_TOKEN:
-            return new Next(recursiveParseStateFormula(), actionSet1, model);
+            return new Next(recursiveParseStateFormula(), actionSet1);
         case EVENTUALLY_TOKEN:
             String actionSet2Identifier = parseOptionalIdentifier(false);
             Set<String> actionSet2 = getActions(actionSet2Identifier);
@@ -171,7 +167,7 @@ public class FormulaParser {
         StateFormula rightFormula = recursiveParseStateFormula();
         Set<String> actionSet1 = getActions(actionSet1Identifier);
         Set<String> actionSet2 = getActions(actionSet2Identifier);
-        return new Until(leftFormula, rightFormula, actionSet1, actionSet2, model);
+        return new Until(leftFormula, rightFormula, actionSet1, actionSet2);
     }
 
     private void validateNextChars(char... chars) throws IOException {

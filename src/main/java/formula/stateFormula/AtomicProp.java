@@ -1,5 +1,7 @@
 package formula.stateFormula;
 
+import formula.PathTree;
+import model.Model;
 import model.State;
 
 import java.util.ArrayList;
@@ -22,8 +24,11 @@ public class AtomicProp extends StateFormula {
     }
 
     @Override
-    public State[] getStates(State[] allStates) {
-        return statesWithLabel(allStates);
+    public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
+        pathTree.setFormulaPart(label);
+        State [] APstates = statesWithLabel(allStates);
+        pathTree.addAcceptedStates(APstates);
+        return APstates;
     }
 
     private State[] statesWithLabel(State[] allStates){

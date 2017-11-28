@@ -2,18 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5589d4d0-4063-454a-8262-5a818a21ff96" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/formula/HelpMethods.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/formula/PathTree.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/FormulaParser.class" afterPath="$PROJECT_DIR$/out/production/main/formula/FormulaParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Always.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Always.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Eventually.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Eventually.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Next.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Next.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/PathFormula.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/PathFormula.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Until.class" afterPath="$PROJECT_DIR$/out/production/main/formula/pathFormula/Until.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/model/Model.class" afterPath="$PROJECT_DIR$/out/production/main/model/Model.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/And.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/And.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/AtomicProp.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/AtomicProp.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/BoolProp.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/BoolProp.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/ForAll.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/ForAll.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/Not.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/Not.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/Or.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/Or.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/StateFormula.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/StateFormula.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/formula/stateFormula/ThereExists.class" afterPath="$PROJECT_DIR$/out/production/main/formula/stateFormula/ThereExists.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/main/modelChecker/SimpleModelChecker.class" afterPath="$PROJECT_DIR$/out/production/main/modelChecker/SimpleModelChecker.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/test/modelChecker/ModelCheckerTest.class" afterPath="$PROJECT_DIR$/out/test/test/modelChecker/ModelCheckerTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/FormulaParser.java" afterPath="$PROJECT_DIR$/src/main/java/formula/FormulaParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Always.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Always.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Eventually.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Eventually.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/PathFormula.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/PathFormula.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java" afterPath="$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/And.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/And.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/AtomicProp.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/AtomicProp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/BoolProp.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/BoolProp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/ForAll.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/ForAll.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/Not.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/Not.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/Or.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/Or.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/StateFormula.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/StateFormula.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/formula/stateFormula/ThereExists.java" afterPath="$PROJECT_DIR$/src/main/java/formula/stateFormula/ThereExists.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/model/Model.java" afterPath="$PROJECT_DIR$/src/main/java/model/Model.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/modelChecker/SimpleModelChecker.java" afterPath="$PROJECT_DIR$/src/main/java/modelChecker/SimpleModelChecker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java" afterPath="$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/constraint1.json" afterPath="$PROJECT_DIR$/src/test/resources/constraint1.json" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -30,27 +53,13 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ForAll.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/ForAll.java">
+      <file leaf-file-name="AtomicProp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/AtomicProp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="61" selection-end-column="58" />
+            <state relative-caret-position="173">
+              <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1511802208000" expanded="true" signature="830:843" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThereExists.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/ThereExists.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="63" column="32" lean-forward="false" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1511802390000" expanded="true" signature="945:958" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -59,8 +68,20 @@
       <file leaf-file-name="Until.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="212" column="31" lean-forward="true" selection-start-line="212" selection-start-column="31" selection-end-line="212" selection-end-column="31" />
+            <state relative-caret-position="414">
+              <caret line="72" column="48" lean-forward="true" selection-start-line="72" selection-start-column="48" selection-end-line="72" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PathFormula.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/PathFormula.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="87" lean-forward="false" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,8 +92,8 @@
       <file leaf-file-name="Next.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="91" selection-end-column="5" />
+            <state relative-caret-position="203">
+              <caret line="43" column="17" lean-forward="false" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -80,21 +101,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Transition.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/model/Transition.java">
+      <file leaf-file-name="Or.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/Or.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+            <state relative-caret-position="383">
+              <caret line="46" column="43" lean-forward="false" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Always.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Always.java">
+      <file leaf-file-name="StateFormula.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/StateFormula.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="23" />
+              <caret line="9" column="87" lean-forward="false" selection-start-line="9" selection-start-column="87" selection-end-line="9" selection-end-column="87" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,14 +123,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Eventually.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Eventually.java">
+      <file leaf-file-name="And.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/And.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="42" column="49" lean-forward="true" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+            <state relative-caret-position="150">
+              <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="30" selection-end-column="37" />
               <folding>
-                <element signature="e#1096#1097#0" expanded="true" />
-                <element signature="e#1152#1153#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,36 +138,47 @@
       <file leaf-file-name="SimpleModelChecker.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/modelChecker/SimpleModelChecker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-120">
-              <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+            <state relative-caret-position="413">
+              <caret line="68" column="39" lean-forward="false" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FormulaParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/formula/FormulaParser.java">
+      <file leaf-file-name="ThereExists.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/ThereExists.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="130" column="39" lean-forward="true" selection-start-line="130" selection-start-column="39" selection-end-line="130" selection-end-column="39" />
+              <caret line="79" column="28" lean-forward="true" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <marker date="1511891595000" expanded="true" signature="908:921" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelCheckerTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java">
+      <file leaf-file-name="PathTree.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/formula/PathTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="25" column="101" lean-forward="false" selection-start-line="25" selection-start-column="101" selection-end-line="25" selection-end-column="101" />
-              <folding />
+            <state relative-caret-position="473">
+              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding>
+                <element signature="e#583#584#0" expanded="true" />
+                <element signature="e#629#630#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -160,22 +191,24 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/StateFormula.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/Model.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/FormulaParser.java" />
+        <option value="$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/HelpMethods.java" />
         <option value="$PROJECT_DIR$/src/main/java/formula/pathFormula/PathFormula.java" />
-        <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/AtomicProp.java" />
-        <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/Not.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/StateFormula.java" />
         <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/BoolProp.java" />
         <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/And.java" />
-        <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/Or.java" />
-        <option value="$PROJECT_DIR$/src/main/java/formula/pathFormula/Eventually.java" />
-        <option value="$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java" />
-        <option value="$PROJECT_DIR$/src/main/java/model/Model.java" />
         <option value="$PROJECT_DIR$/src/main/java/formula/pathFormula/Always.java" />
-        <option value="$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java" />
-        <option value="$PROJECT_DIR$/src/main/java/formula/FormulaParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/pathFormula/Eventually.java" />
         <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/ForAll.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/Not.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/Or.java" />
         <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/ThereExists.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/stateFormula/AtomicProp.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java" />
+        <option value="$PROJECT_DIR$/src/main/java/formula/PathTree.java" />
         <option value="$PROJECT_DIR$/src/main/java/modelChecker/SimpleModelChecker.java" />
       </list>
     </option>
@@ -188,7 +221,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1680" />
+    <option name="width" value="1043" />
     <option name="height" value="947" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -827,65 +860,65 @@
       <updated>1511360053734</updated>
       <workItem from="1511360056798" duration="8975000" />
       <workItem from="1511435635566" duration="12012000" />
-      <workItem from="1511518726166" duration="37864000" />
+      <workItem from="1511518726166" duration="54829000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 01m 15s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 07m 49s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 03m 39s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 09m 55s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 04m 50s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 11m 42s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 05m 31s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 11m 57s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 07m 05s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 12m 26s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 08m 40s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 12m 41s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 12m 00s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 13m 30s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 13m 16s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 13m 49s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 17m 38s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 16m 16s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.27 at 17h 18m 12s.xml">
+    <history-entry file="ModelCheckerTest_buildAndCheckModel - 2017.11.28 at 18h 16m 38s.xml">
       <configuration name="ModelCheckerTest.buildAndCheckModel" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58851000" />
+    <option name="totallyTimeSpent" value="75816000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="947" extended-state="0" />
+    <frame x="0" y="23" width="1043" height="947" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32865497" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4385965" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28070176" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15323566" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2947053" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -901,33 +934,35 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976446" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32865497" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4011696" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34154177" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18229167" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18009768" sideWeight="0.5" order="5" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -953,8 +988,6 @@
           <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#516#517#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -965,7 +998,7 @@
           <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1511522504000" expanded="true" signature="543:576" ph="{...}" />
+            <marker date="1511891230000" expanded="true" signature="588:621" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -976,7 +1009,7 @@
           <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1511802208000" expanded="true" signature="830:843" ph="{...}" />
+            <marker date="1511891595000" expanded="true" signature="765:778" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1013,7 +1046,7 @@
           <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1511802390000" expanded="true" signature="945:958" ph="{...}" />
+            <marker date="1511891595000" expanded="true" signature="908:921" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1042,8 +1075,6 @@
           <caret line="15" column="23" lean-forward="false" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#516#517#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1054,7 +1085,7 @@
           <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1511522504000" expanded="true" signature="543:576" ph="{...}" />
+            <marker date="1511891230000" expanded="true" signature="588:621" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1081,7 +1112,7 @@
           <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1511802390000" expanded="true" signature="945:958" ph="{...}" />
+            <marker date="1511891595000" expanded="true" signature="908:921" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1147,79 +1178,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/Or.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="57" column="13" lean-forward="true" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/PathFormula.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/BoolProp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1511522504000" expanded="true" signature="543:576" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/And.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="52" column="51" lean-forward="false" selection-start-line="52" selection-start-column="51" selection-end-line="52" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/Not.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="47" column="49" lean-forward="false" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/AtomicProp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="451">
-          <caret line="37" column="41" lean-forward="true" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#516#517#0" expanded="true" />
-            <element signature="e#565#566#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/model/Model.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="83">
           <caret line="43" column="38" lean-forward="false" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/StateFormula.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1236,8 +1198,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/formula/FormulaParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="130" column="39" lean-forward="true" selection-start-line="130" selection-start-column="39" selection-end-line="130" selection-end-column="39" />
+        <state relative-caret-position="518">
+          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/HelpMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1246,18 +1226,105 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Always.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="23" />
+        <state relative-caret-position="375">
+          <caret line="37" column="36" lean-forward="false" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Eventually.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="45" column="36" lean-forward="false" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/BoolProp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1511891230000" expanded="true" signature="588:621" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/ForAll.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="35" column="36" lean-forward="false" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1511891595000" expanded="true" signature="765:778" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/Not.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="39" column="34" lean-forward="false" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/Or.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="46" column="43" lean-forward="false" selection-start-line="46" selection-start-column="43" selection-end-line="46" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/StateFormula.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="87" lean-forward="false" selection-start-line="9" selection-start-column="87" selection-end-line="9" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/And.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="30" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/ThereExists.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="79" column="28" lean-forward="true" selection-start-line="79" selection-start-column="28" selection-end-line="79" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1511891595000" expanded="true" signature="908:921" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Until.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="212" column="31" lean-forward="true" selection-start-line="212" selection-start-column="31" selection-end-line="212" selection-end-column="31" />
+        <state relative-caret-position="414">
+          <caret line="72" column="48" lean-forward="true" selection-start-line="72" selection-start-column="48" selection-end-line="72" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/PathFormula.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="87" lean-forward="false" selection-start-line="11" selection-start-column="87" selection-end-line="11" selection-end-column="87" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1266,59 +1333,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Next.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="91" selection-end-column="5" />
+        <state relative-caret-position="203">
+          <caret line="43" column="17" lean-forward="false" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/ForAll.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/AtomicProp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="57" column="12" lean-forward="true" selection-start-line="57" selection-start-column="12" selection-end-line="61" selection-end-column="58" />
+        <state relative-caret-position="173">
+          <caret line="27" column="39" lean-forward="true" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1511802208000" expanded="true" signature="830:843" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/stateFormula/ThereExists.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/formula/PathTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="63" column="32" lean-forward="false" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
+        <state relative-caret-position="473">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1511802390000" expanded="true" signature="945:958" ph="{...}" />
+            <element signature="e#583#584#0" expanded="true" />
+            <element signature="e#629#630#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/formula/pathFormula/Eventually.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="42" column="49" lean-forward="true" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
-          <folding>
-            <element signature="e#1096#1097#0" expanded="true" />
-            <element signature="e#1152#1153#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/modelChecker/ModelCheckerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="25" column="101" lean-forward="false" selection-start-line="25" selection-start-column="101" selection-end-line="25" selection-end-column="101" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/modelChecker/SimpleModelChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
-          <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+        <state relative-caret-position="413">
+          <caret line="68" column="39" lean-forward="false" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
           <folding />
         </state>
       </provider>

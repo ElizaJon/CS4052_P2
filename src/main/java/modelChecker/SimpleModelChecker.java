@@ -1,5 +1,6 @@
 package modelChecker;
 
+import formula.PathTree;
 import formula.stateFormula.StateFormula;
 import model.Model;
 import model.State;
@@ -13,29 +14,21 @@ public class SimpleModelChecker implements ModelChecker {
         // TODO Auto-generated method stub
         System.out.println(constraint.toString());
         System.out.println(query.toString());
-        
+
         System.out.println("\nNewer stuff");
 
         State[] allStates = model.getStates();
-        allStates = getInitialStates(allStates);
-
-        State[] resultStates = constraint.getStates(allStates);
+        PathTree root = new PathTree("");
+        PathTree leftNode = new PathTree("");
+        root.leftTree = leftNode;
+        State[] resultStates = constraint.getStates(allStates, model, leftNode);
 
         System.out.println("Resulting states:");
         printStates(resultStates);
+        printTree(root);
         System.out.println("Has initial states: " + setOfStatesHasInitialState(resultStates));
 
-        return false;
-    }
-
-    private State[] getInitialStates(State[] states){
-        ArrayList<State> initialStates = new ArrayList<>();
-        for(int i = 0; i < states.length; i++){
-            if(states[i].isInit()){
-                initialStates.add(states[i]);
-            }
-        }
-        return initialStates.toArray(new State[initialStates.size()]);
+        return setOfStatesHasInitialState(resultStates);
     }
 
     private boolean setOfStatesHasInitialState(State[] resultStates){
@@ -65,6 +58,15 @@ public class SimpleModelChecker implements ModelChecker {
     public String[] getTrace() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    private void printTree(PathTree root){
+        if(root == null){
+            return;
+        }
+        printTree(root.getLeftTree());
+        System.out.print(root.getFormulaPart());
+        printTree(root.getRightTree());
     }
 
 }

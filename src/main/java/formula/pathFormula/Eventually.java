@@ -1,7 +1,9 @@
 package formula.pathFormula;
 
 import formula.FormulaParser;
+import formula.PathTree;
 import formula.stateFormula.*;
+import model.Model;
 import model.State;
 
 import java.util.*;
@@ -39,7 +41,11 @@ public class Eventually extends PathFormula {
     }
 
     @Override
-    public State[] getStates(State[] allStates) {
-        return stateFormula.getStates(allStates);
+    public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
+        pathTree.addAcceptedStates(allStates);
+        pathTree.setFormulaPart(" F ");
+        PathTree leftNode = new PathTree("");
+        pathTree.leftTree = leftNode;
+        return stateFormula.getStates(allStates, model, leftNode);
     }
 }

@@ -1,6 +1,8 @@
 package formula.pathFormula;
 
 import formula.FormulaParser;
+import formula.HelpMethods;
+import formula.PathTree;
 import formula.stateFormula.*;
 import model.Model;
 import model.State;
@@ -13,12 +15,10 @@ import java.util.Set;
 public class Next extends PathFormula {
     public final StateFormula stateFormula;
     private Set<String> actions;
-    private Model model;
 
-    public Next(StateFormula stateFormula, Set<String> actions, Model model) {
+    public Next(StateFormula stateFormula, Set<String> actions) {
         this.stateFormula = stateFormula;
         this.actions = actions;
-        this.model = model;
     }
 
     public Set<String> getActions() {
@@ -38,9 +38,12 @@ public class Next extends PathFormula {
     }
 
     @Override
-    public State[] getStates(State[] allStates) {
-        State[] resultStates = stateFormula.getStates(allStates);
-        State[] nextStates = getNextStates(allStates);
+    public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
+        pathTree.setFormulaPart(" X ");
+        PathTree leftNode = new PathTree("");
+        pathTree.leftTree = leftNode;
+        State[] resultStates = stateFormula.getStates(allStates, model, leftNode);
+        State[] nextStates = getNextStates(allStates, model);
         State[] matchingStates = getMatchingStates(resultStates, nextStates);
 
         System.out.println("Next method");
@@ -50,6 +53,9 @@ public class Next extends PathFormula {
         SimpleModelChecker.printStates(matchingStates);
         System.out.println("End of Next method");
 
+        pathTree.addAcceptedStates(matchingStates);
+        System.out.println(pathTree.getFormulaPart() + "vatvat");
+        System.out.println(pathTree.getLeftTree().getFormulaPart() + "vatvat");
         return matchingStates;
     }
 
@@ -65,14 +71,14 @@ public class Next extends PathFormula {
         return matchingStates.toArray(new State[matchingStates.size()]);
     }
 
-    private State[] getNextStates(State[] allStates){
+    private State[] getNextStates(State[] allStates, Model model){
         ArrayList<State> nextStates = new ArrayList<>();
         Transition[] transitionsToUse = model.getTransitions(actions);
         for(int i = 0; i < allStates.length; i++){
             for(int j = 0; j < transitionsToUse.length; j++){
                 if(transitionsToUse[j].getSource().equals(allStates[i].getName())){
-                    State state = getActualState(transitionsToUse[j].getTarget());
-                    if(state != null && notInSet(state, nextStates)) {
+                    State state = HelpMethods.getActualState(transitionsToUse[j].getTarget(), model);
+                    if(state != null && HelpMethods.notInSet(state, nextStates)) {
                         nextStates.add(state);
                         break;
                     }
@@ -80,25 +86,6 @@ public class Next extends PathFormula {
             }
         }
         return nextStates.toArray(new State[nextStates.size()]);
-    }
-
-    private boolean notInSet(State state, ArrayList allStates){
-        for(int i = 0; i < allStates.size(); i++){
-            if(state.equals(allStates.get(i))){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private State getActualState(String label){
-        State[] allStates = model.getStates();
-        for(int i = 0; i < allStates.length; i++){
-            if(label.equals(allStates[i].getName())){
-                return  allStates[i];
-            }
-        }
-        return null;
     }
 
 }

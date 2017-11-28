@@ -1,6 +1,7 @@
 package formula.pathFormula;
 
 import formula.FormulaParser;
+import formula.PathTree;
 import model.*;
 import formula.stateFormula.*;
 import java.util.*;
@@ -32,8 +33,12 @@ public class Always extends PathFormula {
     }
 
     @Override
-    public State[] getStates(State[] allStates) {
-        return stateFormula.getStates(allStates);
+    public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
+        pathTree.addAcceptedStates(allStates);
+        pathTree.setFormulaPart(" G ");
+        PathTree leftNode = new PathTree("");
+        pathTree.leftTree = leftNode;
+        return stateFormula.getStates(allStates,model, leftNode);
 
     }
 }
