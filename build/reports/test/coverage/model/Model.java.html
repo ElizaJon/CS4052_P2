@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Model.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Simple</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Model.java</span></div><h1>Model.java</h1><pre class="source lang-java linenums">package model;
+
+import com.google.gson.Gson;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Set;
+
+/**
+ * A model is consist of states and transitions
+ */
+<span class="nc" id="L13">public class Model {</span>
+    State[] states;
+    Transition[] transitions;
+
+    public static Model parseModel(String filePath) throws IOException {
+<span class="fc" id="L18">        Gson gson = new Gson();</span>
+<span class="nc" id="L19">        Model model = gson.fromJson(new FileReader(filePath), Model.class);</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        for (Transition t : model.transitions) {</span>
+<span class="nc" id="L21">            System.out.println(t);</span>
+        }
+<span class="nc" id="L23">        return model;</span>
+    }
+
+    /**
+     * Returns the list of the states
+     * 
+     * @return list of state for the given model
+     */
+    public State[] getStates() {
+<span class="nc" id="L32">        return states;</span>
+    }
+
+    /**
+     * Returns the list of transitions
+     * 
+     * @return list of transition for the given model
+     */
+    public Transition[] getTransitions() {
+<span class="nc" id="L41">        return transitions;</span>
+    }
+
+    public Transition[] getTransitions(Set&lt;String&gt; actions){
+<span class="nc" id="L45">        Transition[] allTransitions = transitions;</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if(actions.size() == 0){</span>
+<span class="nc" id="L47">            return allTransitions;</span>
+        }
+        String[] transitionActions;
+        boolean check;
+<span class="nc" id="L51">        ArrayList&lt;Transition&gt; newTransitions = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        for(int i = 0; i &lt; allTransitions.length; i++){</span>
+<span class="nc" id="L53">            transitionActions = allTransitions[i].getActions();</span>
+<span class="nc" id="L54">            check = false;</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">            for(int k = 0; k &lt; transitionActions.length; k++){</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">                for(int j = 0; j &lt; actions.size(); j++){</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">                    if(actions.contains(transitionActions[k])) {</span>
+<span class="nc" id="L58">                        newTransitions.add(allTransitions[i]);</span>
+<span class="nc" id="L59">                        check = true;</span>
+<span class="nc" id="L60">                        break;</span>
+                    }
+                }
+<span class="nc bnc" id="L63" title="All 2 branches missed.">                if(check){</span>
+<span class="nc" id="L64">                    break;</span>
+                }
+            }
+        }
+<span class="nc" id="L68">        return newTransitions.toArray(new Transition[newTransitions.size()]);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

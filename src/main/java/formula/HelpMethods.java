@@ -16,7 +16,7 @@ public class HelpMethods {
         State[] states;
         for(int i = 0; i < alwaysStates.length; i++){
             for(int j = 0; j < transitions.length; j++){
-                states = getStatesItCanReach(alwaysStates[i], transitions[j], transitions, new ArrayList<>(), model);
+                states = getStatesItCanReach(alwaysStates[i], transitions[j], transitions, new ArrayList<State>(), model);
                 if (states.length != 0) {
                     resultStates = HelpMethods.getUpdatedUntilStates(states, resultStates);
                 }
@@ -112,6 +112,23 @@ public class HelpMethods {
             }
         }
         return true;
+    }
+
+    public static State[] getStatesWhichNotInSet(State[] initialStates, State[] resultStates){
+        ArrayList<State> notInSet = new ArrayList<>();
+        boolean check;
+        for(int i = 0; i < initialStates.length; i++){
+            check = false;
+            for(int j = 0; j < resultStates.length; j++){
+                if(initialStates[i].equals(resultStates[j])){
+                    check = true;
+                }
+            }
+            if(!check){
+                notInSet.add(initialStates[i]);
+            }
+        }
+        return notInSet.toArray(new State[notInSet.size()]);
     }
 
     public static State[] getAllSatisfyingUntil(State[] rightStates, State[] leftStates, Set<String> leftActions, Set<String> rightActions, Model model){

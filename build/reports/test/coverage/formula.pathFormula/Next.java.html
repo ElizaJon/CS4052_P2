@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Next.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Simple</a> &gt; <a href="index.source.html" class="el_package">formula.pathFormula</a> &gt; <span class="el_source">Next.java</span></div><h1>Next.java</h1><pre class="source lang-java linenums">package formula.pathFormula;
+
+import formula.FormulaParser;
+import formula.HelpMethods;
+import formula.PathTree;
+import formula.stateFormula.*;
+import model.Model;
+import model.State;
+import model.Transition;
+import modelChecker.SimpleModelChecker;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+public class Next extends PathFormula {
+    public final StateFormula stateFormula;
+    private Set&lt;String&gt; actions;
+
+<span class="nc" id="L19">    public Next(StateFormula stateFormula, Set&lt;String&gt; actions) {</span>
+<span class="nc" id="L20">        this.stateFormula = stateFormula;</span>
+<span class="nc" id="L21">        this.actions = actions;</span>
+<span class="nc" id="L22">    }</span>
+
+    public Set&lt;String&gt; getActions() {
+<span class="nc" id="L25">        return actions;</span>
+    }
+
+    @Override
+    public void writeToBuffer(StringBuilder buffer) {
+<span class="nc" id="L30">        buffer.append(FormulaParser.NEXT_TOKEN);</span>
+<span class="nc" id="L31">        stateFormula.writeToBuffer(buffer);</span>
+<span class="nc" id="L32">    }</span>
+
+    @Override
+    public void checker(ArrayList buffer) {
+<span class="nc" id="L36">        buffer.add(FormulaParser.NEXT_TOKEN);</span>
+<span class="nc" id="L37">        stateFormula.checker(buffer);</span>
+<span class="nc" id="L38">    }</span>
+
+    @Override
+    public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
+<span class="nc" id="L42">        pathTree.setFormulaPart(&quot; X &quot;);</span>
+<span class="nc" id="L43">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="nc" id="L44">        pathTree.leftTree = leftNode;</span>
+<span class="nc" id="L45">        State[] resultStates = stateFormula.getStates(allStates, model, leftNode);</span>
+<span class="nc" id="L46">        State[] nextStates = getNextStates(allStates, model);</span>
+<span class="nc" id="L47">        State[] matchingStates = getMatchingStates(resultStates, nextStates);</span>
+
+<span class="nc" id="L49">        System.out.println(&quot;Next method&quot;);</span>
+<span class="nc" id="L50">        SimpleModelChecker.printStates(allStates);</span>
+<span class="nc" id="L51">        SimpleModelChecker.printStates(resultStates);</span>
+<span class="nc" id="L52">        SimpleModelChecker.printStates(nextStates);</span>
+<span class="nc" id="L53">        SimpleModelChecker.printStates(matchingStates);</span>
+<span class="nc" id="L54">        System.out.println(&quot;End of Next method&quot;);</span>
+
+<span class="nc" id="L56">        pathTree.addAcceptedStates(matchingStates);</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if(matchingStates.length &gt; 0){</span>
+<span class="nc" id="L58">            pathTree.setModelHolds(true);</span>
+        }
+<span class="nc" id="L60">        return matchingStates;</span>
+    }
+
+    private State[] getMatchingStates(State[] resultStates, State[] nextStates){
+<span class="nc" id="L64">        ArrayList&lt;State&gt; matchingStates = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        for(int i = 0; i &lt; resultStates.length; i++){</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            for(int j = 0; j &lt; nextStates.length; j++){</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                if(resultStates[i].equals(nextStates[j])){</span>
+<span class="nc" id="L68">                    matchingStates.add(resultStates[i]);</span>
+                }
+            }
+        }
+<span class="nc" id="L72">        return matchingStates.toArray(new State[matchingStates.size()]);</span>
+    }
+
+    private State[] getNextStates(State[] allStates, Model model){
+<span class="nc" id="L76">        ArrayList&lt;State&gt; nextStates = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L77">        Transition[] transitionsToUse = model.getTransitions(actions);</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        for(int i = 0; i &lt; allStates.length; i++){</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            for(int j = 0; j &lt; transitionsToUse.length; j++){</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">                if(transitionsToUse[j].getSource().equals(allStates[i].getName())){</span>
+<span class="nc" id="L81">                    State state = HelpMethods.getActualState(transitionsToUse[j].getTarget(), model);</span>
+<span class="nc bnc" id="L82" title="All 4 branches missed.">                    if(state != null &amp;&amp; HelpMethods.notInSet(state, nextStates)) {</span>
+<span class="nc" id="L83">                        nextStates.add(state);</span>
+<span class="nc" id="L84">                        break;</span>
+                    }
+                }
+            }
+        }
+<span class="nc" id="L89">        return nextStates.toArray(new State[nextStates.size()]);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

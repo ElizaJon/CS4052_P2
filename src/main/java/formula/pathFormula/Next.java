@@ -3,11 +3,10 @@ package formula.pathFormula;
 import formula.FormulaParser;
 import formula.HelpMethods;
 import formula.PathTree;
-import formula.stateFormula.*;
+import formula.stateFormula.StateFormula;
 import model.Model;
 import model.State;
 import model.Transition;
-import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -46,16 +45,19 @@ public class Next extends PathFormula {
         State[] nextStates = getNextStates(allStates, model);
         State[] matchingStates = getMatchingStates(resultStates, nextStates);
 
+        /*
         System.out.println("Next method");
         SimpleModelChecker.printStates(allStates);
         SimpleModelChecker.printStates(resultStates);
         SimpleModelChecker.printStates(nextStates);
         SimpleModelChecker.printStates(matchingStates);
         System.out.println("End of Next method");
-
+        */
         pathTree.addAcceptedStates(matchingStates);
-        System.out.println(pathTree.getFormulaPart() + "vatvat");
-        System.out.println(pathTree.getLeftTree().getFormulaPart() + "vatvat");
+        pathTree.setLeftActions(actions);
+        if(matchingStates.length > 0){
+            pathTree.setModelHolds(true);
+        }
         return matchingStates;
     }
 

@@ -4,7 +4,6 @@ import formula.FormulaParser;
 import formula.PathTree;
 import model.Model;
 import model.State;
-import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 
@@ -42,12 +41,19 @@ public class Not extends StateFormula {
         pathTree.leftTree = leftNode;
         State[] newStates = stateFormula.getStates(allStates, model,leftNode);
         State[] notStates = getNotStates(allStates, newStates);
+
+        /*
         System.out.println("Not method");
         SimpleModelChecker.printStates(allStates);
         SimpleModelChecker.printStates(newStates);
         SimpleModelChecker.printStates(notStates);
         System.out.println("End of Not method");
+        */
+
         pathTree.addAcceptedStates(notStates);
+        if(notStates.length > 0){
+            pathTree.setModelHolds(true);
+        }
         return notStates;
     }
 

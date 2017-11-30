@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Eventually.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Simple</a> &gt; <a href="index.source.html" class="el_package">formula.pathFormula</a> &gt; <span class="el_source">Eventually.java</span></div><h1>Eventually.java</h1><pre class="source lang-java linenums">package formula.pathFormula;
+
+import formula.FormulaParser;
+import formula.PathTree;
+import formula.stateFormula.*;
+import model.Model;
+import model.State;
+
+import java.util.*;
+
+public class Eventually extends PathFormula {
+    public final StateFormula stateFormula;
+    private Set&lt;String&gt; leftActions;
+    private Set&lt;String&gt; rightActions;
+
+    public Eventually(StateFormula stateFormula, Set&lt;String&gt; leftActions, Set&lt;String&gt; rightActions) {
+<span class="nc" id="L17">        super();</span>
+<span class="nc" id="L18">        this.stateFormula = stateFormula;</span>
+<span class="nc" id="L19">        this.leftActions = leftActions;</span>
+<span class="nc" id="L20">        this.rightActions = rightActions;</span>
+<span class="nc" id="L21">    }</span>
+
+    public Set&lt;String&gt; getLeftActions() {
+<span class="nc" id="L24">        return leftActions;</span>
+    }
+
+    public Set&lt;String&gt; getRightActions() {
+<span class="nc" id="L28">        return rightActions;</span>
+    }
+
+    @Override
+    public void writeToBuffer(StringBuilder buffer) {
+<span class="nc" id="L33">        buffer.append(FormulaParser.EVENTUALLY_TOKEN);</span>
+<span class="nc" id="L34">        stateFormula.writeToBuffer(buffer);</span>
+<span class="nc" id="L35">    }</span>
+
+    @Override
+    public void checker(ArrayList buffer) {
+<span class="nc" id="L39">        buffer.add(FormulaParser.EVENTUALLY_TOKEN);</span>
+<span class="nc" id="L40">        stateFormula.checker(buffer);</span>
+<span class="nc" id="L41">    }</span>
+
+    @Override
+    public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
+<span class="nc" id="L45">        pathTree.addAcceptedStates(allStates);</span>
+<span class="nc" id="L46">        pathTree.setFormulaPart(&quot; F &quot;);</span>
+<span class="nc" id="L47">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="nc" id="L48">        pathTree.leftTree = leftNode;</span>
+<span class="nc" id="L49">        State[] resultStates = stateFormula.getStates(allStates, model, leftNode);</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if(resultStates.length &gt; 0){</span>
+<span class="nc" id="L51">            pathTree.setModelHolds(true);</span>
+        }
+<span class="nc" id="L53">        return resultStates;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

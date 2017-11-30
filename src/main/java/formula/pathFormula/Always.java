@@ -38,7 +38,12 @@ public class Always extends PathFormula {
         pathTree.setFormulaPart(" G ");
         PathTree leftNode = new PathTree("");
         pathTree.leftTree = leftNode;
-        return stateFormula.getStates(allStates,model, leftNode);
+        State[] resultStates = stateFormula.getStates(allStates, model, leftNode);
+        pathTree.setLeftActions(actions);
+        if(resultStates.length > 0){
+            pathTree.setModelHolds(true);
+        }
+        return resultStates;
 
     }
 }

@@ -25,9 +25,12 @@ public class AtomicProp extends StateFormula {
 
     @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
-        pathTree.setFormulaPart(label);
+        pathTree.setFormulaPart(" " + label + " ");
         State [] APstates = statesWithLabel(allStates);
         pathTree.addAcceptedStates(APstates);
+        if(APstates.length > 0){
+            pathTree.setModelHolds(true);
+        }
         return APstates;
     }
 

@@ -7,7 +7,6 @@ import formula.stateFormula.StateFormula;
 import model.Model;
 import model.State;
 import model.Transition;
-import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -64,13 +63,21 @@ public class Until extends PathFormula {
 
         State[] untilStates = getAllSatisfyingUntil(statesSatisfyingRight, statesSatisfyingLeft, model);
 
+        /*
         System.out.println("Until method");
         SimpleModelChecker.printStates(allStates);
         SimpleModelChecker.printStates(statesSatisfyingLeft);
         SimpleModelChecker.printStates(statesSatisfyingRight);
         SimpleModelChecker.printStates(untilStates);
         System.out.println("End of Until method");
+        */
+
         pathTree.addAcceptedStates(untilStates);
+        pathTree.setLeftActions(leftActions);
+        pathTree.setRightActions(rightActions);
+        if(untilStates.length > 0){
+            pathTree.setModelHolds(true);
+        }
         return untilStates;
     }
 

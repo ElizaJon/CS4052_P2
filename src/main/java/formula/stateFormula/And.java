@@ -34,16 +34,19 @@ public class And extends StateFormula {
         State[] leftStates, rightStates, andStates;
         leftStates = left.getStates(allStates, model,leftNode);
         rightStates = right.getStates(allStates, model, rightNode);
-        SimpleModelChecker.printStates(leftStates);
-        SimpleModelChecker.printStates(rightStates);
         andStates = getAndStates(leftStates, rightStates);
 
+        /*
         System.out.println("And states");
         SimpleModelChecker.printStates(leftStates);
         SimpleModelChecker.printStates(rightStates);
         SimpleModelChecker.printStates(andStates);
         System.out.println("End of And states");
+        */
         pathTree.addAcceptedStates(andStates);
+        if(andStates.length > 0){
+            pathTree.setModelHolds(true);
+        }
         return andStates;
     }
 

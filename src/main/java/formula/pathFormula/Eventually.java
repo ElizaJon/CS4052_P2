@@ -46,6 +46,12 @@ public class Eventually extends PathFormula {
         pathTree.setFormulaPart(" F ");
         PathTree leftNode = new PathTree("");
         pathTree.leftTree = leftNode;
-        return stateFormula.getStates(allStates, model, leftNode);
+        pathTree.setLeftActions(leftActions);
+        pathTree.setRightActions(rightActions);
+        State[] resultStates = stateFormula.getStates(allStates, model, leftNode);
+        if(resultStates.length > 0){
+            pathTree.setModelHolds(true);
+        }
+        return resultStates;
     }
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SimpleModelChecker.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Simple</a> &gt; <a href="index.source.html" class="el_package">modelChecker</a> &gt; <span class="el_source">SimpleModelChecker.java</span></div><h1>SimpleModelChecker.java</h1><pre class="source lang-java linenums">package modelChecker;
+
+import formula.PathTree;
+import formula.stateFormula.StateFormula;
+import model.Model;
+import model.State;
+
+<span class="nc" id="L8">public class SimpleModelChecker implements ModelChecker {</span>
+    PathTree root;
+    @Override
+    public boolean check(Model model, StateFormula constraint, StateFormula query) {
+        // TODO Auto-generated method stub
+<span class="nc" id="L13">        System.out.println(constraint.toString());</span>
+<span class="nc" id="L14">        System.out.println(query.toString());</span>
+
+<span class="nc" id="L16">        System.out.println(&quot;\nNewer stuff&quot;);</span>
+
+<span class="nc" id="L18">        State[] allStates = model.getStates();</span>
+<span class="nc" id="L19">        root = new PathTree(&quot;&quot;);</span>
+<span class="nc" id="L20">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="nc" id="L21">        root.leftTree = leftNode;</span>
+<span class="nc" id="L22">        State[] resultStates = constraint.getStates(allStates, model, leftNode);</span>
+<span class="nc" id="L23">        System.out.println(&quot;Resulting states:&quot;);</span>
+<span class="nc" id="L24">        printStates(resultStates);</span>
+<span class="nc" id="L25">        printTree(root);</span>
+<span class="nc" id="L26">        boolean result = setOfStatesHasInitialState(resultStates);</span>
+<span class="nc" id="L27">        root.setModelHolds(result);</span>
+<span class="nc" id="L28">        System.out.println(&quot;Has initial states: &quot; + result);</span>
+<span class="nc" id="L29">        getTrace();</span>
+<span class="nc" id="L30">        return result;</span>
+    }
+
+    private boolean setOfStatesHasInitialState(State[] resultStates){
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        for(int i = 0; i &lt; resultStates.length; i++){</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            if(resultStates[i].isInit()){</span>
+<span class="nc" id="L36">                return true;</span>
+            }
+        }
+<span class="nc" id="L39">        return false;</span>
+    }
+
+    public static void printStates(State[] result){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        for(int i = 0; i &lt; result.length; i++) {</span>
+<span class="nc" id="L44">            System.out.print(result[i].getName() + &quot; &quot;);</span>
+        }
+<span class="nc" id="L46">        System.out.println();</span>
+<span class="nc" id="L47">    }</span>
+
+    @Override
+    public String[] getTrace() {
+<span class="nc" id="L51">        printFalseSide(root);</span>
+<span class="nc" id="L52">        return null;</span>
+    }
+
+    private void printFalseSide(PathTree root){
+<span class="nc bnc" id="L56" title="All 4 branches missed.">        if(root != null &amp;&amp; root.getFormulaPart().equals(&quot; A &quot;)){</span>
+<span class="nc" id="L57">            printTreeForA(root);</span>
+<span class="nc" id="L58">            return;</span>
+        }
+<span class="nc bnc" id="L60" title="All 4 branches missed.">        if (root == null || root.getModelHolds()){</span>
+<span class="nc" id="L61">            return;</span>
+        }
+<span class="nc" id="L63">        System.out.print(root.getFormulaPart());</span>
+<span class="nc" id="L64">        System.out.print(root.getModelHolds() + &quot; &quot;);</span>
+<span class="nc" id="L65">        printStates(root.getAcceptedStates());</span>
+<span class="nc" id="L66">        printFalseSide(root.getLeftTree());</span>
+<span class="nc" id="L67">        printFalseSide(root.getRightTree());</span>
+<span class="nc" id="L68">    }</span>
+
+    private void printTreeForA(PathTree root){
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        if(root == null){</span>
+<span class="nc" id="L72">            return;</span>
+        }
+<span class="nc" id="L74">        System.out.print(root.getFormulaPart());</span>
+<span class="nc" id="L75">        System.out.print(root.getModelHolds() + &quot; &quot;);</span>
+<span class="nc" id="L76">        printStates(root.getAcceptedStates());</span>
+<span class="nc" id="L77">        printTreeForA(root.getLeftTree());</span>
+<span class="nc" id="L78">        printTreeForA(root.getRightTree());</span>
+<span class="nc" id="L79">    }</span>
+
+    private void printTree(PathTree root){
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if(root == null){</span>
+<span class="nc" id="L83">            return;</span>
+        }
+<span class="nc" id="L85">        printTree(root.getLeftTree());</span>
+<span class="nc" id="L86">        System.out.print(root.getFormulaPart());</span>
+<span class="nc" id="L87">        printStates(root.getAcceptedStates());</span>
+<span class="nc" id="L88">        printTree(root.getRightTree());</span>
+<span class="nc" id="L89">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ForAll.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Simple</a> &gt; <a href="index.source.html" class="el_package">formula.stateFormula</a> &gt; <span class="el_source">ForAll.java</span></div><h1>ForAll.java</h1><pre class="source lang-java linenums">package formula.stateFormula;
+
+import formula.*;
+import formula.pathFormula.*;
+import model.State;
+import model.*;
+import modelChecker.SimpleModelChecker;
+
+import java.util.*;
+
+public class ForAll extends StateFormula {
+    public final PathFormula pathFormula;
+
+<span class="nc" id="L14">    public ForAll(PathFormula pathFormula) {</span>
+<span class="nc" id="L15">        this.pathFormula = pathFormula;</span>
+<span class="nc" id="L16">    }</span>
+
+    @Override
+    public void writeToBuffer(StringBuilder buffer) {
+<span class="nc" id="L20">        buffer.append(&quot;(&quot;);</span>
+<span class="nc" id="L21">        buffer.append(FormulaParser.FORALL_TOKEN);</span>
+<span class="nc" id="L22">        pathFormula.writeToBuffer(buffer);</span>
+<span class="nc" id="L23">        buffer.append(&quot;)&quot;);</span>
+<span class="nc" id="L24">    }</span>
+
+    @Override
+    public void checker(ArrayList buffer) {
+<span class="nc" id="L28">        buffer.add(&quot;(&quot;);</span>
+<span class="nc" id="L29">        buffer.add(FormulaParser.FORALL_TOKEN);</span>
+<span class="nc" id="L30">        pathFormula.checker(buffer);</span>
+<span class="nc" id="L31">        buffer.add(&quot;)&quot;);</span>
+<span class="nc" id="L32">    }</span>
+
+    @Override
+    public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
+<span class="nc" id="L36">        pathTree.setFormulaPart(&quot; A &quot;);</span>
+<span class="nc" id="L37">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="nc" id="L38">        pathTree.leftTree = leftNode;</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">        if(pathFormula instanceof Until || pathFormula instanceof Next){</span>
+<span class="nc" id="L40">            State[] resultStates = pathFormula.getStates(allStates, model,leftNode);</span>
+<span class="nc" id="L41">            State[] checkedAllStates = checkForAll(HelpMethods.getInitialStates(allStates), resultStates);</span>
+<span class="nc" id="L42">            System.out.println(&quot;For all method&quot;);</span>
+<span class="nc" id="L43">            SimpleModelChecker.printStates(allStates);</span>
+<span class="nc" id="L44">            SimpleModelChecker.printStates(resultStates);</span>
+<span class="nc" id="L45">            SimpleModelChecker.printStates(checkedAllStates);</span>
+<span class="nc" id="L46">            System.out.println(&quot;End of For all method&quot;);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">            if(checkedAllStates.length &gt; 0){</span>
+<span class="nc" id="L48">                pathTree.setModelHolds(true);</span>
+<span class="nc" id="L49">                pathTree.addAcceptedStates(checkedAllStates);</span>
+            } else {
+<span class="nc" id="L51">                pathTree.addAcceptedStates(HelpMethods.getInitialStates(allStates));</span>
+            }
+<span class="nc" id="L53">            return checkedAllStates;</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        } else if(pathFormula instanceof Always){</span>
+<span class="nc" id="L55">            State[] alwaysStates = pathFormula.getStates(allStates, model,leftNode);</span>
+<span class="nc" id="L56">            Set&lt;String&gt; actions = ((Always) pathFormula).getActions();</span>
+            Transition[] transitions;
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            if(actions.size() == 0){</span>
+<span class="nc" id="L59">                transitions = model.getTransitions();</span>
+            } else {
+<span class="nc" id="L61">                transitions = model.getTransitions(actions);</span>
+            }
+<span class="nc" id="L63">            State[] resultStates = HelpMethods.getAlwaysStates(alwaysStates, transitions, model);</span>
+
+<span class="nc" id="L65">            System.out.println(&quot;For all always!!!!!&quot;);</span>
+<span class="nc" id="L66">            SimpleModelChecker.printStates(allStates);</span>
+<span class="nc" id="L67">            SimpleModelChecker.printStates(alwaysStates);</span>
+<span class="nc" id="L68">            SimpleModelChecker.printStates(resultStates);</span>
+<span class="nc" id="L69">            System.out.println(&quot;end For all always!!!!!&quot;);</span>
+<span class="nc" id="L70">            State [] findAll = checkForAll(HelpMethods.getInitialStates(allStates), resultStates);</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            if(findAll.length &gt; 0){</span>
+<span class="nc" id="L72">                pathTree.setModelHolds(true);</span>
+<span class="nc" id="L73">                pathTree.addAcceptedStates(findAll);</span>
+            } else {
+<span class="nc" id="L75">                pathTree.addAcceptedStates(HelpMethods.getInitialStates(allStates));</span>
+            }
+<span class="nc" id="L77">            return findAll;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        } else if(pathFormula instanceof Eventually){</span>
+<span class="nc" id="L79">            State[] rightStates = pathFormula.getStates(allStates, model,leftNode);</span>
+<span class="nc" id="L80">            Set&lt;String&gt; leftActions = ((Eventually) pathFormula).getLeftActions();</span>
+<span class="nc" id="L81">            Set&lt;String&gt; rightActions = ((Eventually) pathFormula).getRightActions();</span>
+<span class="nc" id="L82">            State[] resultStates = checkForAll(HelpMethods.getInitialStates(allStates), HelpMethods.getAllSatisfyingUntil(rightStates, allStates, leftActions, rightActions, model));</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if(resultStates.length &gt; 0){</span>
+<span class="nc" id="L84">                pathTree.setModelHolds(true);</span>
+<span class="nc" id="L85">                pathTree.addAcceptedStates(resultStates);</span>
+            } else {
+<span class="nc" id="L87">                pathTree.addAcceptedStates(HelpMethods.getInitialStates(allStates));</span>
+            }
+<span class="nc" id="L89">            return resultStates;</span>
+        }
+<span class="nc" id="L91">        return new State[0];</span>
+    }
+
+    private State[] checkForAll(State[] initialStates, State[] resultStates){
+<span class="nc" id="L95">        int check = 0;</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        for(int i = 0; i &lt; initialStates.length; i++){</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">            for(int j = 0; j &lt; resultStates.length; j++){</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">                if(initialStates[i].equals(resultStates[j])){</span>
+<span class="nc" id="L99">                    check++;</span>
+<span class="nc" id="L100">                    break;</span>
+                }
+            }
+        }
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if(check == initialStates.length){</span>
+<span class="nc" id="L105">            return initialStates;</span>
+        } else {
+<span class="nc" id="L107">            return new State[0];</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

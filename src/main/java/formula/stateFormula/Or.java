@@ -3,7 +3,6 @@ package formula.stateFormula;
 import formula.PathTree;
 import model.Model;
 import model.State;
-import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 
@@ -35,16 +34,20 @@ public class Or extends StateFormula {
         State[] leftStates, rightStates, orStates;
         leftStates = left.getStates(allStates, model,leftNode);
         rightStates = right.getStates(allStates, model,rightNode);
-        SimpleModelChecker.printStates(leftStates);
-        SimpleModelChecker.printStates(rightStates);
         orStates = getOrStates(leftStates, rightStates, allStates);
 
+        /*
         System.out.println("Or states");
         SimpleModelChecker.printStates(leftStates);
         SimpleModelChecker.printStates(rightStates);
         SimpleModelChecker.printStates(orStates);
         System.out.println("End of Or states");
+        */
+
         pathTree.addAcceptedStates(orStates);
+        if(orStates.length > 0){
+            pathTree.setModelHolds(true);
+        }
         return orStates;
     }
 

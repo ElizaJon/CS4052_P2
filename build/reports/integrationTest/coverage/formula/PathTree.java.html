@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>PathTree.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Simple</a> &gt; <a href="index.source.html" class="el_package">formula</a> &gt; <span class="el_source">PathTree.java</span></div><h1>PathTree.java</h1><pre class="source lang-java linenums">package formula;
+
+import model.State;
+
+import java.util.Set;
+
+/**
+ * Created by Eliza on 28/11/2017.
+ */
+public class PathTree {
+    String formulaPart;
+    private State[] acceptedStates;
+    private boolean modelHolds;
+    public PathTree leftTree;
+    public PathTree rightTree;
+    private Set&lt;String&gt; leftActions;
+    private Set&lt;String&gt; rightActions;
+
+<span class="nc" id="L19">    public PathTree(String formulaPart){</span>
+<span class="nc" id="L20">        this.formulaPart = formulaPart;</span>
+<span class="nc" id="L21">        this.acceptedStates = new State[0];</span>
+<span class="nc" id="L22">        this.leftTree = null;</span>
+<span class="nc" id="L23">        this.rightTree = null;</span>
+<span class="nc" id="L24">        this.modelHolds = false;</span>
+<span class="nc" id="L25">        this.leftActions = null;</span>
+<span class="nc" id="L26">        this.rightActions = null;</span>
+<span class="nc" id="L27">    }</span>
+
+    public void addAcceptedStates(State[] acceptedStates){
+<span class="nc" id="L30">        this.acceptedStates = acceptedStates;</span>
+<span class="nc" id="L31">    }</span>
+
+    public void setFormulaPart(String formulaPart){
+<span class="nc" id="L34">        this.formulaPart = formulaPart;</span>
+<span class="nc" id="L35">    }</span>
+
+    public void setModelHolds(Boolean holds){
+<span class="nc" id="L38">        this.modelHolds = holds;</span>
+<span class="nc" id="L39">    }</span>
+
+    public String getFormulaPart() {
+<span class="nc" id="L42">        return formulaPart;</span>
+    }
+
+<span class="nc" id="L45">    public Boolean getModelHolds() { return modelHolds; }</span>
+
+    public State[] getAcceptedStates() {
+<span class="nc" id="L48">        return acceptedStates;</span>
+    }
+
+    public PathTree getLeftTree() {
+<span class="nc" id="L52">        return leftTree;</span>
+    }
+
+    public PathTree getRightTree() {
+<span class="nc" id="L56">        return rightTree;</span>
+    }
+
+    public void setLeftActions(Set&lt;String&gt; leftActions) {
+<span class="nc" id="L60">        this.leftActions = leftActions;</span>
+<span class="nc" id="L61">    }</span>
+
+    public void setRightActions(Set&lt;String&gt; rightActions) {
+<span class="nc" id="L64">        this.rightActions = rightActions;</span>
+<span class="nc" id="L65">    }</span>
+
+    public Set&lt;String&gt; getLeftActions() {
+<span class="nc" id="L68">        return leftActions;</span>
+    }
+
+    public Set&lt;String&gt; getRightActions() {
+<span class="nc" id="L72">        return rightActions;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

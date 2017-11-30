@@ -2,20 +2,28 @@ package formula;
 
 import model.State;
 
+import java.util.Set;
+
 /**
  * Created by Eliza on 28/11/2017.
  */
 public class PathTree {
     String formulaPart;
     private State[] acceptedStates;
+    private boolean modelHolds;
     public PathTree leftTree;
     public PathTree rightTree;
+    private Set<String> leftActions;
+    private Set<String> rightActions;
 
     public PathTree(String formulaPart){
         this.formulaPart = formulaPart;
         this.acceptedStates = new State[0];
         this.leftTree = null;
         this.rightTree = null;
+        this.modelHolds = false;
+        this.leftActions = null;
+        this.rightActions = null;
     }
 
     public void addAcceptedStates(State[] acceptedStates){
@@ -26,9 +34,15 @@ public class PathTree {
         this.formulaPart = formulaPart;
     }
 
+    public void setModelHolds(Boolean holds){
+        this.modelHolds = holds;
+    }
+
     public String getFormulaPart() {
         return formulaPart;
     }
+
+    public Boolean getModelHolds() { return modelHolds; }
 
     public State[] getAcceptedStates() {
         return acceptedStates;
@@ -42,4 +56,19 @@ public class PathTree {
         return rightTree;
     }
 
+    public void setLeftActions(Set<String> leftActions) {
+        this.leftActions = leftActions;
+    }
+
+    public void setRightActions(Set<String> rightActions) {
+        this.rightActions = rightActions;
+    }
+
+    public Set<String> getLeftActions() {
+        return leftActions;
+    }
+
+    public Set<String> getRightActions() {
+        return rightActions;
+    }
 }

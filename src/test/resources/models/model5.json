@@ -1,0 +1,61 @@
+{
+	"states": [
+		{
+			"init": true,
+			"name": "s0",
+			"label": ["p", "r"]
+		}, 
+		{
+			"init": true,
+			"name": "s1", 
+			"label": ["t", "n"]
+		}, 
+		{
+			"init": true,
+			"name": "s2",
+			"label": ["r", "p", "n", "m"]
+		}, 
+		{
+			"init": false,
+			"name": "s3",
+			"label": ["t", "m"]
+		}
+	],
+	"transitions": [
+		{
+			"source": "s0",
+			"target": "s1",
+			"actions": ["act1"]
+		}, 
+		{
+			"source": "s0",
+			"target": "s2",
+			"actions": ["act2"]
+		}, 
+		{
+			"source": "s0",
+			"target": "s3",
+			"actions": ["act3"]
+		},
+		{
+			"source": "s1",
+			"target": "s2",
+			"actions": ["act4"]
+		},
+		{
+			"source": "s1",
+			"target": "s3",
+			"actions": ["act5"]
+		},
+		{
+			"source": "s2",
+			"target": "s3",
+			"actions": ["act6"]
+		},
+		{
+			"source": "s2",
+			"target": "s0",
+			"actions": ["act7"]
+		}
+	]
+}

@@ -30,6 +30,7 @@ public class BoolProp extends StateFormula {
         pathTree.setFormulaPart((value) ? "True" : "False");
         if(value) {
             pathTree.addAcceptedStates(allStates);
+            pathTree.setModelHolds(true);
             return allStates;
         } else {
             return new State[0];
