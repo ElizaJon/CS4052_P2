@@ -2,7 +2,6 @@ package formula.stateFormula;
 import formula.PathTree;
 import model.Model;
 import model.State;
-import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 
@@ -36,13 +35,6 @@ public class And extends StateFormula {
         rightStates = right.getStates(allStates, model, rightNode);
         andStates = getAndStates(leftStates, rightStates);
 
-        /*
-        System.out.println("And states");
-        SimpleModelChecker.printStates(leftStates);
-        SimpleModelChecker.printStates(rightStates);
-        SimpleModelChecker.printStates(andStates);
-        System.out.println("End of And states");
-        */
         pathTree.addAcceptedStates(andStates);
         if(andStates.length > 0){
             pathTree.setModelHolds(true);
@@ -50,11 +42,7 @@ public class And extends StateFormula {
         return andStates;
     }
 
-    @Override
-    public void checker(ArrayList buffer) {
-        buffer.add("val");
-    }
-
+    //Method which gets states which satisfy left side and right side
     private State[] getAndStates(State[] leftStates, State[] rightStates){
         ArrayList<State> andStates = new ArrayList<>();
         for(int i = 0; i < leftStates.length; i++){

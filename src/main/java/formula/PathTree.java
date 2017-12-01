@@ -5,7 +5,8 @@ import model.State;
 import java.util.Set;
 
 /**
- * Created by Eliza on 28/11/2017.
+ * Class which lets us create a path tree with needed information.
+ * This helps us, when we need to return a trace of failed formula
  */
 public class PathTree {
     String formulaPart;

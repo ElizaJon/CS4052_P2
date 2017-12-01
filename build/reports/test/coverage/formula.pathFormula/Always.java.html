@@ -8,15 +8,15 @@ import java.util.*;
 
 public class Always extends PathFormula {
     public final StateFormula stateFormula;
-<span class="nc" id="L11">    private Set&lt;String&gt; actions = new HashSet&lt;String&gt;();</span>
+<span class="fc" id="L11">    private Set&lt;String&gt; actions = new HashSet&lt;String&gt;();</span>
 
-<span class="nc" id="L13">    public Always(StateFormula stateFormula, Set&lt;String&gt; actions) {</span>
-<span class="nc" id="L14">        this.stateFormula = stateFormula;</span>
-<span class="nc" id="L15">        this.actions = actions;</span>
-<span class="nc" id="L16">    }</span>
+<span class="fc" id="L13">    public Always(StateFormula stateFormula, Set&lt;String&gt; actions) {</span>
+<span class="fc" id="L14">        this.stateFormula = stateFormula;</span>
+<span class="fc" id="L15">        this.actions = actions;</span>
+<span class="fc" id="L16">    }</span>
 
     public Set&lt;String&gt; getActions() {
-<span class="nc" id="L19">        return actions;</span>
+<span class="fc" id="L19">        return actions;</span>
     }
 
     @Override
@@ -27,22 +27,17 @@ public class Always extends PathFormula {
 <span class="nc" id="L27">    }</span>
 
     @Override
-    public void checker(ArrayList buffer) {
-<span class="nc" id="L31">        buffer.add(FormulaParser.ALWAYS_TOKEn);</span>
-<span class="nc" id="L32">        stateFormula.checker(buffer);</span>
-<span class="nc" id="L33">    }</span>
-
-    @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
-<span class="nc" id="L37">        pathTree.addAcceptedStates(allStates);</span>
-<span class="nc" id="L38">        pathTree.setFormulaPart(&quot; G &quot;);</span>
-<span class="nc" id="L39">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
-<span class="nc" id="L40">        pathTree.leftTree = leftNode;</span>
-<span class="nc" id="L41">        State[] resultStates = stateFormula.getStates(allStates, model, leftNode);</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if(resultStates.length &gt; 0){</span>
-<span class="nc" id="L43">            pathTree.setModelHolds(true);</span>
+<span class="fc" id="L31">        pathTree.addAcceptedStates(allStates);</span>
+<span class="fc" id="L32">        pathTree.setFormulaPart(&quot; G &quot;);</span>
+<span class="fc" id="L33">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="fc" id="L34">        pathTree.leftTree = leftNode;</span>
+<span class="fc" id="L35">        State[] resultStates = stateFormula.getStates(allStates, model, leftNode);</span>
+<span class="fc" id="L36">        pathTree.setLeftActions(actions);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if(resultStates.length &gt; 0){</span>
+<span class="fc" id="L38">            pathTree.setModelHolds(true);</span>
         }
-<span class="nc" id="L45">        return resultStates;</span>
+<span class="fc" id="L40">        return resultStates;</span>
 
     }
 }

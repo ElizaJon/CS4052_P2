@@ -14,8 +14,8 @@ public class SimpleModelChecker implements ModelChecker {
     @Override
     public boolean check(Model model, StateFormula constraint, StateFormula query) {
         // TODO Auto-generated method stub
-        System.out.println(constraint.toString());
-        System.out.println(query.toString());
+        //System.out.println(constraint.toString());
+        //System.out.println(query.toString());
 
         State[] allStates = model.getStates();
         PathTree constraintTree = new PathTree("");
@@ -57,7 +57,7 @@ public class SimpleModelChecker implements ModelChecker {
     }
 
     private String printFalseSide(PathTree root, String st) {
-        if (root != null && root.getFormulaPart().equals(" A ") && !root.getModelHolds()) {
+        if (root != null && root.getFormulaPart().equals(" A ") && !root.getModelHolds() && root.leftTree.getModelHolds()) {
             st = printTreeForA(root, st);
             return st;
         } else if (root != null && root.getFormulaPart().equals(" || ") && !root.getModelHolds()) {
@@ -126,8 +126,8 @@ public class SimpleModelChecker implements ModelChecker {
                 break;
             case " U ":
                 s = s + root.leftTree.getFormulaPart() + " -> [ " + getStates(root.leftTree.getAcceptedStates()) + "] -> " + getActions(root.getLeftActions())
-                        + " U " + getActions(root.getRightActions()) + " -> [" + getStates(root.rightTree.getAcceptedStates()) + "] - > [" + root.rightTree.getFormulaPart()
-                        + "], these paths do not satisfy required conditions for all of the initial states.";
+                        + " U " + getActions(root.getRightActions()) + " -> [" + getStates(root.rightTree.getAcceptedStates()) + "] - > " + root.rightTree.getFormulaPart()
+                        + ", these paths do not satisfy required conditions for all of the initial states.";
                 break;
             case " X ":
                 s = s + " <-- X(next) fails, since formula does not build any paths:\n " + root.getLeftActions() + " X -> [" + getStates(root.leftTree.getAcceptedStates()) + "], which satisfy: [" + root.leftTree.getFormulaPart()
@@ -154,6 +154,16 @@ public class SimpleModelChecker implements ModelChecker {
             s = s + states[i].getName() + " ";
         }
         return s;
+    }
+
+    private void PrintTree(PathTree root){
+        if(root == null){
+            return;
+        }
+        System.out.print(root.getFormulaPart());
+        System.out.println(root.getModelHolds());
+        PrintTree(root.leftTree);
+        PrintTree(root.rightTree);
     }
 
 }

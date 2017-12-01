@@ -1,58 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="modelChecker.ModelCheckerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-11-29T14:00:26" hostname="8afbf5a1.st-andrews.ac.uk" time="0.061">
+<testsuite name="modelChecker.ModelCheckerTest" tests="62" skipped="0" failures="0" errors="0" timestamp="2017-12-01T16:58:28" hostname="8afbcc04.st-andrews.ac.uk" time="0.164">
   <properties/>
-  <testcase name="buildAndCheckModel" classname="modelChecker.ModelCheckerTest" time="0.061"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[java.io.FileNotFoundException: ../../src/test/resources/model1.json (No such file or directory)
-	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
-	at java.io.FileReader.<init>(FileReader.java:58)
-	at model.Model.parseModel(Model.java:19)
-	at modelChecker.ModelCheckerTest.buildAndCheckModel(ModelCheckerTest.java:23)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.runTestClass(JUnitTestClassExecuter.java:105)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecuter.execute(JUnitTestClassExecuter.java:56)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassProcessor.processTestClass(JUnitTestClassProcessor.java:64)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:50)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.messaging.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.messaging.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:106)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.messaging.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.messaging.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:360)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:54)
-	at org.gradle.internal.concurrent.StoppableExecutorImpl$1.run(StoppableExecutorImpl.java:40)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-]]></system-err>
+  <testcase name="buildAndCheckBoolP1B" classname="modelChecker.ModelCheckerTest" time="0.076"/>
+  <testcase name="buildAndCheckBoolP2B" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheck1B" classname="modelChecker.ModelCheckerTest" time="0.006"/>
+  <testcase name="buildAndCheck2B" classname="modelChecker.ModelCheckerTest" time="0.003"/>
+  <testcase name="buildAndCheck3B" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheck4B" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheckAP1" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckAP2" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckAP3" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckAP4" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheckOr1" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckOr2" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheckEventually1B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckEventually2B" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheckAnd1B" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheckAnd2B" classname="modelChecker.ModelCheckerTest" time="0.003"/>
+  <testcase name="buildAndCheckAnd3B" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheckModel" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheckNext1" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckNext2" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckNext3" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckNext4" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheckNext5" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckNext6" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckAP1B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckAP2B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckAP3B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckAP4B" classname="modelChecker.ModelCheckerTest" time="0.0"/>
+  <testcase name="buildAndCheckAnd1" classname="modelChecker.ModelCheckerTest" time="0.0"/>
+  <testcase name="buildAndCheckAnd2" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckAnd3" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckOr1B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckOr2B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckBoolP1" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckBoolP2" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheck1" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheck2" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheck3" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheck4" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckEventually1" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckEventually2" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckNext1B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckNext2B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckNext3B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckNext4B" classname="modelChecker.ModelCheckerTest" time="0.002"/>
+  <testcase name="buildAndCheckNext5B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckNext6B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckPacMan1" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckPacMan2" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckPacMan3" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckPacMan4" classname="modelChecker.ModelCheckerTest" time="0.0"/>
+  <testcase name="buildAndCheckModelLamp1" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckModelLamp2" classname="modelChecker.ModelCheckerTest" time="0.0"/>
+  <testcase name="buildAndCheckModelLamp3" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckUntil1" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckUntil2" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckUntil3" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckUntil4" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckUntil1B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckUntil2B" classname="modelChecker.ModelCheckerTest" time="0.0"/>
+  <testcase name="buildAndCheckUntil3B" classname="modelChecker.ModelCheckerTest" time="0.001"/>
+  <testcase name="buildAndCheckUntil4B" classname="modelChecker.ModelCheckerTest" time="0.0"/>
+  <system-out><![CDATA[False <- Formula contains boolean False, which makes all paths to fail.
+ A  F  &&  g  <-- Formula contains atomic proposition  g , which is not satisfied in given states, so all paths fail. A  G  A  U True -> [ s0 s1 s2 s3 ] -> [act1, act2] U [act3, act4] -> [s0 ] - >  E , these paths do not satisfy required conditions for all of the initial states.
+ E <-- Formula fails E(there exists), since there are no paths satisfying required formula.
+ E  X <-- ||(or) fails, since: 
+ E  G  t  <-- Formula contains atomic proposition  t , which is not satisfied in given states, so all paths fail. Also, 
+ A  U  p  -> [ s2 s3 ] -> [All transitions] U [All transitions] -> [s2 ] - >  r , these paths do not satisfy required conditions for all of the initial states.
+ t  <-- Formula contains atomic proposition  t , which is not satisfied in given states, so all paths fail.
+ r  <-- Formula contains atomic proposition  r , which is not satisfied in given states, so all paths fail.
+ E <-- Formula fails E(there exists), since there are no paths satisfying required formula.
+ E <-- Formula fails E(there exists), since there are no paths satisfying required formula.
+ E <-- Formula fails E(there exists), since there are no paths satisfying required formula.
+ E  X  t  <-- Formula contains atomic proposition  t , which is not satisfied in given states, so all paths fail.
+ E  X  <-- X(next) fails, since formula does not build any paths:
+ [act3, act4] X -> [s1 ], which satisfy: [ q ]
+ t  <-- Formula contains atomic proposition  t , which is not satisfied in given states, so all paths fail.
+ <-- Formula contains atomic proposition , which is not satisfied in given states, so all paths fail.
+ E <-- Formula fails E(there exists), since there are no paths satisfying required formula.
+ E <-- Formula fails E(there exists), since there are no paths satisfying required formula.
+ A  <-- A(for all) fails, since initial states  are missing.
+They are missing because : <-- Formula contains atomic proposition  F , which is not satisfied in given states, so all paths fail.
+False <- Formula contains boolean False, which makes all paths to fail.
+ A  F  &&  g  <-- Formula contains atomic proposition  g , which is not satisfied in given states, so all paths fail. A  G  A  <-- A(for all) fails, since initial states s2  are missing.
+They are missing because :True -> [ s0 s1 s2 ] -> [act1, act2] U [act3, act4] -> [s0 s2 ] - >  E , these paths do not satisfy required conditions for all of the initial states.
+ E  X <-- ||(or) fails, since: 
+ E  G  t  <-- Formula contains atomic proposition  t , which is not satisfied in given states, so all paths fail. Also, 
+ A  <-- A(for all) fails, since initial states s2  are missing.
+They are missing because : p  -> [ s0 s1 ] -> [All transitions] U [All transitions] -> [s2 ] - >  r , these paths do not satisfy required conditions for all of the initial states.
+ E <-- Formula fails E(there exists), since there are no paths satisfying required formula.
+ E  X  t  <-- Formula contains atomic proposition  t , which is not satisfied in given states, so all paths fail.
+ E <-- Formula fails E(there exists), since there are no paths satisfying required formula.
+ E <-- Formula fails E(there exists), since there are no paths satisfying required formula.
+ E  X  <-- X(next) fails, since formula does not build any paths:
+ [act3, act4] X -> [s0 s1 s3 ], which satisfy: [ q ]
+
+ E  U  ghostsindanger  -> [ Flee Pac Man Return to Base ] -> [pacmaneatspowerpellet] U [All transitions] -> [Wander the Maze Chase Pac Man ] - >  pacmanindanger , these paths do not satisfy required conditions for all of the initial states.
+
+ E  U  on  -> [ on ] -> [getError] U [pressSwitch] -> [off error ] - >  off , these paths do not satisfy required conditions for all of the initial states.
+ E  U  q  -> [ s1 ] -> [act1] U [act2] -> [s0 s1 ] - >  p , these paths do not satisfy required conditions for all of the initial states.
+ A  <-- A(for all) fails, since initial states s2  are missing.
+They are missing because : p  -> [ s0 s1 ] -> [act1, act2, act4] U [act3] -> [s2 ] - >  r , these paths do not satisfy required conditions for all of the initial states.
+ E  U  p  -> [ s2 s3 ] -> [All transitions] U [All transitions] -> [s2 ] - >  r , these paths do not satisfy required conditions for all of the initial states.
+ A  U  p  -> [ s2 s3 ] -> [act1, act2, act4] U [act3] -> [s2 ] - >  r , these paths do not satisfy required conditions for all of the initial states.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>

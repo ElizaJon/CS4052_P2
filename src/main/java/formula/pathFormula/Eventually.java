@@ -35,12 +35,6 @@ public class Eventually extends PathFormula {
     }
 
     @Override
-    public void checker(ArrayList buffer) {
-        buffer.add(FormulaParser.EVENTUALLY_TOKEN);
-        stateFormula.checker(buffer);
-    }
-
-    @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
         pathTree.addAcceptedStates(allStates);
         pathTree.setFormulaPart(" F ");

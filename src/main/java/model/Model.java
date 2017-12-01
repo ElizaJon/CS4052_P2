@@ -47,22 +47,17 @@ public class Model {
             return allTransitions;
         }
         String[] transitionActions;
-        boolean check;
         ArrayList<Transition> newTransitions = new ArrayList<>();
         for(int i = 0; i < allTransitions.length; i++){
             transitionActions = allTransitions[i].getActions();
-            check = false;
             for(int k = 0; k < transitionActions.length; k++){
                 for(int j = 0; j < actions.size(); j++){
                     if(actions.contains(transitionActions[k])) {
                         newTransitions.add(allTransitions[i]);
-                        check = true;
                         break;
                     }
                 }
-                if(check){
-                    break;
-                }
+
             }
         }
         return newTransitions.toArray(new Transition[newTransitions.size()]);

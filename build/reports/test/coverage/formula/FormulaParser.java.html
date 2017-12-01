@@ -36,16 +36,16 @@ public class FormulaParser {
     public static final char THEREEXISTS_TOKEN = 'E';
     public static final char FORALL_TOKEN = 'A';
     private Reader reader;
-<span class="nc" id="L39">    Gson gson = new Gson();</span>
+<span class="pc" id="L39">    Gson gson = new Gson();</span>
     private JsonObject jsonFormula;
 
-<span class="nc" id="L42">    public FormulaParser(String filePath) throws IOException {</span>
-<span class="nc" id="L43">        JsonParser parser = new JsonParser();</span>
-<span class="nc" id="L44">        JsonElement jsonElement = parser.parse(new FileReader(filePath));</span>
-<span class="nc" id="L45">        jsonFormula = jsonElement.getAsJsonObject();</span>
-<span class="nc" id="L46">        String formula = jsonFormula.get(JSON_FORMULA_FIELD).getAsString();</span>
-<span class="nc" id="L47">        reader = new Reader(formula);</span>
-<span class="nc" id="L48">    }</span>
+<span class="fc" id="L42">    public FormulaParser(String filePath) throws IOException {</span>
+<span class="fc" id="L43">        JsonParser parser = new JsonParser();</span>
+<span class="fc" id="L44">        JsonElement jsonElement = parser.parse(new FileReader(filePath));</span>
+<span class="fc" id="L45">        jsonFormula = jsonElement.getAsJsonObject();</span>
+<span class="fc" id="L46">        String formula = jsonFormula.get(JSON_FORMULA_FIELD).getAsString();</span>
+<span class="fc" id="L47">        reader = new Reader(formula);</span>
+<span class="fc" id="L48">    }</span>
 
 <span class="nc" id="L50">    private FormulaParser() {</span>
 <span class="nc" id="L51">        jsonFormula = null;</span>
@@ -54,7 +54,7 @@ public class FormulaParser {
 
     public StateFormula parse() throws IOException {
         try {
-<span class="nc" id="L57">            return recursiveParseStateFormula();</span>
+<span class="fc" id="L57">            return recursiveParseStateFormula();</span>
 <span class="nc" id="L58">        } catch (IOException e) {</span>
 <span class="nc" id="L59">            throw new IOException(&quot;Error at character position &quot; + reader.getPosition() + &quot;:\n&quot; + e.getMessage());</span>
         }
@@ -77,60 +77,60 @@ public class FormulaParser {
     }
 
     public StateFormula recursiveParseStateFormula() throws IOException {
-<span class="nc" id="L80">        char nextChar = reader.nextChar();</span>
-<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (nextChar == LEFT_BRACKET_TOKEN) {</span>
-<span class="nc" id="L82">            return recursiveParseStateFormulaHelper();</span>
+<span class="fc" id="L80">        char nextChar = reader.nextChar();</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if (nextChar == LEFT_BRACKET_TOKEN) {</span>
+<span class="fc" id="L82">            return recursiveParseStateFormulaHelper();</span>
         } else {
-<span class="nc" id="L84">            return parseStateFormula(nextChar);</span>
+<span class="fc" id="L84">            return parseStateFormula(nextChar);</span>
         }
     }
 
     private StateFormula recursiveParseStateFormulaHelper() throws IOException {
         StateFormula stateFormula;
-<span class="nc" id="L90">        StateFormula subformula = recursiveParseStateFormula();</span>
-<span class="nc" id="L91">        char nextChar = reader.nextChar();</span>
-<span class="nc bnc" id="L92" title="All 4 branches missed.">        switch (nextChar) {</span>
+<span class="fc" id="L90">        StateFormula subformula = recursiveParseStateFormula();</span>
+<span class="fc" id="L91">        char nextChar = reader.nextChar();</span>
+<span class="pc bpc" id="L92" title="1 of 4 branches missed.">        switch (nextChar) {</span>
         case RIGHT_BRACKET_TOKEN:
-<span class="nc" id="L94">            return subformula;</span>
+<span class="fc" id="L94">            return subformula;</span>
         case OR_TOKEN: {
-<span class="nc" id="L96">            validateNextChars(OR_TOKEN);</span>
-<span class="nc" id="L97">            StateFormula subformula2 = recursiveParseStateFormula();</span>
-<span class="nc" id="L98">            stateFormula = new Or(subformula, subformula2);</span>
+<span class="fc" id="L96">            validateNextChars(OR_TOKEN);</span>
+<span class="fc" id="L97">            StateFormula subformula2 = recursiveParseStateFormula();</span>
+<span class="fc" id="L98">            stateFormula = new Or(subformula, subformula2);</span>
         }
-<span class="nc" id="L100">            break;</span>
+<span class="fc" id="L100">            break;</span>
         case AND_TOKEN: {
-<span class="nc" id="L102">            validateNextChars(AND_TOKEN);</span>
-<span class="nc" id="L103">            StateFormula subformula2 = recursiveParseStateFormula();</span>
-<span class="nc" id="L104">            stateFormula = new And(subformula, subformula2);</span>
+<span class="fc" id="L102">            validateNextChars(AND_TOKEN);</span>
+<span class="fc" id="L103">            StateFormula subformula2 = recursiveParseStateFormula();</span>
+<span class="fc" id="L104">            stateFormula = new And(subformula, subformula2);</span>
         }
-<span class="nc" id="L106">            break;</span>
+<span class="fc" id="L106">            break;</span>
         default:
 <span class="nc" id="L108">            throw new IOException(&quot;unexpected character '&quot; + nextChar + &quot;'&quot;);</span>
         }
-<span class="nc" id="L110">        validateNextChars(RIGHT_BRACKET_TOKEN);</span>
-<span class="nc" id="L111">        return stateFormula;</span>
+<span class="fc" id="L110">        validateNextChars(RIGHT_BRACKET_TOKEN);</span>
+<span class="fc" id="L111">        return stateFormula;</span>
     }
 
     private StateFormula parseStateFormula(char nextChar) throws IOException {
-<span class="nc bnc" id="L115" title="All 6 branches missed.">        switch (nextChar) {</span>
+<span class="fc bfc" id="L115" title="All 6 branches covered.">        switch (nextChar) {</span>
         case NOT_TOKEN:
-<span class="nc" id="L117">            return new Not(recursiveParseStateFormula());</span>
+<span class="fc" id="L117">            return new Not(recursiveParseStateFormula());</span>
         case FORALL_TOKEN:
-<span class="nc" id="L119">            return new ForAll(parsePathFormula());</span>
+<span class="fc" id="L119">            return new ForAll(parsePathFormula());</span>
         case THEREEXISTS_TOKEN:
-<span class="nc" id="L121">            return new ThereExists(parsePathFormula());</span>
+<span class="fc" id="L121">            return new ThereExists(parsePathFormula());</span>
         case TRUE_TOKEN_PREFIX:
-<span class="nc" id="L123">            validateNextChars(&quot;RUE&quot;.toCharArray());</span>
-<span class="nc" id="L124">            return new BoolProp(true);</span>
+<span class="fc" id="L123">            validateNextChars(&quot;RUE&quot;.toCharArray());</span>
+<span class="fc" id="L124">            return new BoolProp(true);</span>
         case FALSE_TOKEN_PREFIX:
-<span class="nc" id="L126">            validateNextChars(&quot;ALSE&quot;.toCharArray());</span>
-<span class="nc" id="L127">            return new BoolProp(false);</span>
+<span class="fc" id="L126">            validateNextChars(&quot;ALSE&quot;.toCharArray());</span>
+<span class="fc" id="L127">            return new BoolProp(false);</span>
         default:
-<span class="nc bnc" id="L129" title="All 2 branches missed.">            if (isLowerCase(nextChar)) {</span>
-<span class="nc" id="L130">                reader.unread(nextChar);</span>
-<span class="nc" id="L131">                String ident = parseOptionalIdentifier(true);</span>
-<span class="nc bnc" id="L132" title="All 2 branches missed.">                if (ident != null) {</span>
-<span class="nc" id="L133">                    return new AtomicProp(ident);</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">            if (isLowerCase(nextChar)) {</span>
+<span class="fc" id="L130">                reader.unread(nextChar);</span>
+<span class="fc" id="L131">                String ident = parseOptionalIdentifier(true);</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">                if (ident != null) {</span>
+<span class="fc" id="L133">                    return new AtomicProp(ident);</span>
                 }
             }
 <span class="nc" id="L136">            throw new IOException(&quot;Expected state formula at this position.&quot;);</span>
@@ -138,47 +138,47 @@ public class FormulaParser {
     }
 
     private PathFormula parsePathFormula() throws IOException {
-<span class="nc" id="L141">        String actionSet1Identifier = parseOptionalIdentifier(true);</span>
-<span class="nc" id="L142">        Set&lt;String&gt; actionSet1 = getActions(actionSet1Identifier);</span>
-<span class="nc" id="L143">        char nextChar = reader.nextChar();</span>
-<span class="nc bnc" id="L144" title="All 5 branches missed.">        switch (nextChar) {</span>
+<span class="fc" id="L141">        String actionSet1Identifier = parseOptionalIdentifier(true);</span>
+<span class="fc" id="L142">        Set&lt;String&gt; actionSet1 = getActions(actionSet1Identifier);</span>
+<span class="fc" id="L143">        char nextChar = reader.nextChar();</span>
+<span class="pc bpc" id="L144" title="1 of 5 branches missed.">        switch (nextChar) {</span>
         case ALWAYS_TOKEn:
-<span class="nc" id="L146">            return new Always(recursiveParseStateFormula(), actionSet1);</span>
+<span class="fc" id="L146">            return new Always(recursiveParseStateFormula(), actionSet1);</span>
         case NEXT_TOKEN:
-<span class="nc" id="L148">            return new Next(recursiveParseStateFormula(), actionSet1);</span>
+<span class="fc" id="L148">            return new Next(recursiveParseStateFormula(), actionSet1);</span>
         case EVENTUALLY_TOKEN:
-<span class="nc" id="L150">            String actionSet2Identifier = parseOptionalIdentifier(false);</span>
-<span class="nc" id="L151">            Set&lt;String&gt; actionSet2 = getActions(actionSet2Identifier);</span>
-<span class="nc" id="L152">            return new Eventually(recursiveParseStateFormula(), actionSet1, actionSet2);</span>
+<span class="fc" id="L150">            String actionSet2Identifier = parseOptionalIdentifier(false);</span>
+<span class="fc" id="L151">            Set&lt;String&gt; actionSet2 = getActions(actionSet2Identifier);</span>
+<span class="fc" id="L152">            return new Eventually(recursiveParseStateFormula(), actionSet1, actionSet2);</span>
         case LEFT_BRACKET_TOKEN:
-<span class="nc" id="L154">            Until until = parseUntil();</span>
-<span class="nc" id="L155">            validateNextChars(RIGHT_BRACKET_TOKEN);</span>
-<span class="nc" id="L156">            return until;</span>
+<span class="fc" id="L154">            Until until = parseUntil();</span>
+<span class="fc" id="L155">            validateNextChars(RIGHT_BRACKET_TOKEN);</span>
+<span class="fc" id="L156">            return until;</span>
         default:
 <span class="nc" id="L158">            throw new IOException(&quot;Expected path quantifier&quot;);</span>
         }
     }
 
     private Until parseUntil() throws IOException {
-<span class="nc" id="L163">        StateFormula leftFormula = recursiveParseStateFormula();</span>
-<span class="nc" id="L164">        String actionSet1Identifier = parseOptionalIdentifier(true);</span>
-<span class="nc" id="L165">        validateNextChars(UNTIL_TOKEN);</span>
-<span class="nc" id="L166">        String actionSet2Identifier = parseOptionalIdentifier(false);</span>
-<span class="nc" id="L167">        StateFormula rightFormula = recursiveParseStateFormula();</span>
-<span class="nc" id="L168">        Set&lt;String&gt; actionSet1 = getActions(actionSet1Identifier);</span>
-<span class="nc" id="L169">        Set&lt;String&gt; actionSet2 = getActions(actionSet2Identifier);</span>
-<span class="nc" id="L170">        return new Until(leftFormula, rightFormula, actionSet1, actionSet2);</span>
+<span class="fc" id="L163">        StateFormula leftFormula = recursiveParseStateFormula();</span>
+<span class="fc" id="L164">        String actionSet1Identifier = parseOptionalIdentifier(true);</span>
+<span class="fc" id="L165">        validateNextChars(UNTIL_TOKEN);</span>
+<span class="fc" id="L166">        String actionSet2Identifier = parseOptionalIdentifier(false);</span>
+<span class="fc" id="L167">        StateFormula rightFormula = recursiveParseStateFormula();</span>
+<span class="fc" id="L168">        Set&lt;String&gt; actionSet1 = getActions(actionSet1Identifier);</span>
+<span class="fc" id="L169">        Set&lt;String&gt; actionSet2 = getActions(actionSet2Identifier);</span>
+<span class="fc" id="L170">        return new Until(leftFormula, rightFormula, actionSet1, actionSet2);</span>
     }
 
     private void validateNextChars(char... chars) throws IOException {
-<span class="nc bnc" id="L174" title="All 2 branches missed.">        for (char charIn : chars) {</span>
-<span class="nc" id="L175">            char nextChar = reader.nextChar();</span>
-<span class="nc bnc" id="L176" title="All 2 branches missed.">            if (nextChar != charIn) {</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        for (char charIn : chars) {</span>
+<span class="fc" id="L175">            char nextChar = reader.nextChar();</span>
+<span class="pc bpc" id="L176" title="1 of 2 branches missed.">            if (nextChar != charIn) {</span>
 <span class="nc" id="L177">                reader.unread(nextChar);</span>
 <span class="nc" id="L178">                throw new IOException(&quot;expected '&quot; + charIn + &quot;' but found '&quot; + nextChar + &quot;'&quot;);</span>
             }
         }
-<span class="nc" id="L181">    }</span>
+<span class="fc" id="L181">    }</span>
 
     /**
      * Parses sequence of lower case characters into a string. Keeps reading
@@ -190,46 +190,46 @@ public class FormulaParser {
      */
     public String parseOptionalIdentifier(boolean allowWhitespacePrefix) throws IOException {
         char nextChar;
-<span class="nc bnc" id="L193" title="All 2 branches missed.">        if (allowWhitespacePrefix) {</span>
-<span class="nc" id="L194">            nextChar = reader.nextChar();</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        if (allowWhitespacePrefix) {</span>
+<span class="fc" id="L194">            nextChar = reader.nextChar();</span>
         } else {
-<span class="nc" id="L196">            nextChar = reader.rawRead();</span>
+<span class="fc" id="L196">            nextChar = reader.rawRead();</span>
         }
-<span class="nc bnc" id="L198" title="All 4 branches missed.">        if (isLowerCase(nextChar) || isNumericDigit(nextChar)) {</span>
-<span class="nc" id="L199">            StringBuilder buffer = new StringBuilder(nextChar + &quot;&quot;);</span>
-<span class="nc bnc" id="L200" title="All 2 branches missed.">            while (reader.ready()) {</span>
-<span class="nc" id="L201">                nextChar = reader.rawRead();</span>
-<span class="nc bnc" id="L202" title="All 4 branches missed.">                if (isLowerCase(nextChar) || isNumericDigit(nextChar)) {</span>
-<span class="nc" id="L203">                    buffer.append(nextChar + &quot;&quot;);</span>
+<span class="pc bpc" id="L198" title="1 of 4 branches missed.">        if (isLowerCase(nextChar) || isNumericDigit(nextChar)) {</span>
+<span class="fc" id="L199">            StringBuilder buffer = new StringBuilder(nextChar + &quot;&quot;);</span>
+<span class="fc bfc" id="L200" title="All 2 branches covered.">            while (reader.ready()) {</span>
+<span class="fc" id="L201">                nextChar = reader.rawRead();</span>
+<span class="pc bpc" id="L202" title="1 of 4 branches missed.">                if (isLowerCase(nextChar) || isNumericDigit(nextChar)) {</span>
+<span class="fc" id="L203">                    buffer.append(nextChar + &quot;&quot;);</span>
                 } else {
-<span class="nc" id="L205">                    reader.unread(nextChar);</span>
-<span class="nc" id="L206">                    break;</span>
+<span class="fc" id="L205">                    reader.unread(nextChar);</span>
+<span class="fc" id="L206">                    break;</span>
                 }
             }
-<span class="nc" id="L209">            return buffer.toString();</span>
+<span class="fc" id="L209">            return buffer.toString();</span>
         } else {
-<span class="nc" id="L211">            reader.unread(nextChar);</span>
-<span class="nc" id="L212">            return null;</span>
+<span class="fc" id="L211">            reader.unread(nextChar);</span>
+<span class="fc" id="L212">            return null;</span>
         }
     }
 
     private boolean isNumericDigit(char nextChar) {
-<span class="nc bnc" id="L217" title="All 4 branches missed.">        return nextChar &gt;= '0' &amp;&amp; nextChar &lt;= '9';</span>
+<span class="pc bpc" id="L217" title="1 of 4 branches missed.">        return nextChar &gt;= '0' &amp;&amp; nextChar &lt;= '9';</span>
     }
 
     public boolean isLowerCase(char charIn) {
-<span class="nc bnc" id="L221" title="All 4 branches missed.">        return (charIn &gt;= 'a' &amp;&amp; charIn &lt;= 'z');</span>
+<span class="pc bpc" id="L221" title="1 of 4 branches missed.">        return (charIn &gt;= 'a' &amp;&amp; charIn &lt;= 'z');</span>
     }
 
     private Set&lt;String&gt; getActions(String actionSetIdentifier) {
-<span class="nc bnc" id="L225" title="All 2 branches missed.">        if (actionSetIdentifier == null) {</span>
-<span class="nc" id="L226">            return new HashSet&lt;String&gt;();</span>
+<span class="fc bfc" id="L225" title="All 2 branches covered.">        if (actionSetIdentifier == null) {</span>
+<span class="fc" id="L226">            return new HashSet&lt;String&gt;();</span>
         }
-<span class="nc" id="L228">        String[] actionsArray = gson.fromJson(jsonFormula.get(actionSetIdentifier), String[].class);</span>
-<span class="nc bnc" id="L229" title="All 2 branches missed.">        if (actionsArray == null) {</span>
+<span class="fc" id="L228">        String[] actionsArray = gson.fromJson(jsonFormula.get(actionSetIdentifier), String[].class);</span>
+<span class="pc bpc" id="L229" title="1 of 2 branches missed.">        if (actionsArray == null) {</span>
 <span class="nc" id="L230">            return new HashSet&lt;String&gt;();</span>
         } else {
-<span class="nc" id="L232">            return new HashSet&lt;String&gt;(Arrays.asList(actionsArray));</span>
+<span class="fc" id="L232">            return new HashSet&lt;String&gt;(Arrays.asList(actionsArray));</span>
         }
     }
 

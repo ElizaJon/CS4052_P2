@@ -27,12 +27,6 @@ public class Always extends PathFormula {
     }
 
     @Override
-    public void checker(ArrayList buffer) {
-        buffer.add(FormulaParser.ALWAYS_TOKEn);
-        stateFormula.checker(buffer);
-    }
-
-    @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
         pathTree.addAcceptedStates(allStates);
         pathTree.setFormulaPart(" G ");

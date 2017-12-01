@@ -26,14 +26,6 @@ public class ThereExists extends StateFormula {
     }
 
     @Override
-    public void checker(ArrayList buffer) {
-        buffer.add("(");
-        buffer.add(FormulaParser.THEREEXISTS_TOKEN);
-        pathFormula.checker(buffer);
-        buffer.add(")");
-    }
-
-    @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
         pathTree.setFormulaPart(" E ");
         PathTree leftNode = new PathTree("");
@@ -41,14 +33,6 @@ public class ThereExists extends StateFormula {
         if(pathFormula instanceof Until || pathFormula instanceof Next){
             State[] resultStates = pathFormula.getStates(allStates, model,leftNode);
             State[] checkedAllStates = checkForThereExists(HelpMethods.getInitialStates(allStates), resultStates);
-
-            /*
-            System.out.println("For there exists method");
-            SimpleModelChecker.printStates(allStates);
-            SimpleModelChecker.printStates(resultStates);
-            SimpleModelChecker.printStates(checkedAllStates);
-            System.out.println("End of For there exists method");
-            */
 
             if(checkedAllStates.length > 0){
                 pathTree.setModelHolds(true);
@@ -68,14 +52,6 @@ public class ThereExists extends StateFormula {
             }
             State[] resultStates = HelpMethods.getAlwaysStates(alwaysStates, transitions, model);
 
-            /*
-            System.out.println("There exists always!!!!!");
-            SimpleModelChecker.printStates(allStates);
-            SimpleModelChecker.printStates(alwaysStates);
-            SimpleModelChecker.printStates(resultStates);
-            System.out.println("end There exists always!!!!!");
-            */
-
             State[] findIntersecting = intersectingStates(alwaysStates, resultStates);
             if(findIntersecting.length > 0){
                 pathTree.setModelHolds(true);
@@ -86,7 +62,7 @@ public class ThereExists extends StateFormula {
             return findIntersecting;
 
         } else if(pathFormula instanceof Eventually){
-            State[] rightStates = pathFormula.getStates(allStates, model,leftNode);
+            State[] rightStates = pathFormula.getStates(model.getStates(), model,leftNode);
             Set<String> leftActions = ((Eventually) pathFormula).getLeftActions();
             Set<String> rightActions = ((Eventually) pathFormula).getRightActions();
             State[] resultStates = checkForThereExists(HelpMethods.getInitialStates(allStates), HelpMethods.getAllSatisfyingUntil(rightStates, allStates, leftActions, rightActions, model));
@@ -101,6 +77,7 @@ public class ThereExists extends StateFormula {
         return new State[0];
     }
 
+    //Method which finds intersecting states
     private State[] intersectingStates(State[] set1, State[] set2){
         ArrayList<State> matchingStates = new ArrayList<>();
         boolean check;
@@ -119,6 +96,7 @@ public class ThereExists extends StateFormula {
         return matchingStates.toArray(new State[matchingStates.size()]);
     }
 
+    //Method which checks if there exists any of the initial states in the returned set of states
     private State[] checkForThereExists(State[] initialStates, State[] resultStates){
         ArrayList<State> thereExistsStates = new ArrayList<>();
         for(int i = 0; i < initialStates.length; i++){

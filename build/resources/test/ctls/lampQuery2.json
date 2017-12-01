@@ -1,0 +1,5 @@
+{
+	"formula": "E ( off aU on )",
+	"a": ["pressSwitch"],
+	"b": ["pressSwitch","getError"]
+}

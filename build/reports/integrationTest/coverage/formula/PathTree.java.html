@@ -5,7 +5,8 @@ import model.State;
 import java.util.Set;
 
 /**
- * Created by Eliza on 28/11/2017.
+ * Class which lets us create a path tree with needed information.
+ * This helps us, when we need to return a trace of failed formula
  */
 public class PathTree {
     String formulaPart;
@@ -16,60 +17,60 @@ public class PathTree {
     private Set&lt;String&gt; leftActions;
     private Set&lt;String&gt; rightActions;
 
-<span class="nc" id="L19">    public PathTree(String formulaPart){</span>
-<span class="nc" id="L20">        this.formulaPart = formulaPart;</span>
-<span class="nc" id="L21">        this.acceptedStates = new State[0];</span>
-<span class="nc" id="L22">        this.leftTree = null;</span>
-<span class="nc" id="L23">        this.rightTree = null;</span>
-<span class="nc" id="L24">        this.modelHolds = false;</span>
-<span class="nc" id="L25">        this.leftActions = null;</span>
-<span class="nc" id="L26">        this.rightActions = null;</span>
-<span class="nc" id="L27">    }</span>
+<span class="nc" id="L20">    public PathTree(String formulaPart){</span>
+<span class="nc" id="L21">        this.formulaPart = formulaPart;</span>
+<span class="nc" id="L22">        this.acceptedStates = new State[0];</span>
+<span class="nc" id="L23">        this.leftTree = null;</span>
+<span class="nc" id="L24">        this.rightTree = null;</span>
+<span class="nc" id="L25">        this.modelHolds = false;</span>
+<span class="nc" id="L26">        this.leftActions = null;</span>
+<span class="nc" id="L27">        this.rightActions = null;</span>
+<span class="nc" id="L28">    }</span>
 
     public void addAcceptedStates(State[] acceptedStates){
-<span class="nc" id="L30">        this.acceptedStates = acceptedStates;</span>
-<span class="nc" id="L31">    }</span>
+<span class="nc" id="L31">        this.acceptedStates = acceptedStates;</span>
+<span class="nc" id="L32">    }</span>
 
     public void setFormulaPart(String formulaPart){
-<span class="nc" id="L34">        this.formulaPart = formulaPart;</span>
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L35">        this.formulaPart = formulaPart;</span>
+<span class="nc" id="L36">    }</span>
 
     public void setModelHolds(Boolean holds){
-<span class="nc" id="L38">        this.modelHolds = holds;</span>
-<span class="nc" id="L39">    }</span>
+<span class="nc" id="L39">        this.modelHolds = holds;</span>
+<span class="nc" id="L40">    }</span>
 
     public String getFormulaPart() {
-<span class="nc" id="L42">        return formulaPart;</span>
+<span class="nc" id="L43">        return formulaPart;</span>
     }
 
-<span class="nc" id="L45">    public Boolean getModelHolds() { return modelHolds; }</span>
+<span class="nc" id="L46">    public Boolean getModelHolds() { return modelHolds; }</span>
 
     public State[] getAcceptedStates() {
-<span class="nc" id="L48">        return acceptedStates;</span>
+<span class="nc" id="L49">        return acceptedStates;</span>
     }
 
     public PathTree getLeftTree() {
-<span class="nc" id="L52">        return leftTree;</span>
+<span class="nc" id="L53">        return leftTree;</span>
     }
 
     public PathTree getRightTree() {
-<span class="nc" id="L56">        return rightTree;</span>
+<span class="nc" id="L57">        return rightTree;</span>
     }
 
     public void setLeftActions(Set&lt;String&gt; leftActions) {
-<span class="nc" id="L60">        this.leftActions = leftActions;</span>
-<span class="nc" id="L61">    }</span>
+<span class="nc" id="L61">        this.leftActions = leftActions;</span>
+<span class="nc" id="L62">    }</span>
 
     public void setRightActions(Set&lt;String&gt; rightActions) {
-<span class="nc" id="L64">        this.rightActions = rightActions;</span>
-<span class="nc" id="L65">    }</span>
+<span class="nc" id="L65">        this.rightActions = rightActions;</span>
+<span class="nc" id="L66">    }</span>
 
     public Set&lt;String&gt; getLeftActions() {
-<span class="nc" id="L68">        return leftActions;</span>
+<span class="nc" id="L69">        return leftActions;</span>
     }
 
     public Set&lt;String&gt; getRightActions() {
-<span class="nc" id="L72">        return rightActions;</span>
+<span class="nc" id="L73">        return rightActions;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

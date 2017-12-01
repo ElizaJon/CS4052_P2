@@ -4,72 +4,57 @@ import formula.FormulaParser;
 import formula.PathTree;
 import model.Model;
 import model.State;
-import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 
 public class Not extends StateFormula {
     public final StateFormula stateFormula;
 
-<span class="nc" id="L14">    public Not(StateFormula stateFormula) {</span>
-<span class="nc" id="L15">        this.stateFormula = stateFormula;</span>
-<span class="nc" id="L16">    }</span>
+<span class="fc" id="L13">    public Not(StateFormula stateFormula) {</span>
+<span class="fc" id="L14">        this.stateFormula = stateFormula;</span>
+<span class="fc" id="L15">    }</span>
 
     @Override
     public void writeToBuffer(StringBuilder buffer) {
-<span class="nc" id="L20">        buffer.append(FormulaParser.NOT_TOKEN);</span>
-<span class="nc" id="L21">        buffer.append(&quot;(&quot;);</span>
-<span class="nc" id="L22">        stateFormula.writeToBuffer(buffer);</span>
-<span class="nc" id="L23">        buffer.append(&quot;)&quot;);</span>
-<span class="nc" id="L24">    }</span>
-
-    @Override
-    public void checker(ArrayList buffer) {
-<span class="nc" id="L28">        stateFormula.checker(buffer);</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if(buffer.get(buffer.size()-1).equals(true)){</span>
-<span class="nc" id="L30">            buffer.remove(buffer.get(buffer.size()-1));</span>
-<span class="nc" id="L31">            buffer.add(false);</span>
-        } else {
-<span class="nc" id="L33">            buffer.remove(buffer.get(buffer.size()-1));</span>
-<span class="nc" id="L34">            buffer.add(true);</span>
-        }
-<span class="nc" id="L36">    }</span>
+<span class="nc" id="L19">        buffer.append(FormulaParser.NOT_TOKEN);</span>
+<span class="nc" id="L20">        buffer.append(&quot;(&quot;);</span>
+<span class="nc" id="L21">        stateFormula.writeToBuffer(buffer);</span>
+<span class="nc" id="L22">        buffer.append(&quot;)&quot;);</span>
+<span class="nc" id="L23">    }</span>
 
     @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
-<span class="nc" id="L40">        pathTree.setFormulaPart(&quot; ! &quot;);</span>
-<span class="nc" id="L41">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
-<span class="nc" id="L42">        pathTree.leftTree = leftNode;</span>
-<span class="nc" id="L43">        State[] newStates = stateFormula.getStates(allStates, model,leftNode);</span>
-<span class="nc" id="L44">        State[] notStates = getNotStates(allStates, newStates);</span>
-<span class="nc" id="L45">        System.out.println(&quot;Not method&quot;);</span>
-<span class="nc" id="L46">        SimpleModelChecker.printStates(allStates);</span>
-<span class="nc" id="L47">        SimpleModelChecker.printStates(newStates);</span>
-<span class="nc" id="L48">        SimpleModelChecker.printStates(notStates);</span>
-<span class="nc" id="L49">        System.out.println(&quot;End of Not method&quot;);</span>
-<span class="nc" id="L50">        pathTree.addAcceptedStates(notStates);</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">        if(notStates.length &gt; 0){</span>
-<span class="nc" id="L52">            pathTree.setModelHolds(true);</span>
+<span class="fc" id="L27">        pathTree.setFormulaPart(&quot; ! &quot;);</span>
+<span class="fc" id="L28">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="fc" id="L29">        pathTree.leftTree = leftNode;</span>
+<span class="fc" id="L30">        State[] newStates = stateFormula.getStates(allStates, model,leftNode);</span>
+<span class="fc" id="L31">        State[] notStates = getNotStates(allStates, newStates);</span>
+
+<span class="fc" id="L33">        pathTree.addAcceptedStates(notStates);</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if(notStates.length &gt; 0){</span>
+<span class="fc" id="L35">            pathTree.setModelHolds(true);</span>
         }
-<span class="nc" id="L54">        return notStates;</span>
+<span class="fc" id="L37">        return notStates;</span>
     }
 
+    //Method which gets states which satisfy formula on the left
+    // and then returns states which where not satisfied
     private State[] getNotStates(State[] allStates, State[] newStates){
-<span class="nc" id="L58">        ArrayList&lt;State&gt; notStates = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L43">        ArrayList&lt;State&gt; notStates = new ArrayList&lt;&gt;();</span>
         Boolean check;
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        for(int i = 0; i &lt; allStates.length; i++){</span>
-<span class="nc" id="L61">            check = false;</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">            for(int j = 0; j &lt; newStates.length; j++){</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">                if(allStates[i].equals(newStates[j])){</span>
-<span class="nc" id="L64">                    check = true;</span>
-<span class="nc" id="L65">                    break;</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for(int i = 0; i &lt; allStates.length; i++){</span>
+<span class="fc" id="L46">            check = false;</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">            for(int j = 0; j &lt; newStates.length; j++){</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">                if(allStates[i].equals(newStates[j])){</span>
+<span class="nc" id="L49">                    check = true;</span>
+<span class="nc" id="L50">                    break;</span>
                 }
             }
-<span class="nc bnc" id="L68" title="All 2 branches missed.">            if(!check){</span>
-<span class="nc" id="L69">                notStates.add(allStates[i]);</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">            if(!check){</span>
+<span class="fc" id="L54">                notStates.add(allStates[i]);</span>
             }
         }
-<span class="nc" id="L72">        return notStates.toArray(new State[notStates.size()]);</span>
+<span class="fc" id="L57">        return notStates.toArray(new State[notStates.size()]);</span>
     }
 
 }

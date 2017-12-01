@@ -2,7 +2,6 @@
 import formula.PathTree;
 import model.Model;
 import model.State;
-import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 
@@ -10,62 +9,51 @@ public class And extends StateFormula {
     public final StateFormula left;
     public final StateFormula right;
 
-<span class="nc" id="L13">    public And(StateFormula left, StateFormula right) {</span>
-<span class="nc" id="L14">        this.left = left;</span>
-<span class="nc" id="L15">        this.right = right;</span>
-<span class="nc" id="L16">    }</span>
+<span class="nc" id="L12">    public And(StateFormula left, StateFormula right) {</span>
+<span class="nc" id="L13">        this.left = left;</span>
+<span class="nc" id="L14">        this.right = right;</span>
+<span class="nc" id="L15">    }</span>
 
     @Override
     public void writeToBuffer(StringBuilder buffer) {
-<span class="nc" id="L20">        buffer.append(&quot;(&quot;);</span>
-<span class="nc" id="L21">        left.writeToBuffer(buffer);</span>
-<span class="nc" id="L22">        buffer.append(&quot; &amp;&amp; &quot;);</span>
-<span class="nc" id="L23">        right.writeToBuffer(buffer);</span>
-<span class="nc" id="L24">        buffer.append(&quot;)&quot;);</span>
-<span class="nc" id="L25">    }</span>
+<span class="nc" id="L19">        buffer.append(&quot;(&quot;);</span>
+<span class="nc" id="L20">        left.writeToBuffer(buffer);</span>
+<span class="nc" id="L21">        buffer.append(&quot; &amp;&amp; &quot;);</span>
+<span class="nc" id="L22">        right.writeToBuffer(buffer);</span>
+<span class="nc" id="L23">        buffer.append(&quot;)&quot;);</span>
+<span class="nc" id="L24">    }</span>
 
     @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
-<span class="nc" id="L29">        pathTree.setFormulaPart(&quot; &amp;&amp; &quot;);</span>
-<span class="nc" id="L30">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
-<span class="nc" id="L31">        pathTree.leftTree = leftNode;</span>
-<span class="nc" id="L32">        PathTree rightNode = new PathTree(&quot;&quot;);</span>
-<span class="nc" id="L33">        pathTree.rightTree = rightNode;</span>
+<span class="nc" id="L28">        pathTree.setFormulaPart(&quot; &amp;&amp; &quot;);</span>
+<span class="nc" id="L29">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="nc" id="L30">        pathTree.leftTree = leftNode;</span>
+<span class="nc" id="L31">        PathTree rightNode = new PathTree(&quot;&quot;);</span>
+<span class="nc" id="L32">        pathTree.rightTree = rightNode;</span>
         State[] leftStates, rightStates, andStates;
-<span class="nc" id="L35">        leftStates = left.getStates(allStates, model,leftNode);</span>
-<span class="nc" id="L36">        rightStates = right.getStates(allStates, model, rightNode);</span>
-<span class="nc" id="L37">        SimpleModelChecker.printStates(leftStates);</span>
-<span class="nc" id="L38">        SimpleModelChecker.printStates(rightStates);</span>
-<span class="nc" id="L39">        andStates = getAndStates(leftStates, rightStates);</span>
+<span class="nc" id="L34">        leftStates = left.getStates(allStates, model,leftNode);</span>
+<span class="nc" id="L35">        rightStates = right.getStates(allStates, model, rightNode);</span>
+<span class="nc" id="L36">        andStates = getAndStates(leftStates, rightStates);</span>
 
-<span class="nc" id="L41">        System.out.println(&quot;And states&quot;);</span>
-<span class="nc" id="L42">        SimpleModelChecker.printStates(leftStates);</span>
-<span class="nc" id="L43">        SimpleModelChecker.printStates(rightStates);</span>
-<span class="nc" id="L44">        SimpleModelChecker.printStates(andStates);</span>
-<span class="nc" id="L45">        System.out.println(&quot;End of And states&quot;);</span>
-<span class="nc" id="L46">        pathTree.addAcceptedStates(andStates);</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if(andStates.length &gt; 0){</span>
-<span class="nc" id="L48">            pathTree.setModelHolds(true);</span>
+<span class="nc" id="L38">        pathTree.addAcceptedStates(andStates);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        if(andStates.length &gt; 0){</span>
+<span class="nc" id="L40">            pathTree.setModelHolds(true);</span>
         }
-<span class="nc" id="L50">        return andStates;</span>
+<span class="nc" id="L42">        return andStates;</span>
     }
 
-    @Override
-    public void checker(ArrayList buffer) {
-<span class="nc" id="L55">        buffer.add(&quot;val&quot;);</span>
-<span class="nc" id="L56">    }</span>
-
+    //Method which gets states which satisfy left side and right side
     private State[] getAndStates(State[] leftStates, State[] rightStates){
-<span class="nc" id="L59">        ArrayList&lt;State&gt; andStates = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        for(int i = 0; i &lt; leftStates.length; i++){</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">            for(int j = 0; j &lt; rightStates.length; j++){</span>
-<span class="nc bnc" id="L62" title="All 2 branches missed.">                if(leftStates[i].equals(rightStates[j])){</span>
-<span class="nc" id="L63">                    andStates.add(leftStates[i]);</span>
-<span class="nc" id="L64">                    break;</span>
+<span class="nc" id="L47">        ArrayList&lt;State&gt; andStates = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        for(int i = 0; i &lt; leftStates.length; i++){</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">            for(int j = 0; j &lt; rightStates.length; j++){</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">                if(leftStates[i].equals(rightStates[j])){</span>
+<span class="nc" id="L51">                    andStates.add(leftStates[i]);</span>
+<span class="nc" id="L52">                    break;</span>
                 }
             }
         }
-<span class="nc" id="L68">        return andStates.toArray(new State[andStates.size()]);</span>
+<span class="nc" id="L56">        return andStates.toArray(new State[andStates.size()]);</span>
     }
 
 }

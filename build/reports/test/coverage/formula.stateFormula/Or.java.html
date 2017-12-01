@@ -3,7 +3,6 @@
 import formula.PathTree;
 import model.Model;
 import model.State;
-import modelChecker.SimpleModelChecker;
 
 import java.util.ArrayList;
 
@@ -11,74 +10,63 @@ public class Or extends StateFormula {
     public final StateFormula left;
     public final StateFormula right;
 
-<span class="nc" id="L14">    public Or(StateFormula left, StateFormula right) {</span>
-<span class="nc" id="L15">        this.left = left;</span>
-<span class="nc" id="L16">        this.right = right;</span>
-<span class="nc" id="L17">    }</span>
+<span class="fc" id="L13">    public Or(StateFormula left, StateFormula right) {</span>
+<span class="fc" id="L14">        this.left = left;</span>
+<span class="fc" id="L15">        this.right = right;</span>
+<span class="fc" id="L16">    }</span>
 
     @Override
     public void writeToBuffer(StringBuilder buffer) {
-<span class="nc" id="L21">        buffer.append(&quot;(&quot;);</span>
-<span class="nc" id="L22">        left.writeToBuffer(buffer);</span>
-<span class="nc" id="L23">        buffer.append(&quot; || &quot;);</span>
-<span class="nc" id="L24">        right.writeToBuffer(buffer);</span>
-<span class="nc" id="L25">        buffer.append(&quot;)&quot;);</span>
-<span class="nc" id="L26">    }</span>
+<span class="nc" id="L20">        buffer.append(&quot;(&quot;);</span>
+<span class="nc" id="L21">        left.writeToBuffer(buffer);</span>
+<span class="nc" id="L22">        buffer.append(&quot; || &quot;);</span>
+<span class="nc" id="L23">        right.writeToBuffer(buffer);</span>
+<span class="nc" id="L24">        buffer.append(&quot;)&quot;);</span>
+<span class="nc" id="L25">    }</span>
 
     @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
-<span class="nc" id="L30">        pathTree.setFormulaPart(&quot; || &quot;);</span>
-<span class="nc" id="L31">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
-<span class="nc" id="L32">        pathTree.leftTree = leftNode;</span>
-<span class="nc" id="L33">        PathTree rightNode = new PathTree(&quot;&quot;);</span>
-<span class="nc" id="L34">        pathTree.rightTree = rightNode;</span>
+<span class="fc" id="L29">        pathTree.setFormulaPart(&quot; || &quot;);</span>
+<span class="fc" id="L30">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="fc" id="L31">        pathTree.leftTree = leftNode;</span>
+<span class="fc" id="L32">        PathTree rightNode = new PathTree(&quot;&quot;);</span>
+<span class="fc" id="L33">        pathTree.rightTree = rightNode;</span>
         State[] leftStates, rightStates, orStates;
-<span class="nc" id="L36">        leftStates = left.getStates(allStates, model,leftNode);</span>
-<span class="nc" id="L37">        rightStates = right.getStates(allStates, model,rightNode);</span>
-<span class="nc" id="L38">        SimpleModelChecker.printStates(leftStates);</span>
-<span class="nc" id="L39">        SimpleModelChecker.printStates(rightStates);</span>
-<span class="nc" id="L40">        orStates = getOrStates(leftStates, rightStates, allStates);</span>
+<span class="fc" id="L35">        leftStates = left.getStates(allStates, model,leftNode);</span>
+<span class="fc" id="L36">        rightStates = right.getStates(allStates, model,rightNode);</span>
+<span class="fc" id="L37">        orStates = getOrStates(leftStates, rightStates, allStates);</span>
 
-<span class="nc" id="L42">        System.out.println(&quot;Or states&quot;);</span>
-<span class="nc" id="L43">        SimpleModelChecker.printStates(leftStates);</span>
-<span class="nc" id="L44">        SimpleModelChecker.printStates(rightStates);</span>
-<span class="nc" id="L45">        SimpleModelChecker.printStates(orStates);</span>
-<span class="nc" id="L46">        System.out.println(&quot;End of Or states&quot;);</span>
-<span class="nc" id="L47">        pathTree.addAcceptedStates(orStates);</span>
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        if(orStates.length &gt; 0){</span>
-<span class="nc" id="L49">            pathTree.setModelHolds(true);</span>
+<span class="fc" id="L39">        pathTree.addAcceptedStates(orStates);</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if(orStates.length &gt; 0){</span>
+<span class="fc" id="L41">            pathTree.setModelHolds(true);</span>
         }
-<span class="nc" id="L51">        return orStates;</span>
+<span class="fc" id="L43">        return orStates;</span>
     }
 
+    //Method which return a union of left side states and right side states
     private State[] getOrStates(State[] leftStates, State[] rightStates, State[] allStates){
-<span class="nc" id="L55">        ArrayList&lt;State&gt; orStates = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L48">        ArrayList&lt;State&gt; orStates = new ArrayList&lt;&gt;();</span>
         boolean check;
-<span class="nc bnc" id="L57" title="All 2 branches missed.">        for(int i = 0; i &lt; allStates.length; i++){</span>
-<span class="nc" id="L58">            check = false;</span>
-<span class="nc bnc" id="L59" title="All 2 branches missed.">            for(int j = 0; j &lt; leftStates.length; j++){</span>
-<span class="nc bnc" id="L60" title="All 2 branches missed.">                if(allStates[i].equals(leftStates[j])){</span>
-<span class="nc" id="L61">                    orStates.add(allStates[i]);</span>
-<span class="nc" id="L62">                    check = true;</span>
-<span class="nc" id="L63">                    break;</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for(int i = 0; i &lt; allStates.length; i++){</span>
+<span class="fc" id="L51">            check = false;</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">            for(int j = 0; j &lt; leftStates.length; j++){</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">                if(allStates[i].equals(leftStates[j])){</span>
+<span class="fc" id="L54">                    orStates.add(allStates[i]);</span>
+<span class="fc" id="L55">                    check = true;</span>
+<span class="fc" id="L56">                    break;</span>
                 }
             }
-<span class="nc bnc" id="L66" title="All 2 branches missed.">            if(!check){</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">                for(int j = 0; j &lt; rightStates.length; j++){</span>
-<span class="nc bnc" id="L68" title="All 2 branches missed.">                    if(allStates[i].equals(rightStates[j])){</span>
-<span class="nc" id="L69">                        orStates.add(allStates[i]);</span>
-<span class="nc" id="L70">                        break;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            if(!check){</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">                for(int j = 0; j &lt; rightStates.length; j++){</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">                    if(allStates[i].equals(rightStates[j])){</span>
+<span class="fc" id="L62">                        orStates.add(allStates[i]);</span>
+<span class="fc" id="L63">                        break;</span>
                     }
                 }
             }
         }
-<span class="nc" id="L75">        return orStates.toArray(new State[orStates.size()]);</span>
+<span class="fc" id="L68">        return orStates.toArray(new State[orStates.size()]);</span>
     }
-
-    @Override
-    public void checker(ArrayList buffer) {
-<span class="nc" id="L80">        buffer.add((buffer));</span>
-<span class="nc" id="L81">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

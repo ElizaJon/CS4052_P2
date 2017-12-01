@@ -1,12 +1,11 @@
 package formula.stateFormula;
 
 import formula.PathTree;
-import model.*;
-import java.util.ArrayList;
+import model.Model;
+import model.State;
 
 public abstract class StateFormula {
     public abstract void writeToBuffer(StringBuilder buffer);
-    public abstract void checker(ArrayList buffer);
     public abstract State[] getStates(State[] allStates, Model model, PathTree pathTree);
 
     @Override

@@ -1,0 +1,5 @@
+{
+	"formula": "EF(ghostsindanger)",
+	"a": ["pacmaneatspowerpellet"],
+	"b": ["reachcentralbase"]
+}

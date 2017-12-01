@@ -27,22 +27,17 @@ public class Always extends PathFormula {
 <span class="nc" id="L27">    }</span>
 
     @Override
-    public void checker(ArrayList buffer) {
-<span class="nc" id="L31">        buffer.add(FormulaParser.ALWAYS_TOKEn);</span>
-<span class="nc" id="L32">        stateFormula.checker(buffer);</span>
-<span class="nc" id="L33">    }</span>
-
-    @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
-<span class="nc" id="L37">        pathTree.addAcceptedStates(allStates);</span>
-<span class="nc" id="L38">        pathTree.setFormulaPart(&quot; G &quot;);</span>
-<span class="nc" id="L39">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
-<span class="nc" id="L40">        pathTree.leftTree = leftNode;</span>
-<span class="nc" id="L41">        State[] resultStates = stateFormula.getStates(allStates, model, leftNode);</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        if(resultStates.length &gt; 0){</span>
-<span class="nc" id="L43">            pathTree.setModelHolds(true);</span>
+<span class="nc" id="L31">        pathTree.addAcceptedStates(allStates);</span>
+<span class="nc" id="L32">        pathTree.setFormulaPart(&quot; G &quot;);</span>
+<span class="nc" id="L33">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="nc" id="L34">        pathTree.leftTree = leftNode;</span>
+<span class="nc" id="L35">        State[] resultStates = stateFormula.getStates(allStates, model, leftNode);</span>
+<span class="nc" id="L36">        pathTree.setLeftActions(actions);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if(resultStates.length &gt; 0){</span>
+<span class="nc" id="L38">            pathTree.setModelHolds(true);</span>
         }
-<span class="nc" id="L45">        return resultStates;</span>
+<span class="nc" id="L40">        return resultStates;</span>
 
     }
 }

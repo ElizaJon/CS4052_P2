@@ -23,32 +23,12 @@ public class Not extends StateFormula {
     }
 
     @Override
-    public void checker(ArrayList buffer) {
-        stateFormula.checker(buffer);
-        if(buffer.get(buffer.size()-1).equals(true)){
-            buffer.remove(buffer.get(buffer.size()-1));
-            buffer.add(false);
-        } else {
-            buffer.remove(buffer.get(buffer.size()-1));
-            buffer.add(true);
-        }
-    }
-
-    @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
         pathTree.setFormulaPart(" ! ");
         PathTree leftNode = new PathTree("");
         pathTree.leftTree = leftNode;
         State[] newStates = stateFormula.getStates(allStates, model,leftNode);
         State[] notStates = getNotStates(allStates, newStates);
-
-        /*
-        System.out.println("Not method");
-        SimpleModelChecker.printStates(allStates);
-        SimpleModelChecker.printStates(newStates);
-        SimpleModelChecker.printStates(notStates);
-        System.out.println("End of Not method");
-        */
 
         pathTree.addAcceptedStates(notStates);
         if(notStates.length > 0){
@@ -57,6 +37,8 @@ public class Not extends StateFormula {
         return notStates;
     }
 
+    //Method which gets states which satisfy formula on the left
+    // and then returns states which where not satisfied
     private State[] getNotStates(State[] allStates, State[] newStates){
         ArrayList<State> notStates = new ArrayList<>();
         Boolean check;

@@ -31,12 +31,6 @@ public class Next extends PathFormula {
     }
 
     @Override
-    public void checker(ArrayList buffer) {
-        buffer.add(FormulaParser.NEXT_TOKEN);
-        stateFormula.checker(buffer);
-    }
-
-    @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
         pathTree.setFormulaPart(" X ");
         PathTree leftNode = new PathTree("");
@@ -45,14 +39,6 @@ public class Next extends PathFormula {
         State[] nextStates = getNextStates(allStates, model);
         State[] matchingStates = getMatchingStates(resultStates, nextStates);
 
-        /*
-        System.out.println("Next method");
-        SimpleModelChecker.printStates(allStates);
-        SimpleModelChecker.printStates(resultStates);
-        SimpleModelChecker.printStates(nextStates);
-        SimpleModelChecker.printStates(matchingStates);
-        System.out.println("End of Next method");
-        */
         pathTree.addAcceptedStates(matchingStates);
         pathTree.setLeftActions(actions);
         if(matchingStates.length > 0){
@@ -61,6 +47,8 @@ public class Next extends PathFormula {
         return matchingStates;
     }
 
+    //Method gets matching states with states which needs to be satisfied
+    // and stated which can be reached using actions
     private State[] getMatchingStates(State[] resultStates, State[] nextStates){
         ArrayList<State> matchingStates = new ArrayList<>();
         for(int i = 0; i < resultStates.length; i++){
@@ -73,6 +61,7 @@ public class Next extends PathFormula {
         return matchingStates.toArray(new State[matchingStates.size()]);
     }
 
+    //Method which builds a set of states which can be reached from current states using given actions
     private State[] getNextStates(State[] allStates, Model model){
         ArrayList<State> nextStates = new ArrayList<>();
         Transition[] transitionsToUse = model.getTransitions(actions);

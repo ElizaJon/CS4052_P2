@@ -1,0 +1,62 @@
+{
+	"states": [
+		{
+			"init": true,
+			"name": "Wander the Maze",
+			"label": ["pacmanindanger"]
+		}, 
+		{
+			"init": false,
+			"name": "Chase Pac Man", 
+			"label": ["pacmanindanger"]
+		}, 
+		{
+			"init": false,
+			"name": "Flee Pac Man",
+			"label": ["ghostsindanger"]
+		}, 
+		{
+			"init": false,
+			"name": "Return to Base",
+			"label": ["ghostsindanger"]
+		}
+	],
+	"transitions": [
+		{
+			"source": "Wander the Maze",
+			"target": "Chase Pac Man",
+			"actions": ["spotpacman"]
+		}, 
+		{
+			"source": "Chase Pac Man",
+			"target": "Wander the Maze",
+			"actions": ["losepacman"]
+		}, 
+		{
+			"source": "Chase Pac Man",
+			"target": "Flee Pac Man",
+			"actions": ["pacmaneatspowerpellet"]
+		},
+		{
+			"source": "Flee Pac Man",
+			"target": "Return to Base",
+			"actions": ["eatenbypacman"]
+        },
+		{
+			"source": "Return to Base",
+			"target": "Wander the Maze",
+			"actions": ["reachcentralbase"]
+		},
+		{
+			"source": "Flee Pac Man",
+			"target": "Wander the Maze",
+			"actions": ["powerpelletexpires"]
+		},
+		{
+			"source": "Wander the Maze",
+			"target": "Flee Pac Man",
+			"actions": ["pacmaneatspowerpellet"]
+		}
+
+	]
+}

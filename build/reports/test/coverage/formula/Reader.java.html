@@ -9,44 +9,44 @@ import java.io.PushbackReader;
 public class Reader {
     private PushbackReader reader;
 
-<span class="nc" id="L12">    private int position = 1;</span>
+<span class="fc" id="L12">    private int position = 1;</span>
 
-<span class="nc" id="L14">    public Reader(InputStream inputStream) {</span>
-<span class="nc" id="L15">        reader = new PushbackReader(new InputStreamReader(inputStream));</span>
-<span class="nc" id="L16">    }</span>
+<span class="fc" id="L14">    public Reader(InputStream inputStream) {</span>
+<span class="fc" id="L15">        reader = new PushbackReader(new InputStreamReader(inputStream));</span>
+<span class="fc" id="L16">    }</span>
 
     public Reader(String formula) {
-<span class="nc" id="L19">        this(new ByteArrayInputStream(formula.getBytes()));</span>
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L19">        this(new ByteArrayInputStream(formula.getBytes()));</span>
+<span class="fc" id="L20">    }</span>
 
     public char nextChar() throws IOException {
-<span class="nc bnc" id="L23" title="All 2 branches missed.">        while (reader.ready()) {</span>
-<span class="nc" id="L24">            char nextChar = rawRead();</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">            switch (nextChar) {</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">        while (reader.ready()) {</span>
+<span class="fc" id="L24">            char nextChar = rawRead();</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">            switch (nextChar) {</span>
             case ' ':
             case '\n':
             case '\t':
-<span class="nc" id="L29">                continue;</span>
+<span class="fc" id="L29">                continue;</span>
             default:
-<span class="nc" id="L31">                return nextChar;</span>
+<span class="fc" id="L31">                return nextChar;</span>
             }
         }
 <span class="nc" id="L34">        throw new IOException(&quot;Unexpected EOF.&quot;);</span>
     }
 
     public void unread(char charIn) throws IOException {
-<span class="nc" id="L38">        reader.unread(charIn);</span>
-<span class="nc" id="L39">        position--;</span>
-<span class="nc" id="L40">    }</span>
+<span class="fc" id="L38">        reader.unread(charIn);</span>
+<span class="fc" id="L39">        position--;</span>
+<span class="fc" id="L40">    }</span>
 
     public char rawRead() throws IOException {
-<span class="nc" id="L43">        char nextChar = (char) reader.read();</span>
-<span class="nc" id="L44">        position++;</span>
-<span class="nc" id="L45">        return nextChar;</span>
+<span class="fc" id="L43">        char nextChar = (char) reader.read();</span>
+<span class="fc" id="L44">        position++;</span>
+<span class="fc" id="L45">        return nextChar;</span>
     }
 
     public boolean ready() throws IOException {
-<span class="nc" id="L49">        return reader.ready();</span>
+<span class="fc" id="L49">        return reader.ready();</span>
     }
 
     public int getPosition() {

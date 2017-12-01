@@ -1,16 +1,19 @@
 package formula;
 
-import model.*;
+import model.Model;
+import model.State;
+import model.Transition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 
 /**
- * Created by Eliza on 28/11/2017.
+ * A class with general methods used to get set of states for different formula parts
  */
 public class HelpMethods {
 
+    //Method which gets states for always operator
     public static State[] getAlwaysStates(State[] alwaysStates, Transition[] transitions, Model model){
         ArrayList<State> resultStates = new ArrayList<>(Arrays.asList(alwaysStates));
         State[] states;
@@ -25,6 +28,7 @@ public class HelpMethods {
         return resultStates.toArray(new State[resultStates.size()]);
     }
 
+    //Method which finds states which can be reached, used to help getAlwaysStates method
     public static State[] getStatesItCanReach(State state, Transition t, Transition[] transitions, ArrayList<State> newStates, Model model){
         State[] states;
         if(t.getSource().equals(state.getName())){
@@ -43,6 +47,8 @@ public class HelpMethods {
             return  newStates.toArray(new State[newStates.size()]);
         }
     }
+
+    //Method which checks which states of a set newStates are not in untilStates set and adds them to it
     public static ArrayList<State> getUpdatedUntilStates(State[] newStates, ArrayList<State> untilStates){
         int exists;
         for(int j = 0; j < newStates.length; j++){
@@ -60,6 +66,7 @@ public class HelpMethods {
         return untilStates;
     }
 
+    //Method to get actual state from String name
     public static State getActualState(String label, Model model){
         State[] allStates = model.getStates();
         for(int i = 0; i < allStates.length; i++){
@@ -70,6 +77,7 @@ public class HelpMethods {
         return null;
     }
 
+    //Method which checks if state is in a set or not
     public static boolean notInSet(State state, ArrayList allStates){
         for(int i = 0; i < allStates.size(); i++){
             if(state.equals(allStates.get(i))){
@@ -79,6 +87,7 @@ public class HelpMethods {
         return true;
     }
 
+    //Method which builds a subset of a set transitions
     public static Transition[] getSubTransitions(Transition[] transitions, int i){
         Transition[] newTransitions = new Transition[i];
         for(int j = 0; j < i; j++){
@@ -87,6 +96,7 @@ public class HelpMethods {
         return newTransitions;
     }
 
+    //Method which remove a state from allStates set
     public static State[] removeElement(State[] allStates, State state){
         ArrayList<State> newStates = new ArrayList<>();
         for(int i = 0; i < allStates.length; i++){
@@ -97,23 +107,7 @@ public class HelpMethods {
         return newStates.toArray(new State[newStates.size()]);
     }
 
-    public static boolean checkIfSubset(State[] alwaysStates, State[] resultStates){
-        boolean check;
-        for(int i = 0; i < resultStates.length; i++){
-            check = false;
-            for(int j = 0; j < alwaysStates.length; j++){
-                if(alwaysStates[j].equals(resultStates[i])){
-                    check = true;
-                    break;
-                }
-            }
-            if(!check){
-                return false;
-            }
-        }
-        return true;
-    }
-
+    //Method which gets a set of states which are not in set
     public static State[] getStatesWhichNotInSet(State[] initialStates, State[] resultStates){
         ArrayList<State> notInSet = new ArrayList<>();
         boolean check;
@@ -131,6 +125,7 @@ public class HelpMethods {
         return notInSet.toArray(new State[notInSet.size()]);
     }
 
+    //Method which finds all states which would satisfy until condition
     public static State[] getAllSatisfyingUntil(State[] rightStates, State[] leftStates, Set<String> leftActions, Set<String> rightActions, Model model){
         ArrayList<State> untilStates = new ArrayList<>();
         State state;
@@ -149,6 +144,7 @@ public class HelpMethods {
         } else {
             Transition[] leftTransitions = model.getTransitions(leftActions);
             Transition[] rightTransitions = model.getTransitions(rightActions);
+
             State[] states;
             if(leftActions.size() == 0){
                 for(int i = 0; i <= leftTransitions.length; i++){
@@ -179,11 +175,30 @@ public class HelpMethods {
         return untilStates.toArray(new State[untilStates.size()]);
     }
 
+    //Method which gets states which can be reached from certain state
     private static State[] getActionPossibilityStates(Transition[] leftTransitions, Transition[] rightTransitions, State[] rightStates, State[] leftStates, Model model){
         ArrayList<State> untilStates = new ArrayList<>();
         ArrayList<State> helpStates = new ArrayList<>();
         ArrayList<State> possibleToGet = new ArrayList<>();
         State state;
+
+
+        if(rightTransitions.length == 0){
+            for(int i = 0; i < leftTransitions.length; i++){
+                for(int j = 0; j < leftStates.length; j++){
+                    if(leftStates[j].getName().equals(leftTransitions[i].getSource())){
+                        state = recursiveUntilMethod(rightStates, leftStates, leftTransitions[i], leftTransitions, leftStates[j], model);
+                        State actualState = HelpMethods.getActualState(leftTransitions[i].getTarget(), model);
+                        if (state != null && HelpMethods.notInSet(actualState, possibleToGet)) {
+                            possibleToGet.add(actualState);
+                            helpStates.add(leftStates[j]);
+                        }
+                    }
+                }
+            }
+            return helpStates.toArray(new State[helpStates.size()]);
+        }
+
         for(int i = 0; i < leftTransitions.length; i++){
             for(int j = 0; j < leftStates.length; j++){
                 if(leftStates[j].getName().equals(leftTransitions[i].getSource())){
@@ -199,9 +214,6 @@ public class HelpMethods {
         State[] helpStatesGood = helpStates.toArray(new State[helpStates.size()]);
         State[] possibleToGetGood = possibleToGet.toArray(new State[possibleToGet.size()]);
 
-        if(rightTransitions.length == 0){
-            return helpStatesGood;
-        }
         if(leftTransitions.length == 0){
             possibleToGetGood = leftStates;
             helpStatesGood = leftStates;
@@ -211,7 +223,10 @@ public class HelpMethods {
                 if(possibleToGetGood[j].getName().equals(rightTransitions[i].getSource())){
                     state = recursiveUntilMethod(rightStates, possibleToGetGood, rightTransitions[i], rightTransitions, possibleToGetGood[j], model);
                     if (state != null && HelpMethods.notInSet(helpStatesGood[j], untilStates)) {
-                        untilStates.add(getRealPath(helpStatesGood[j], helpStatesGood, possibleToGetGood));
+                        state = getRealPath(helpStatesGood[j], helpStatesGood, possibleToGetGood);
+                        if(state != null) {
+                            untilStates.add(state);
+                        }
                     }
                 }
             }
@@ -219,22 +234,28 @@ public class HelpMethods {
         return untilStates.toArray(new State[untilStates.size()]);
     }
 
+    //Method which returns a real initial state
     public static State getRealPath(State state, State[] helpStates, State[] possibleToGetGood){
         if(state.isInit()){
             return state;
         } else {
-            int t = 0;
+            int t = -1;
             for(int i = 0; i < possibleToGetGood.length; i++){
                 if(possibleToGetGood[i].equals(state)){
                     t = i;
                     break;
                 }
             }
-            return getRealPath(helpStates[t], helpStates, possibleToGetGood);
+            if(t != -1) {
+                return getRealPath(helpStates[t], helpStates, possibleToGetGood);
+            } else {
+                return null;
+            }
         }
 
     }
 
+    //Method which returns initial states of a set
     public static State[] getInitialStates(State[] states){
         ArrayList<State> initialStates = new ArrayList<>();
         for(int i = 0; i < states.length; i++){

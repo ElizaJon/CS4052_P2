@@ -19,11 +19,6 @@ public class AtomicProp extends StateFormula {
     }
 
     @Override
-    public void checker(ArrayList buffer) {
-        buffer.add(" " + label + " ");
-    }
-
-    @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
         pathTree.setFormulaPart(" " + label + " ");
         State [] APstates = statesWithLabel(allStates);
@@ -34,6 +29,7 @@ public class AtomicProp extends StateFormula {
         return APstates;
     }
 
+    //Method gets states which contains label in them
     private State[] statesWithLabel(State[] allStates){
         ArrayList<State> newStates = new ArrayList<>();
         State state;

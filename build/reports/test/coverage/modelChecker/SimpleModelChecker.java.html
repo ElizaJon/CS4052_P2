@@ -1,92 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SimpleModelChecker.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Simple</a> &gt; <a href="index.source.html" class="el_package">modelChecker</a> &gt; <span class="el_source">SimpleModelChecker.java</span></div><h1>SimpleModelChecker.java</h1><pre class="source lang-java linenums">package modelChecker;
 
+import formula.HelpMethods;
 import formula.PathTree;
 import formula.stateFormula.StateFormula;
 import model.Model;
 import model.State;
 
-<span class="nc" id="L8">public class SimpleModelChecker implements ModelChecker {</span>
+import java.util.Set;
+
+<span class="fc" id="L11">public class SimpleModelChecker implements ModelChecker {</span>
     PathTree root;
+
     @Override
     public boolean check(Model model, StateFormula constraint, StateFormula query) {
         // TODO Auto-generated method stub
-<span class="nc" id="L13">        System.out.println(constraint.toString());</span>
-<span class="nc" id="L14">        System.out.println(query.toString());</span>
+        //System.out.println(constraint.toString());
+        //System.out.println(query.toString());
 
-<span class="nc" id="L16">        System.out.println(&quot;\nNewer stuff&quot;);</span>
+<span class="fc" id="L20">        State[] allStates = model.getStates();</span>
+<span class="fc" id="L21">        PathTree constraintTree = new PathTree(&quot;&quot;);</span>
+<span class="fc" id="L22">        root = new PathTree(&quot;&quot;);</span>
+<span class="fc" id="L23">        State[] constraintStates = constraint.getStates(allStates, model, constraintTree);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if(constraintStates.length == 0){</span>
+<span class="fc" id="L25">            return true;</span>
+        } else {
+<span class="fc" id="L27">            PathTree leftNode = new PathTree(&quot;&quot;);</span>
+<span class="fc" id="L28">            root.leftTree = leftNode;</span>
+<span class="fc" id="L29">            State[] resultStates = query.getStates(constraintStates, model, leftNode);</span>
+<span class="fc" id="L30">            boolean result = setOfStatesHasInitialState(resultStates);</span>
+<span class="fc" id="L31">            root.setModelHolds(result);</span>
+<span class="fc" id="L32">            return result;</span>
+        }
 
-<span class="nc" id="L18">        State[] allStates = model.getStates();</span>
-<span class="nc" id="L19">        root = new PathTree(&quot;&quot;);</span>
-<span class="nc" id="L20">        PathTree leftNode = new PathTree(&quot;&quot;);</span>
-<span class="nc" id="L21">        root.leftTree = leftNode;</span>
-<span class="nc" id="L22">        State[] resultStates = constraint.getStates(allStates, model, leftNode);</span>
-<span class="nc" id="L23">        System.out.println(&quot;Resulting states:&quot;);</span>
-<span class="nc" id="L24">        printStates(resultStates);</span>
-<span class="nc" id="L25">        printTree(root);</span>
-<span class="nc" id="L26">        boolean result = setOfStatesHasInitialState(resultStates);</span>
-<span class="nc" id="L27">        root.setModelHolds(result);</span>
-<span class="nc" id="L28">        System.out.println(&quot;Has initial states: &quot; + result);</span>
-<span class="nc" id="L29">        getTrace();</span>
-<span class="nc" id="L30">        return result;</span>
     }
 
     private boolean setOfStatesHasInitialState(State[] resultStates){
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        for(int i = 0; i &lt; resultStates.length; i++){</span>
-<span class="nc bnc" id="L35" title="All 2 branches missed.">            if(resultStates[i].isInit()){</span>
-<span class="nc" id="L36">                return true;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for(int i = 0; i &lt; resultStates.length; i++){</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            if(resultStates[i].isInit()){</span>
+<span class="fc" id="L40">                return true;</span>
             }
         }
-<span class="nc" id="L39">        return false;</span>
+<span class="fc" id="L43">        return false;</span>
     }
 
     public static void printStates(State[] result){
-<span class="nc bnc" id="L43" title="All 2 branches missed.">        for(int i = 0; i &lt; result.length; i++) {</span>
-<span class="nc" id="L44">            System.out.print(result[i].getName() + &quot; &quot;);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        for(int i = 0; i &lt; result.length; i++) {</span>
+<span class="nc" id="L48">            System.out.print(result[i].getName() + &quot; &quot;);</span>
         }
-<span class="nc" id="L46">        System.out.println();</span>
-<span class="nc" id="L47">    }</span>
+<span class="nc" id="L50">        System.out.println();</span>
+<span class="nc" id="L51">    }</span>
 
     @Override
-    public String[] getTrace() {
-<span class="nc" id="L51">        printFalseSide(root);</span>
-<span class="nc" id="L52">        return null;</span>
+    public String getTrace() {
+<span class="fc" id="L55">        String badPath = printFalseSide(root, &quot;&quot;);</span>
+<span class="fc" id="L56">        return badPath;</span>
     }
 
-    private void printFalseSide(PathTree root){
-<span class="nc bnc" id="L56" title="All 4 branches missed.">        if(root != null &amp;&amp; root.getFormulaPart().equals(&quot; A &quot;)){</span>
-<span class="nc" id="L57">            printTreeForA(root);</span>
-<span class="nc" id="L58">            return;</span>
-        }
-<span class="nc bnc" id="L60" title="All 4 branches missed.">        if (root == null || root.getModelHolds()){</span>
-<span class="nc" id="L61">            return;</span>
-        }
-<span class="nc" id="L63">        System.out.print(root.getFormulaPart());</span>
-<span class="nc" id="L64">        System.out.print(root.getModelHolds() + &quot; &quot;);</span>
-<span class="nc" id="L65">        printStates(root.getAcceptedStates());</span>
-<span class="nc" id="L66">        printFalseSide(root.getLeftTree());</span>
-<span class="nc" id="L67">        printFalseSide(root.getRightTree());</span>
-<span class="nc" id="L68">    }</span>
+    private String printFalseSide(PathTree root, String st) {
+<span class="pc bpc" id="L60" title="1 of 8 branches missed.">        if (root != null &amp;&amp; root.getFormulaPart().equals(&quot; A &quot;) &amp;&amp; !root.getModelHolds() &amp;&amp; root.leftTree.getModelHolds()) {</span>
+<span class="fc" id="L61">            st = printTreeForA(root, st);</span>
+<span class="fc" id="L62">            return st;</span>
+<span class="pc bpc" id="L63" title="1 of 6 branches missed.">        } else if (root != null &amp;&amp; root.getFormulaPart().equals(&quot; || &quot;) &amp;&amp; !root.getModelHolds()) {</span>
+<span class="fc" id="L64">            st = st + &quot;&lt;-- ||(or) fails, since: \n&quot;;</span>
+<span class="fc" id="L65">            st = printFalseSide(root.getLeftTree(), st) + &quot; Also, \n&quot;;</span>
+<span class="fc" id="L66">            st = printFalseSide(root.getRightTree(), st);</span>
+<span class="fc" id="L67">            return st;</span>
+<span class="fc bfc" id="L68" title="All 4 branches covered.">        } else if (root == null || root.getModelHolds()) {</span>
+<span class="fc" id="L69">            return st;</span>
+        } else {
+<span class="fc" id="L71">            st = st + root.getFormulaPart();</span>
+<span class="pc bpc" id="L72" title="2 of 12 branches missed.">            if (root.leftTree != null &amp;&amp; root.leftTree.getModelHolds() || root.rightTree != null &amp;&amp; root.rightTree.getModelHolds() || root.leftTree == null &amp;&amp; root.rightTree == null) {</span>
+<span class="fc" id="L73">                st = st + reasons(root);</span>
+<span class="fc" id="L74">                return st;</span>
+            } else {
+<span class="fc" id="L76">                st = printFalseSide(root.getLeftTree(), st);</span>
+<span class="fc" id="L77">                st = printFalseSide(root.getRightTree(), st);</span>
 
-    private void printTreeForA(PathTree root){
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        if(root == null){</span>
-<span class="nc" id="L72">            return;</span>
+<span class="fc" id="L79">                return st;</span>
+            }
         }
-<span class="nc" id="L74">        System.out.print(root.getFormulaPart());</span>
-<span class="nc" id="L75">        System.out.print(root.getModelHolds() + &quot; &quot;);</span>
-<span class="nc" id="L76">        printStates(root.getAcceptedStates());</span>
-<span class="nc" id="L77">        printTreeForA(root.getLeftTree());</span>
-<span class="nc" id="L78">        printTreeForA(root.getRightTree());</span>
-<span class="nc" id="L79">    }</span>
+    }
 
-    private void printTree(PathTree root){
-<span class="nc bnc" id="L82" title="All 2 branches missed.">        if(root == null){</span>
-<span class="nc" id="L83">            return;</span>
+    private String printTreeForA(PathTree root, String st){
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">        if(root == null){</span>
+<span class="nc" id="L86">            return st;</span>
         }
-<span class="nc" id="L85">        printTree(root.getLeftTree());</span>
-<span class="nc" id="L86">        System.out.print(root.getFormulaPart());</span>
-<span class="nc" id="L87">        printStates(root.getAcceptedStates());</span>
-<span class="nc" id="L88">        printTree(root.getRightTree());</span>
-<span class="nc" id="L89">    }</span>
+<span class="fc" id="L88">        st = st + root.getFormulaPart();</span>
+        State[] statesWhichDoNotHold;
+<span class="fc" id="L90">        boolean executed = false;</span>
+<span class="pc bpc" id="L91" title="2 of 4 branches missed.">        if(root.leftTree != null &amp;&amp; !root.getLeftTree().getModelHolds()) {</span>
+<span class="nc" id="L92">            st = printTreeForA(root.getLeftTree(), st);</span>
+        } else {
+<span class="fc" id="L94">            statesWhichDoNotHold = HelpMethods.getStatesWhichNotInSet(root.getAcceptedStates(), root.leftTree.getAcceptedStates());</span>
+<span class="fc" id="L95">            st = st + &quot; &lt;-- A(for all) fails, since initial states &quot; + getStates(statesWhichDoNotHold) + &quot; are missing.&quot;;</span>
+<span class="fc" id="L96">            st = st + &quot;\nThey are missing because :&quot; + reasons(root.leftTree);</span>
+<span class="fc" id="L97">            executed = true;</span>
+        }
+<span class="pc bpc" id="L99" title="3 of 4 branches missed.">        if(root.rightTree != null &amp;&amp; !root.rightTree.getModelHolds()){</span>
+<span class="nc" id="L100">            st = printTreeForA(root.getRightTree(), st);</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        } else if(!executed){</span>
+<span class="nc" id="L102">            statesWhichDoNotHold = HelpMethods.getStatesWhichNotInSet(root.getAcceptedStates(), root.rightTree.getAcceptedStates());</span>
+<span class="nc" id="L103">            st = st + &quot; &lt;-- A(for all) fails, since initial states &quot; + getStates(statesWhichDoNotHold) + &quot; are missing.&quot;;</span>
+<span class="nc" id="L104">            st = st + &quot;\nThey are missing because :&quot; + reasons(root.leftTree);</span>
+        }
+
+<span class="fc" id="L107">        return st;</span>
+    }
+
+    private String reasons(PathTree root){
+<span class="fc" id="L111">        String s = &quot;&quot;;</span>
+<span class="pc bpc" id="L112" title="8 of 22 branches missed.">        switch (root.getFormulaPart()){</span>
+            case &quot;False&quot;:
+<span class="fc" id="L114">                s = s + &quot; &lt;- Formula contains boolean False, which makes all paths to fail.&quot;;</span>
+<span class="fc" id="L115">                break;</span>
+            case &quot; &amp;&amp; &quot;:
+<span class="nc" id="L117">                s = s + &quot; &lt;-- &amp;&amp;(and) fails, since: &quot;;</span>
+<span class="nc bnc" id="L118" title="All 4 branches missed.">                if(root.leftTree != null &amp;&amp; !root.leftTree.getModelHolds()){</span>
+<span class="nc" id="L119">                    s = printFalseSide(root.getLeftTree(), s);</span>
+                } else {
+<span class="nc" id="L121">                    s = printFalseSide(root.getRightTree(), s);</span>
+                }
+<span class="nc" id="L123">                break;</span>
+            case &quot; E &quot;:
+<span class="fc" id="L125">                s = s + &quot;&lt;-- Formula fails E(there exists), since there are no paths satisfying required formula.&quot;;</span>
+<span class="fc" id="L126">                break;</span>
+            case &quot; U &quot;:
+<span class="fc" id="L128">                s = s + root.leftTree.getFormulaPart() + &quot; -&gt; [ &quot; + getStates(root.leftTree.getAcceptedStates()) + &quot;] -&gt; &quot; + getActions(root.getLeftActions())</span>
+<span class="fc" id="L129">                        + &quot; U &quot; + getActions(root.getRightActions()) + &quot; -&gt; [&quot; + getStates(root.rightTree.getAcceptedStates()) + &quot;] - &gt; &quot; + root.rightTree.getFormulaPart()</span>
+                        + &quot;, these paths do not satisfy required conditions for all of the initial states.&quot;;
+<span class="fc" id="L131">                break;</span>
+            case &quot; X &quot;:
+<span class="fc" id="L133">                s = s + &quot; &lt;-- X(next) fails, since formula does not build any paths:\n &quot; + root.getLeftActions() + &quot; X -&gt; [&quot; + getStates(root.leftTree.getAcceptedStates()) + &quot;], which satisfy: [&quot; + root.leftTree.getFormulaPart()</span>
+                        + &quot;]&quot;;
+<span class="fc" id="L135">                break;</span>
+            default:
+<span class="fc" id="L137">                s = &quot; &lt;-- Formula contains atomic proposition &quot; + root.getFormulaPart() + &quot;, which is not satisfied in given states, so all paths fail.&quot;;</span>
+                break;
+        }
+<span class="fc" id="L140">        return s;</span>
+    }
+
+    private String getActions(Set&lt;String&gt; actions){
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        if(actions.size() == 0){</span>
+<span class="fc" id="L145">            return &quot;[All transitions]&quot;;</span>
+        } else {
+<span class="fc" id="L147">            return actions.toString();</span>
+        }
+    }
+
+    private String getStates(State[] states){
+<span class="fc" id="L152">        String s = &quot;&quot;;</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">        for(int i = 0; i &lt; states.length; i++){</span>
+<span class="fc" id="L154">            s = s + states[i].getName() + &quot; &quot;;</span>
+        }
+<span class="fc" id="L156">        return s;</span>
+    }
+
+    private void PrintTree(PathTree root){
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        if(root == null){</span>
+<span class="nc" id="L161">            return;</span>
+        }
+<span class="nc" id="L163">        System.out.print(root.getFormulaPart());</span>
+<span class="nc" id="L164">        System.out.println(root.getModelHolds());</span>
+<span class="nc" id="L165">        PrintTree(root.leftTree);</span>
+<span class="nc" id="L166">        PrintTree(root.rightTree);</span>
+<span class="nc" id="L167">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

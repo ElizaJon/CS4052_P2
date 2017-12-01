@@ -1,0 +1,5 @@
+{
+	"formula": "E (ghostsindanger aU pacmanindanger)",
+	"a": ["pacmaneatspowerpellet"],
+	"b": ["reachcentralbase"]
+}

@@ -1,0 +1,42 @@
+{
+	"states": [
+		{
+			"init": true,
+			"name": "off",
+			"label": ["off"]
+		}, 
+		{
+			"init": false,
+			"name": "on", 
+			"label": ["on"]
+		}, 
+		{
+			"init": false,
+			"name": "error",
+			"label": ["off","error"]
+		}
+	],
+	"transitions": [
+		{
+			"source": "off",
+			"target": "on",
+			"actions": ["pressSwitch"]
+		}, 
+		{
+			"source": "on",
+			"target": "off",
+			"actions": ["pressSwitch"]
+		}, 
+		{
+			"source": "on",
+			"target": "error",
+			"actions": ["getError"]
+		},
+		{
+			"source": "error",
+			"target": "off",
+			"actions": ["pressSwitch"]
+		}
+
+	]
+}

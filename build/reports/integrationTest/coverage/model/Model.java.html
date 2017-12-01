@@ -18,7 +18,7 @@ import java.util.Set;
 <span class="nc" id="L18">        Gson gson = new Gson();</span>
 <span class="nc" id="L19">        Model model = gson.fromJson(new FileReader(filePath), Model.class);</span>
 <span class="nc bnc" id="L20" title="All 2 branches missed.">        for (Transition t : model.transitions) {</span>
-<span class="nc" id="L21">            System.out.println(t);</span>
+            //System.out.println(t);
         }
 <span class="nc" id="L23">        return model;</span>
     }
@@ -47,25 +47,20 @@ import java.util.Set;
 <span class="nc" id="L47">            return allTransitions;</span>
         }
         String[] transitionActions;
-        boolean check;
-<span class="nc" id="L51">        ArrayList&lt;Transition&gt; newTransitions = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        for(int i = 0; i &lt; allTransitions.length; i++){</span>
-<span class="nc" id="L53">            transitionActions = allTransitions[i].getActions();</span>
-<span class="nc" id="L54">            check = false;</span>
-<span class="nc bnc" id="L55" title="All 2 branches missed.">            for(int k = 0; k &lt; transitionActions.length; k++){</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">                for(int j = 0; j &lt; actions.size(); j++){</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">                    if(actions.contains(transitionActions[k])) {</span>
-<span class="nc" id="L58">                        newTransitions.add(allTransitions[i]);</span>
-<span class="nc" id="L59">                        check = true;</span>
-<span class="nc" id="L60">                        break;</span>
+<span class="nc" id="L50">        ArrayList&lt;Transition&gt; newTransitions = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        for(int i = 0; i &lt; allTransitions.length; i++){</span>
+<span class="nc" id="L52">            transitionActions = allTransitions[i].getActions();</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">            for(int k = 0; k &lt; transitionActions.length; k++){</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">                for(int j = 0; j &lt; actions.size(); j++){</span>
+<span class="nc bnc" id="L55" title="All 2 branches missed.">                    if(actions.contains(transitionActions[k])) {</span>
+<span class="nc" id="L56">                        newTransitions.add(allTransitions[i]);</span>
+<span class="nc" id="L57">                        break;</span>
                     }
                 }
-<span class="nc bnc" id="L63" title="All 2 branches missed.">                if(check){</span>
-<span class="nc" id="L64">                    break;</span>
-                }
+
             }
         }
-<span class="nc" id="L68">        return newTransitions.toArray(new Transition[newTransitions.size()]);</span>
+<span class="nc" id="L63">        return newTransitions.toArray(new Transition[newTransitions.size()]);</span>
     }
 
 }

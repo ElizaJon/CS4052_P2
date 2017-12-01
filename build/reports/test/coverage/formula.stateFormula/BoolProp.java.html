@@ -4,36 +4,28 @@ import formula.PathTree;
 import model.Model;
 import model.State;
 
-import java.util.ArrayList;
-
 public class BoolProp extends StateFormula {
     public final boolean value;
 
-<span class="nc" id="L12">    public BoolProp(boolean value) {</span>
-<span class="nc" id="L13">        this.value = value;</span>
-<span class="nc" id="L14">    }</span>
+<span class="fc" id="L10">    public BoolProp(boolean value) {</span>
+<span class="fc" id="L11">        this.value = value;</span>
+<span class="fc" id="L12">    }</span>
 
     @Override
     public void writeToBuffer(StringBuilder buffer) {
-<span class="nc bnc" id="L18" title="All 2 branches missed.">        String stringValue = (value) ? &quot;True&quot; : &quot;False&quot;;</span>
-<span class="nc" id="L19">        buffer.append(&quot; &quot; + stringValue + &quot; &quot;);</span>
-<span class="nc" id="L20">    }</span>
-
-    @Override
-    public void checker(ArrayList buffer) {
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        String stringValue = (value) ? &quot;True&quot; : &quot;False&quot;;</span>
-<span class="nc" id="L25">        buffer.add(&quot; &quot; + stringValue + &quot; &quot;);</span>
-<span class="nc" id="L26">    }</span>
+<span class="nc bnc" id="L16" title="All 2 branches missed.">        String stringValue = (value) ? &quot;True&quot; : &quot;False&quot;;</span>
+<span class="nc" id="L17">        buffer.append(&quot; &quot; + stringValue + &quot; &quot;);</span>
+<span class="nc" id="L18">    }</span>
 
     @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        pathTree.setFormulaPart((value) ? &quot;True&quot; : &quot;False&quot;);</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">        if(value) {</span>
-<span class="nc" id="L32">            pathTree.addAcceptedStates(allStates);</span>
-<span class="nc" id="L33">            pathTree.setModelHolds(true);</span>
-<span class="nc" id="L34">            return allStates;</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        pathTree.setFormulaPart((value) ? &quot;True&quot; : &quot;False&quot;);</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if(value) {</span>
+<span class="fc" id="L24">            pathTree.addAcceptedStates(allStates);</span>
+<span class="fc" id="L25">            pathTree.setModelHolds(true);</span>
+<span class="fc" id="L26">            return allStates;</span>
         } else {
-<span class="nc" id="L36">            return new State[0];</span>
+<span class="fc" id="L28">            return new State[0];</span>
         }
     }
 

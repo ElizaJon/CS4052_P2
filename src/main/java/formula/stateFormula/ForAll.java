@@ -8,7 +8,6 @@ import model.Model;
 import model.State;
 import model.Transition;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 public class ForAll extends StateFormula {
@@ -27,14 +26,6 @@ public class ForAll extends StateFormula {
     }
 
     @Override
-    public void checker(ArrayList buffer) {
-        buffer.add("(");
-        buffer.add(FormulaParser.FORALL_TOKEN);
-        pathFormula.checker(buffer);
-        buffer.add(")");
-    }
-
-    @Override
     public State[] getStates(State[] allStates, Model model, PathTree pathTree) {
         pathTree.setFormulaPart(" A ");
         PathTree leftNode = new PathTree("");
@@ -42,13 +33,7 @@ public class ForAll extends StateFormula {
         if(pathFormula instanceof Until || pathFormula instanceof Next){
             State[] resultStates = pathFormula.getStates(allStates, model,leftNode);
             State[] checkedAllStates = checkForAll(HelpMethods.getInitialStates(allStates), resultStates);
-            /*
-            System.out.println("For all method");
-            SimpleModelChecker.printStates(allStates);
-            SimpleModelChecker.printStates(resultStates);
-            SimpleModelChecker.printStates(checkedAllStates);
-            System.out.println("End of For all method");
-            */
+
             if(checkedAllStates.length > 0){
                 pathTree.setModelHolds(true);
                 pathTree.addAcceptedStates(checkedAllStates);
@@ -67,14 +52,6 @@ public class ForAll extends StateFormula {
             }
             State[] resultStates = HelpMethods.getAlwaysStates(alwaysStates, transitions, model);
 
-            /*
-            System.out.println("For all always!!!!!");
-            SimpleModelChecker.printStates(allStates);
-            SimpleModelChecker.printStates(alwaysStates);
-            SimpleModelChecker.printStates(resultStates);
-            System.out.println("end For all always!!!!!");
-            */
-
             State [] findAll = checkForAll(HelpMethods.getInitialStates(allStates), resultStates);
             if(findAll.length > 0){
                 pathTree.setModelHolds(true);
@@ -84,7 +61,7 @@ public class ForAll extends StateFormula {
             }
             return findAll;
         } else if(pathFormula instanceof Eventually){
-            State[] rightStates = pathFormula.getStates(allStates, model,leftNode);
+            State[] rightStates = pathFormula.getStates(model.getStates(), model,leftNode);
             Set<String> leftActions = ((Eventually) pathFormula).getLeftActions();
             Set<String> rightActions = ((Eventually) pathFormula).getRightActions();
             State[] resultStates = checkForAll(HelpMethods.getInitialStates(allStates), HelpMethods.getAllSatisfyingUntil(rightStates, allStates, leftActions, rightActions, model));
@@ -99,6 +76,7 @@ public class ForAll extends StateFormula {
         return new State[0];
     }
 
+    //Method checks if all initial states are satisfied by the following formulas
     private State[] checkForAll(State[] initialStates, State[] resultStates){
         int check = 0;
         for(int i = 0; i < initialStates.length; i++){

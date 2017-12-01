@@ -36,14 +36,6 @@ public class Or extends StateFormula {
         rightStates = right.getStates(allStates, model,rightNode);
         orStates = getOrStates(leftStates, rightStates, allStates);
 
-        /*
-        System.out.println("Or states");
-        SimpleModelChecker.printStates(leftStates);
-        SimpleModelChecker.printStates(rightStates);
-        SimpleModelChecker.printStates(orStates);
-        System.out.println("End of Or states");
-        */
-
         pathTree.addAcceptedStates(orStates);
         if(orStates.length > 0){
             pathTree.setModelHolds(true);
@@ -51,6 +43,7 @@ public class Or extends StateFormula {
         return orStates;
     }
 
+    //Method which return a union of left side states and right side states
     private State[] getOrStates(State[] leftStates, State[] rightStates, State[] allStates){
         ArrayList<State> orStates = new ArrayList<>();
         boolean check;
@@ -73,11 +66,6 @@ public class Or extends StateFormula {
             }
         }
         return orStates.toArray(new State[orStates.size()]);
-    }
-
-    @Override
-    public void checker(ArrayList buffer) {
-        buffer.add((buffer));
     }
 
 }

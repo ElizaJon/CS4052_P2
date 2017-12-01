@@ -1,256 +1,294 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HelpMethods.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Simple</a> &gt; <a href="index.source.html" class="el_package">formula</a> &gt; <span class="el_source">HelpMethods.java</span></div><h1>HelpMethods.java</h1><pre class="source lang-java linenums">package formula;
 
-import model.*;
+import model.Model;
+import model.State;
+import model.Transition;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 
 /**
- * Created by Eliza on 28/11/2017.
+ * A class with general methods used to get set of states for different formula parts
  */
-<span class="nc" id="L12">public class HelpMethods {</span>
+<span class="nc" id="L14">public class HelpMethods {</span>
 
+    //Method which gets states for always operator
     public static State[] getAlwaysStates(State[] alwaysStates, Transition[] transitions, Model model){
-<span class="nc" id="L15">        ArrayList&lt;State&gt; resultStates = new ArrayList&lt;&gt;(Arrays.asList(alwaysStates));</span>
+<span class="nc" id="L18">        ArrayList&lt;State&gt; resultStates = new ArrayList&lt;&gt;(Arrays.asList(alwaysStates));</span>
         State[] states;
-<span class="nc bnc" id="L17" title="All 2 branches missed.">        for(int i = 0; i &lt; alwaysStates.length; i++){</span>
-<span class="nc bnc" id="L18" title="All 2 branches missed.">            for(int j = 0; j &lt; transitions.length; j++){</span>
-<span class="nc" id="L19">                states = getStatesItCanReach(alwaysStates[i], transitions[j], transitions, new ArrayList&lt;State&gt;(), model);</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">                if (states.length != 0) {</span>
-<span class="nc" id="L21">                    resultStates = HelpMethods.getUpdatedUntilStates(states, resultStates);</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        for(int i = 0; i &lt; alwaysStates.length; i++){</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">            for(int j = 0; j &lt; transitions.length; j++){</span>
+<span class="nc" id="L22">                states = getStatesItCanReach(alwaysStates[i], transitions[j], transitions, new ArrayList&lt;State&gt;(), model);</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">                if (states.length != 0) {</span>
+<span class="nc" id="L24">                    resultStates = HelpMethods.getUpdatedUntilStates(states, resultStates);</span>
                 }
             }
         }
-<span class="nc" id="L25">        return resultStates.toArray(new State[resultStates.size()]);</span>
+<span class="nc" id="L28">        return resultStates.toArray(new State[resultStates.size()]);</span>
     }
 
+    //Method which finds states which can be reached, used to help getAlwaysStates method
     public static State[] getStatesItCanReach(State state, Transition t, Transition[] transitions, ArrayList&lt;State&gt; newStates, Model model){
         State[] states;
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        if(t.getSource().equals(state.getName())){</span>
-<span class="nc" id="L31">            state = HelpMethods.getActualState(t.getTarget(), model);</span>
-<span class="nc bnc" id="L32" title="All 2 branches missed.">            if(HelpMethods.notInSet(state, newStates)) {</span>
-<span class="nc" id="L33">                newStates.add(state);</span>
-<span class="nc bnc" id="L34" title="All 2 branches missed.">                for (int i = 0; i &lt; transitions.length; i++) {</span>
-<span class="nc" id="L35">                    states = getStatesItCanReach(state, transitions[i], transitions, newStates, model);</span>
-<span class="nc bnc" id="L36" title="All 2 branches missed.">                    if (states.length != 0) {</span>
-<span class="nc" id="L37">                        newStates = HelpMethods.getUpdatedUntilStates(states, newStates);</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if(t.getSource().equals(state.getName())){</span>
+<span class="nc" id="L35">            state = HelpMethods.getActualState(t.getTarget(), model);</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if(HelpMethods.notInSet(state, newStates)) {</span>
+<span class="nc" id="L37">                newStates.add(state);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                for (int i = 0; i &lt; transitions.length; i++) {</span>
+<span class="nc" id="L39">                    states = getStatesItCanReach(state, transitions[i], transitions, newStates, model);</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                    if (states.length != 0) {</span>
+<span class="nc" id="L41">                        newStates = HelpMethods.getUpdatedUntilStates(states, newStates);</span>
                     }
                 }
             }
-<span class="nc" id="L41">            return newStates.toArray(new State[newStates.size()]);</span>
+<span class="nc" id="L45">            return newStates.toArray(new State[newStates.size()]);</span>
         } else {
-<span class="nc" id="L43">            return  newStates.toArray(new State[newStates.size()]);</span>
+<span class="nc" id="L47">            return  newStates.toArray(new State[newStates.size()]);</span>
         }
     }
+
+    //Method which checks which states of a set newStates are not in untilStates set and adds them to it
     public static ArrayList&lt;State&gt; getUpdatedUntilStates(State[] newStates, ArrayList&lt;State&gt; untilStates){
         int exists;
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        for(int j = 0; j &lt; newStates.length; j++){</span>
-<span class="nc" id="L49">            exists = -1;</span>
-<span class="nc bnc" id="L50" title="All 2 branches missed.">            for(int i = 0; i &lt; untilStates.size(); i++){</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">                if(untilStates.get(i).equals(newStates[j])){</span>
-<span class="nc" id="L52">                    exists = j;</span>
-<span class="nc" id="L53">                    break;</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        for(int j = 0; j &lt; newStates.length; j++){</span>
+<span class="nc" id="L55">            exists = -1;</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            for(int i = 0; i &lt; untilStates.size(); i++){</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">                if(untilStates.get(i).equals(newStates[j])){</span>
+<span class="nc" id="L58">                    exists = j;</span>
+<span class="nc" id="L59">                    break;</span>
                 }
             }
-<span class="nc bnc" id="L56" title="All 2 branches missed.">            if(exists == -1){</span>
-<span class="nc" id="L57">                untilStates.add(newStates[j]);</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if(exists == -1){</span>
+<span class="nc" id="L63">                untilStates.add(newStates[j]);</span>
             }
         }
-<span class="nc" id="L60">        return untilStates;</span>
+<span class="nc" id="L66">        return untilStates;</span>
     }
 
+    //Method to get actual state from String name
     public static State getActualState(String label, Model model){
-<span class="nc" id="L64">        State[] allStates = model.getStates();</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">        for(int i = 0; i &lt; allStates.length; i++){</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">            if(label.equals(allStates[i].getName())){</span>
-<span class="nc" id="L67">                return  allStates[i];</span>
+<span class="nc" id="L71">        State[] allStates = model.getStates();</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        for(int i = 0; i &lt; allStates.length; i++){</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if(label.equals(allStates[i].getName())){</span>
+<span class="nc" id="L74">                return  allStates[i];</span>
             }
         }
-<span class="nc" id="L70">        return null;</span>
+<span class="nc" id="L77">        return null;</span>
     }
 
+    //Method which checks if state is in a set or not
     public static boolean notInSet(State state, ArrayList allStates){
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        for(int i = 0; i &lt; allStates.size(); i++){</span>
-<span class="nc bnc" id="L75" title="All 2 branches missed.">            if(state.equals(allStates.get(i))){</span>
-<span class="nc" id="L76">                return false;</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        for(int i = 0; i &lt; allStates.size(); i++){</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if(state.equals(allStates.get(i))){</span>
+<span class="nc" id="L84">                return false;</span>
             }
         }
-<span class="nc" id="L79">        return true;</span>
+<span class="nc" id="L87">        return true;</span>
     }
 
+    //Method which builds a subset of a set transitions
     public static Transition[] getSubTransitions(Transition[] transitions, int i){
-<span class="nc" id="L83">        Transition[] newTransitions = new Transition[i];</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">        for(int j = 0; j &lt; i; j++){</span>
-<span class="nc" id="L85">            newTransitions[j] = transitions[j];</span>
+<span class="nc" id="L92">        Transition[] newTransitions = new Transition[i];</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        for(int j = 0; j &lt; i; j++){</span>
+<span class="nc" id="L94">            newTransitions[j] = transitions[j];</span>
         }
-<span class="nc" id="L87">        return newTransitions;</span>
+<span class="nc" id="L96">        return newTransitions;</span>
     }
 
+    //Method which remove a state from allStates set
     public static State[] removeElement(State[] allStates, State state){
-<span class="nc" id="L91">        ArrayList&lt;State&gt; newStates = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">        for(int i = 0; i &lt; allStates.length; i++){</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">            if(!allStates[i].equals(state)){</span>
-<span class="nc" id="L94">                newStates.add(allStates[i]);</span>
+<span class="nc" id="L101">        ArrayList&lt;State&gt; newStates = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        for(int i = 0; i &lt; allStates.length; i++){</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if(!allStates[i].equals(state)){</span>
+<span class="nc" id="L104">                newStates.add(allStates[i]);</span>
             }
         }
-<span class="nc" id="L97">        return newStates.toArray(new State[newStates.size()]);</span>
+<span class="nc" id="L107">        return newStates.toArray(new State[newStates.size()]);</span>
     }
 
-    public static boolean checkIfSubset(State[] alwaysStates, State[] resultStates){
+    //Method which gets a set of states which are not in set
+    public static State[] getStatesWhichNotInSet(State[] initialStates, State[] resultStates){
+<span class="nc" id="L112">        ArrayList&lt;State&gt; notInSet = new ArrayList&lt;&gt;();</span>
         boolean check;
-<span class="nc bnc" id="L102" title="All 2 branches missed.">        for(int i = 0; i &lt; resultStates.length; i++){</span>
-<span class="nc" id="L103">            check = false;</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">            for(int j = 0; j &lt; alwaysStates.length; j++){</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">                if(alwaysStates[j].equals(resultStates[i])){</span>
-<span class="nc" id="L106">                    check = true;</span>
-<span class="nc" id="L107">                    break;</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        for(int i = 0; i &lt; initialStates.length; i++){</span>
+<span class="nc" id="L115">            check = false;</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            for(int j = 0; j &lt; resultStates.length; j++){</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">                if(initialStates[i].equals(resultStates[j])){</span>
+<span class="nc" id="L118">                    check = true;</span>
                 }
             }
-<span class="nc bnc" id="L110" title="All 2 branches missed.">            if(!check){</span>
-<span class="nc" id="L111">                return false;</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if(!check){</span>
+<span class="nc" id="L122">                notInSet.add(initialStates[i]);</span>
             }
         }
-<span class="nc" id="L114">        return true;</span>
+<span class="nc" id="L125">        return notInSet.toArray(new State[notInSet.size()]);</span>
     }
 
+    //Method which finds all states which would satisfy until condition
     public static State[] getAllSatisfyingUntil(State[] rightStates, State[] leftStates, Set&lt;String&gt; leftActions, Set&lt;String&gt; rightActions, Model model){
-<span class="nc" id="L118">        ArrayList&lt;State&gt; untilStates = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L130">        ArrayList&lt;State&gt; untilStates = new ArrayList&lt;&gt;();</span>
         State state;
-<span class="nc bnc" id="L120" title="All 4 branches missed.">        if(leftActions.size() == 0 &amp;&amp; rightActions.size() == 0) {</span>
-<span class="nc" id="L121">            Transition[] transitions = model.getTransitions();</span>
-<span class="nc bnc" id="L122" title="All 2 branches missed.">            for (int i = 0; i &lt; leftStates.length; i++) {</span>
-<span class="nc bnc" id="L123" title="All 2 branches missed.">                for (int j = 0; j &lt; transitions.length; j++) {</span>
-<span class="nc bnc" id="L124" title="All 2 branches missed.">                    if (leftStates[i].getName().equals(transitions[j].getSource())) {</span>
-<span class="nc" id="L125">                        state = recursiveUntilMethod(rightStates, leftStates, transitions[j], transitions, leftStates[i], model);</span>
-<span class="nc bnc" id="L126" title="All 4 branches missed.">                        if (state != null &amp;&amp; HelpMethods.notInSet(leftStates[i], untilStates)) {</span>
-<span class="nc" id="L127">                            untilStates.add(leftStates[i]);</span>
+<span class="nc bnc" id="L132" title="All 4 branches missed.">        if(leftActions.size() == 0 &amp;&amp; rightActions.size() == 0) {</span>
+<span class="nc" id="L133">            Transition[] transitions = model.getTransitions();</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">            for (int i = 0; i &lt; leftStates.length; i++) {</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">                for (int j = 0; j &lt; transitions.length; j++) {</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">                    if (leftStates[i].getName().equals(transitions[j].getSource())) {</span>
+<span class="nc" id="L137">                        state = recursiveUntilMethod(rightStates, leftStates, transitions[j], transitions, leftStates[i], model);</span>
+<span class="nc bnc" id="L138" title="All 4 branches missed.">                        if (state != null &amp;&amp; HelpMethods.notInSet(leftStates[i], untilStates)) {</span>
+<span class="nc" id="L139">                            untilStates.add(leftStates[i]);</span>
                         }
                     }
                 }
             }
-<span class="nc" id="L132">        } else {</span>
-<span class="nc" id="L133">            Transition[] leftTransitions = model.getTransitions(leftActions);</span>
-<span class="nc" id="L134">            Transition[] rightTransitions = model.getTransitions(rightActions);</span>
+<span class="nc" id="L144">        } else {</span>
+<span class="nc" id="L145">            Transition[] leftTransitions = model.getTransitions(leftActions);</span>
+<span class="nc" id="L146">            Transition[] rightTransitions = model.getTransitions(rightActions);</span>
+
             State[] states;
-<span class="nc bnc" id="L136" title="All 2 branches missed.">            if(leftActions.size() == 0){</span>
-<span class="nc bnc" id="L137" title="All 2 branches missed.">                for(int i = 0; i &lt;= leftTransitions.length; i++){</span>
-<span class="nc" id="L138">                    states = getActionPossibilityStates(getSubTransitions(leftTransitions, i), rightTransitions, rightStates, leftStates, model);</span>
-<span class="nc bnc" id="L139" title="All 2 branches missed.">                    if (states.length != 0) {</span>
-<span class="nc" id="L140">                        untilStates = HelpMethods.getUpdatedUntilStates(states, untilStates);</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if(leftActions.size() == 0){</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">                for(int i = 0; i &lt;= leftTransitions.length; i++){</span>
+<span class="nc" id="L151">                    states = getActionPossibilityStates(getSubTransitions(leftTransitions, i), rightTransitions, rightStates, leftStates, model);</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">                    if (states.length != 0) {</span>
+<span class="nc" id="L153">                        untilStates = HelpMethods.getUpdatedUntilStates(states, untilStates);</span>
                     }
                 }
-<span class="nc bnc" id="L143" title="All 2 branches missed.">            } else if(rightActions.size() == 0){</span>
-<span class="nc bnc" id="L144" title="All 2 branches missed.">                for(int i = 0; i &lt;= rightTransitions.length; i++){</span>
-<span class="nc" id="L145">                    states = getActionPossibilityStates(leftTransitions, getSubTransitions(rightTransitions, i), rightStates, leftStates, model);</span>
-<span class="nc bnc" id="L146" title="All 2 branches missed.">                    if (states.length != 0) {</span>
-<span class="nc" id="L147">                        untilStates = HelpMethods.getUpdatedUntilStates(states, untilStates);</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">            } else if(rightActions.size() == 0){</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">                for(int i = 0; i &lt;= rightTransitions.length; i++){</span>
+<span class="nc" id="L158">                    states = getActionPossibilityStates(leftTransitions, getSubTransitions(rightTransitions, i), rightStates, leftStates, model);</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">                    if (states.length != 0) {</span>
+<span class="nc" id="L160">                        untilStates = HelpMethods.getUpdatedUntilStates(states, untilStates);</span>
                     }
                 }
             } else {
-<span class="nc bnc" id="L151" title="All 2 branches missed.">                for(int j = 1; j &lt;= leftTransitions.length; j++) {</span>
-<span class="nc bnc" id="L152" title="All 2 branches missed.">                    for (int i = 1; i &lt;= rightTransitions.length; i++) {</span>
-<span class="nc" id="L153">                        states = getActionPossibilityStates(getSubTransitions(leftTransitions, j), HelpMethods.getSubTransitions(rightTransitions, i), rightStates, leftStates, model);</span>
-<span class="nc bnc" id="L154" title="All 2 branches missed.">                        if (states.length != 0) {</span>
-<span class="nc" id="L155">                            untilStates = HelpMethods.getUpdatedUntilStates(states, untilStates);</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">                for(int j = 1; j &lt;= leftTransitions.length; j++) {</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">                    for (int i = 1; i &lt;= rightTransitions.length; i++) {</span>
+<span class="nc" id="L166">                        states = getActionPossibilityStates(getSubTransitions(leftTransitions, j), HelpMethods.getSubTransitions(rightTransitions, i), rightStates, leftStates, model);</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">                        if (states.length != 0) {</span>
+<span class="nc" id="L168">                            untilStates = HelpMethods.getUpdatedUntilStates(states, untilStates);</span>
                         }
                     }
                 }
             }
         }
 
-<span class="nc" id="L162">        return untilStates.toArray(new State[untilStates.size()]);</span>
+<span class="nc" id="L175">        return untilStates.toArray(new State[untilStates.size()]);</span>
     }
 
+    //Method which gets states which can be reached from certain state
     private static State[] getActionPossibilityStates(Transition[] leftTransitions, Transition[] rightTransitions, State[] rightStates, State[] leftStates, Model model){
-<span class="nc" id="L166">        ArrayList&lt;State&gt; untilStates = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L167">        ArrayList&lt;State&gt; helpStates = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L168">        ArrayList&lt;State&gt; possibleToGet = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L180">        ArrayList&lt;State&gt; untilStates = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L181">        ArrayList&lt;State&gt; helpStates = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L182">        ArrayList&lt;State&gt; possibleToGet = new ArrayList&lt;&gt;();</span>
         State state;
-<span class="nc bnc" id="L170" title="All 2 branches missed.">        for(int i = 0; i &lt; leftTransitions.length; i++){</span>
-<span class="nc bnc" id="L171" title="All 2 branches missed.">            for(int j = 0; j &lt; leftStates.length; j++){</span>
-<span class="nc bnc" id="L172" title="All 2 branches missed.">                if(leftStates[j].getName().equals(leftTransitions[i].getSource())){</span>
-<span class="nc" id="L173">                    state = recursiveUntilMethod(leftStates, leftStates, leftTransitions[i], leftTransitions, leftStates[j], model);</span>
-<span class="nc" id="L174">                    State actualState = HelpMethods.getActualState(leftTransitions[i].getTarget(), model);</span>
-<span class="nc bnc" id="L175" title="All 4 branches missed.">                    if (state != null &amp;&amp; HelpMethods.notInSet(actualState, possibleToGet)) {</span>
-<span class="nc" id="L176">                        possibleToGet.add(actualState);</span>
-<span class="nc" id="L177">                        helpStates.add(leftStates[j]);</span>
-                    }
-                }
-            }
-        }
-<span class="nc" id="L182">        State[] helpStatesGood = helpStates.toArray(new State[helpStates.size()]);</span>
-<span class="nc" id="L183">        State[] possibleToGetGood = possibleToGet.toArray(new State[possibleToGet.size()]);</span>
 
-<span class="nc bnc" id="L185" title="All 2 branches missed.">        if(rightTransitions.length == 0){</span>
-<span class="nc" id="L186">            return helpStatesGood;</span>
+
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if(rightTransitions.length == 0){</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">            for(int i = 0; i &lt; leftTransitions.length; i++){</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">                for(int j = 0; j &lt; leftStates.length; j++){</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">                    if(leftStates[j].getName().equals(leftTransitions[i].getSource())){</span>
+<span class="nc" id="L190">                        state = recursiveUntilMethod(rightStates, leftStates, leftTransitions[i], leftTransitions, leftStates[j], model);</span>
+<span class="nc" id="L191">                        State actualState = HelpMethods.getActualState(leftTransitions[i].getTarget(), model);</span>
+<span class="nc bnc" id="L192" title="All 4 branches missed.">                        if (state != null &amp;&amp; HelpMethods.notInSet(actualState, possibleToGet)) {</span>
+<span class="nc" id="L193">                            possibleToGet.add(actualState);</span>
+<span class="nc" id="L194">                            helpStates.add(leftStates[j]);</span>
+                        }
+                    }
+                }
+            }
+<span class="nc" id="L199">            return helpStates.toArray(new State[helpStates.size()]);</span>
         }
-<span class="nc bnc" id="L188" title="All 2 branches missed.">        if(leftTransitions.length == 0){</span>
-<span class="nc" id="L189">            possibleToGetGood = leftStates;</span>
-<span class="nc" id="L190">            helpStatesGood = leftStates;</span>
-        }
-<span class="nc bnc" id="L192" title="All 2 branches missed.">        for(int i = 0; i &lt; rightTransitions.length; i++){</span>
-<span class="nc bnc" id="L193" title="All 2 branches missed.">            for(int j = 0; j &lt; possibleToGetGood.length; j++){</span>
-<span class="nc bnc" id="L194" title="All 2 branches missed.">                if(possibleToGetGood[j].getName().equals(rightTransitions[i].getSource())){</span>
-<span class="nc" id="L195">                    state = recursiveUntilMethod(rightStates, possibleToGetGood, rightTransitions[i], rightTransitions, possibleToGetGood[j], model);</span>
-<span class="nc bnc" id="L196" title="All 4 branches missed.">                    if (state != null &amp;&amp; HelpMethods.notInSet(helpStatesGood[j], untilStates)) {</span>
-<span class="nc" id="L197">                        untilStates.add(getRealPath(helpStatesGood[j], helpStatesGood, possibleToGetGood));</span>
+
+<span class="nc bnc" id="L202" title="All 2 branches missed.">        for(int i = 0; i &lt; leftTransitions.length; i++){</span>
+<span class="nc bnc" id="L203" title="All 2 branches missed.">            for(int j = 0; j &lt; leftStates.length; j++){</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">                if(leftStates[j].getName().equals(leftTransitions[i].getSource())){</span>
+<span class="nc" id="L205">                    state = recursiveUntilMethod(leftStates, leftStates, leftTransitions[i], leftTransitions, leftStates[j], model);</span>
+<span class="nc" id="L206">                    State actualState = HelpMethods.getActualState(leftTransitions[i].getTarget(), model);</span>
+<span class="nc bnc" id="L207" title="All 4 branches missed.">                    if (state != null &amp;&amp; HelpMethods.notInSet(actualState, possibleToGet)) {</span>
+<span class="nc" id="L208">                        possibleToGet.add(actualState);</span>
+<span class="nc" id="L209">                        helpStates.add(leftStates[j]);</span>
                     }
                 }
             }
         }
-<span class="nc" id="L202">        return untilStates.toArray(new State[untilStates.size()]);</span>
+<span class="nc" id="L214">        State[] helpStatesGood = helpStates.toArray(new State[helpStates.size()]);</span>
+<span class="nc" id="L215">        State[] possibleToGetGood = possibleToGet.toArray(new State[possibleToGet.size()]);</span>
+
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        if(leftTransitions.length == 0){</span>
+<span class="nc" id="L218">            possibleToGetGood = leftStates;</span>
+<span class="nc" id="L219">            helpStatesGood = leftStates;</span>
+        }
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        for(int i = 0; i &lt; rightTransitions.length; i++){</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            for(int j = 0; j &lt; possibleToGetGood.length; j++){</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">                if(possibleToGetGood[j].getName().equals(rightTransitions[i].getSource())){</span>
+<span class="nc" id="L224">                    state = recursiveUntilMethod(rightStates, possibleToGetGood, rightTransitions[i], rightTransitions, possibleToGetGood[j], model);</span>
+<span class="nc bnc" id="L225" title="All 4 branches missed.">                    if (state != null &amp;&amp; HelpMethods.notInSet(helpStatesGood[j], untilStates)) {</span>
+<span class="nc" id="L226">                        state = getRealPath(helpStatesGood[j], helpStatesGood, possibleToGetGood);</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">                        if(state != null) {</span>
+<span class="nc" id="L228">                            untilStates.add(state);</span>
+                        }
+                    }
+                }
+            }
+        }
+<span class="nc" id="L234">        return untilStates.toArray(new State[untilStates.size()]);</span>
     }
 
+    //Method which returns a real initial state
     public static State getRealPath(State state, State[] helpStates, State[] possibleToGetGood){
-<span class="nc bnc" id="L206" title="All 2 branches missed.">        if(state.isInit()){</span>
-<span class="nc" id="L207">            return state;</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        if(state.isInit()){</span>
+<span class="nc" id="L240">            return state;</span>
         } else {
-<span class="nc" id="L209">            int t = 0;</span>
-<span class="nc bnc" id="L210" title="All 2 branches missed.">            for(int i = 0; i &lt; possibleToGetGood.length; i++){</span>
-<span class="nc bnc" id="L211" title="All 2 branches missed.">                if(possibleToGetGood[i].equals(state)){</span>
-<span class="nc" id="L212">                    t = i;</span>
-<span class="nc" id="L213">                    break;</span>
+<span class="nc" id="L242">            int t = -1;</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            for(int i = 0; i &lt; possibleToGetGood.length; i++){</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">                if(possibleToGetGood[i].equals(state)){</span>
+<span class="nc" id="L245">                    t = i;</span>
+<span class="nc" id="L246">                    break;</span>
                 }
             }
-<span class="nc" id="L216">            return getRealPath(helpStates[t], helpStates, possibleToGetGood);</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            if(t != -1) {</span>
+<span class="nc" id="L250">                return getRealPath(helpStates[t], helpStates, possibleToGetGood);</span>
+            } else {
+<span class="nc" id="L252">                return null;</span>
+            }
         }
 
     }
 
+    //Method which returns initial states of a set
     public static State[] getInitialStates(State[] states){
-<span class="nc" id="L222">        ArrayList&lt;State&gt; initialStates = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L223" title="All 2 branches missed.">        for(int i = 0; i &lt; states.length; i++){</span>
-<span class="nc bnc" id="L224" title="All 2 branches missed.">            if(states[i].isInit()){</span>
-<span class="nc" id="L225">                initialStates.add(states[i]);</span>
+<span class="nc" id="L260">        ArrayList&lt;State&gt; initialStates = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L261" title="All 2 branches missed.">        for(int i = 0; i &lt; states.length; i++){</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            if(states[i].isInit()){</span>
+<span class="nc" id="L263">                initialStates.add(states[i]);</span>
             }
         }
-<span class="nc" id="L228">        return initialStates.toArray(new State[initialStates.size()]);</span>
+<span class="nc" id="L266">        return initialStates.toArray(new State[initialStates.size()]);</span>
     }
 
     private static State recursiveUntilMethod(State[] rightStates, State[] leftStates, Transition act, Transition[] acts, State currentState, Model model){
-<span class="nc" id="L232">        State newState = getActualState(act.getTarget(), model);</span>
-<span class="nc bnc" id="L233" title="All 2 branches missed.">        if(newState.equals(currentState)){</span>
-<span class="nc" id="L234">            return null;</span>
+<span class="nc" id="L270">        State newState = getActualState(act.getTarget(), model);</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">        if(newState.equals(currentState)){</span>
+<span class="nc" id="L272">            return null;</span>
         }
-<span class="nc bnc" id="L236" title="All 2 branches missed.">        for(int i = 0; i &lt; rightStates.length; i++){</span>
-<span class="nc bnc" id="L237" title="All 2 branches missed.">            if(rightStates[i].equals(newState)){</span>
-<span class="nc" id="L238">                return currentState;</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">        for(int i = 0; i &lt; rightStates.length; i++){</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            if(rightStates[i].equals(newState)){</span>
+<span class="nc" id="L276">                return currentState;</span>
             }
         }
-<span class="nc bnc" id="L241" title="All 2 branches missed.">        for(int i = 0; i &lt; leftStates.length; i++){</span>
-<span class="nc bnc" id="L242" title="All 2 branches missed.">            if(leftStates[i].equals(newState)){</span>
-<span class="nc" id="L243">                leftStates = HelpMethods.removeElement(leftStates, newState);</span>
-<span class="nc bnc" id="L244" title="All 2 branches missed.">                for(int j = 0; j &lt; acts.length; j++) {</span>
-<span class="nc bnc" id="L245" title="All 2 branches missed.">                    if (acts[j].getSource().equals(newState.getName())) {</span>
-<span class="nc" id="L246">                        return recursiveUntilMethod(rightStates, leftStates, acts[j], acts, newState, model);</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">        for(int i = 0; i &lt; leftStates.length; i++){</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">            if(leftStates[i].equals(newState)){</span>
+<span class="nc" id="L281">                leftStates = HelpMethods.removeElement(leftStates, newState);</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">                for(int j = 0; j &lt; acts.length; j++) {</span>
+<span class="nc bnc" id="L283" title="All 2 branches missed.">                    if (acts[j].getSource().equals(newState.getName())) {</span>
+<span class="nc" id="L284">                        return recursiveUntilMethod(rightStates, leftStates, acts[j], acts, newState, model);</span>
                     } else {
-<span class="nc" id="L248">                        return null;</span>
+<span class="nc" id="L286">                        return null;</span>
                     }
                 }
             }
         }
-<span class="nc" id="L253">        return null;</span>
+<span class="nc" id="L291">        return null;</span>
     }
 
 }
